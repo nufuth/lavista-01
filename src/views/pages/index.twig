@@ -3,7 +3,158 @@
 |------------------|------------|---------------------------------------------------------------------|
 | page             | object     |                                                                     |
 | page.title       | string     | *could be html                                                      |
-| page.slug        | string     | ex: "cat.show"                                                      |
+| page.slug        | string     | ex: "ca{% extends 'layouts.master' %}
+
+{% block content %}
+
+    {# ====== الهيرو الرئيسي ====== #}
+    {% set hero_type   = theme.settings.get('hero_type', 'image') %}
+    {% set hero_image  = theme.settings.get('hero_image', '') %}
+    {% set hero_video  = theme.settings.get('hero_video_url', '') %}
+    {% set hero_height = theme.settings.get('hero_height', 'fullscreen') %}
+    {% set overlay_map = {'none':'0','light':'0.25','medium':'0.5','dark':'0.75'} %}
+    {% set overlay_val = overlay_map[theme.settings.get('hero_overlay_opacity','medium')] | default('0.5') %}
+    {% set height_map  = {'fullscreen':'100vh','large':'80vh','medium':'60vh'} %}
+    {% set hero_h      = height_map[hero_height] | default('100vh') %}
+    {% set pos_map     = {'bottom-start':'hero-content--bottom-start','bottom-center':'hero-content--bottom-center','bottom-end':'hero-content--bottom-end','center':'hero-content--center'} %}
+    {% set pos_class   = pos_map[theme.settings.get('hero_content_position','bottom-start')] | default('hero-content--bottom-start') %}
+
+    <section class="lavista-hero" style="height:{{ hero_h }};min-height:500px;position:relative;overflow:hidden;">
+        {% if hero_type == 'video' and hero_video %}
+            {% if 'youtube.com' in hero_video or 'youtu.be' in hero_video %}
+                {% set yt_id = hero_video|split('v=')|last|split('&')|first %}
+                <iframe src="https://www.youtube.com/embed/{{ yt_id }}?autoplay=1&mute=1&loop=1&playlist={{ yt_id }}&controls=0"
+                        style="position:absolute;top:-10%;left:-10%;width:120%;height:120%;border:none;pointer-events:none;"
+                        allow="autoplay"></iframe>
+            {% else %}
+                <video autoplay muted loop playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+                    <source src="{{ hero_video }}" type="video/mp4">
+                </video>
+            {% endif %}
+        {% elseif hero_image %}
+            <div style="position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('{{ hero_image }}');background-size:cover;background-position:center;"></div>
+        {% else %}
+            <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#1a1a1a,#2d2d2d);"></div>
+        {% endif %}
+
+        <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:{{ theme.settings.get('hero_overlay_color','#000') }};opacity:{{ overlay_val }};"></div>
+
+        <div style="position:relative;z-index:2;height:100%;display:flex;align-items:flex-end;padding-bottom:80px;">
+            <div style="max-width:1200px;margin:0 auto;padding:0 24px;width:100%;">
+                {% if theme.settings.get('hero_label') %}
+                    <p style="color:#C9A84C;letter-spacing:4px;font-size:13px;margin-bottom:12px;text-transform:uppercase;">{{ theme.settings.get('hero_label') }}</p>
+                {% endif %}
+                <h1 style="color:#fff;font-size:clamp(2.5rem,6vw,5rem);font-weight:300;margin-bottom:16px;line-height:1.1;">{{ theme.settings.get('hero_title','LAVISTA') }}</h1>
+                {% if theme.settings.get('hero_subtitle') %}
+                    <p style="color:rgba(255,255,255,0.85);font-size:1.1rem;margin-bottom:32px;">{{ theme.settings.get('hero_subtitle') }}</p>
+                {% endif %}
+                <a href="{{ theme.settings.get('hero_cta_link','/products') }}"
+                   style="display:inline-block;padding:14px 40px;background:#fff;color:#1a1a1a;text-decoration:none;font-weight:600;letter-spacing:1px;transition:all .3s;">
+                    {{ theme.settings.get('hero_cta_text','اكتشف الآن') }}
+                </a>
+            </div>
+        </div>
+    </section>
+
+    {# ====== الفئات ====== #}
+    {% if theme.settings.get('show_categories', true) %}
+    <section style="padding:80px 0;background:#f9f7f4;">
+        <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+            <h2 style="text-align:center;font-size:2rem;font-weight:300;margin-bottom:48px;color:#1a1a1a;">{{ theme.settings.get('categories_title','تسوق حسب الفئة') }}</h2>
+            <div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;">
+                {% for cat in categories | slice(0,6) %}
+                    <a href="{{ cat.url }}" style="text-align:center;text-decoration:none;color:#1a1a1a;width:140px;">
+                        <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;margin:0 auto 12px;background:#e8e4de;">
+                            {% if cat.image %}<img src="{{ cat.image }}" alt="{{ cat.name }}" style="width:100%;height:100%;object-fit:cover;">{% endif %}
+                        </div>
+                        <p style="font-size:14px;font-weight:500;">{{ cat.name }}</p>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {# ====== وصل حديثاً ====== #}
+    {% if theme.settings.get('show_new_arrivals', true) %}
+    <section style="padding:80px 0;background:#fff;">
+        <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;">
+                <h2 style="font-size:2rem;font-weight:300;color:#1a1a1a;">{{ theme.settings.get('new_arrivals_title','وصل حديثاً') }}</h2>
+                <a href="{{ link('products') }}" style="color:#C9A84C;text-decoration:none;font-size:14px;letter-spacing:1px;">عرض الكل ←</a>
+            </div>
+            <salla-products-list source="latest" count="8"></salla-products-list>
+        </div>
+    </section>
+    {% endif %}
+
+    {# ====== البانر الوسطي ====== #}
+    {% if theme.settings.get('show_mid_banner', true) %}
+    {% set banner_img = theme.settings.get('mid_banner_image','') %}
+    <section style="position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;
+        {% if banner_img %}background-image:url('{{ banner_img }}');background-size:cover;background-position:center;
+        {% else %}background:linear-gradient(135deg,#1a1a1a,#2d2d2d);{% endif %}">
+        <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);"></div>
+        <div style="position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:80px 24px;text-align:center;width:100%;">
+            <p style="color:#C9A84C;letter-spacing:4px;font-size:13px;margin-bottom:16px;text-transform:uppercase;">{{ theme.settings.get('mid_banner_label_text','EXCLUSIVE COLLECTION') }}</p>
+            <h2 style="color:#fff;font-size:clamp(2rem,5vw,3.5rem);font-weight:300;margin-bottom:20px;">{{ theme.settings.get('mid_banner_title','عطرك يُعرّفك') }}</h2>
+            <p style="color:rgba(255,255,255,0.8);font-size:1.05rem;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto;">{{ theme.settings.get('mid_banner_text','') }}</p>
+            <a href="{{ theme.settings.get('mid_banner_cta_link','/products') }}"
+               style="display:inline-block;padding:14px 48px;border:1px solid #fff;color:#fff;text-decoration:none;letter-spacing:2px;transition:all .3s;">
+                {{ theme.settings.get('mid_banner_cta_text','تسوق الآن') }}
+            </a>
+        </div>
+    </section>
+    {% endif %}
+
+    {# ====== الأكثر مبيعاً ====== #}
+    {% if theme.settings.get('show_bestsellers', true) %}
+    <section style="padding:80px 0;background:#f9f7f4;">
+        <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;">
+                <h2 style="font-size:2rem;font-weight:300;color:#1a1a1a;">{{ theme.settings.get('bestsellers_title','الأكثر مبيعاً') }}</h2>
+                <a href="{{ link('products') }}" style="color:#C9A84C;text-decoration:none;font-size:14px;letter-spacing:1px;">عرض الكل ←</a>
+            </div>
+            <salla-products-list source="best_selling" count="8"></salla-products-list>
+        </div>
+    </section>
+    {% endif %}
+
+    {# ====== قصة الماركة ====== #}
+    {% if theme.settings.get('show_editorial', true) %}
+    {% set editorial_img = theme.settings.get('editorial_image','') %}
+    <section style="padding:80px 0;background:#fff;">
+        <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+                <div style="aspect-ratio:3/4;overflow:hidden;background:#e8e4de;">
+                    {% if editorial_img %}
+                        <img src="{{ editorial_img }}" alt="{{ theme.settings.get('editorial_title') }}" style="width:100%;height:100%;object-fit:cover;">
+                    {% endif %}
+                </div>
+                <div>
+                    <p style="color:#C9A84C;letter-spacing:4px;font-size:13px;margin-bottom:20px;text-transform:uppercase;">{{ theme.settings.get('editorial_label','OUR STORY') }}</p>
+                    <h2 style="font-size:2.5rem;font-weight:300;color:#1a1a1a;margin-bottom:24px;">{{ theme.settings.get('editorial_title','فن العطر الفاخر') }}</h2>
+                    <p style="color:#555;line-height:1.9;margin-bottom:40px;">{{ theme.settings.get('editorial_text','') }}</p>
+                    <a href="{{ theme.settings.get('editorial_cta_link','/page/about') }}"
+                       style="display:inline-block;padding:12px 36px;border:1px solid #1a1a1a;color:#1a1a1a;text-decoration:none;letter-spacing:2px;transition:all .3s;">
+                        {{ theme.settings.get('editorial_cta_text','اعرف أكثر') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {# واتساب #}
+    {% if theme.settings.get('show_whatsapp_btn', true) and theme.settings.get('whatsapp_number') %}
+    <a href="https://wa.me/{{ theme.settings.get('whatsapp_number') }}"
+       target="_blank"
+       style="position:fixed;bottom:30px;left:30px;z-index:999;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.121 1.533 5.857L.057 23.571l5.866-1.54A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.214-3.48.913.929-3.395-.234-.349A9.818 9.818 0 112 12a9.818 9.818 0 0110 9.818z"/></svg>
+    </a>
+    {% endif %}
+
+{% endblock %}t.show"                                                      |
 #}
 {% extends "layouts.master" %}
 {% block content %}
