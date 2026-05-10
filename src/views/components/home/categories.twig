@@ -1,0 +1,26 @@
+{% if theme.settings.get('show_categories', true) %}
+<section class="lavista-categories">
+    <div class="container">
+        <div class="lavista-section-header">
+            <h2>{{ theme.settings.get('categories_title', 'تسوق حسب الفئة') }}</h2>
+        </div>
+        <div class="lavista-categories__grid">
+            {% set cats = categories | slice(0, 6) %}
+            {% if cats is not empty %}
+                {% for cat in cats %}
+                    <a href="{{ cat.url }}" class="lavista-category-item">
+                        <div class="lavista-category-item__circle">
+                            {% if cat.image %}
+                                <img src="{{ cat.image | cdn(300, 300) }}" alt="{{ cat.name }}" loading="lazy">
+                            {% else %}
+                                <div class="lavista-category-item__placeholder"><i class="sicon-perfume"></i></div>
+                            {% endif %}
+                        </div>
+                        <p class="lavista-category-item__name">{{ cat.name }}</p>
+                    </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endif %}
