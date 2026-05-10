@@ -1,0 +1,18 @@
+{% if theme.settings.get('show_mid_banner', true) %}
+    {% set banner_image = theme.settings.get('mid_banner_image', '') %}
+    <section class="lavista-mid-banner">
+        <div class="lavista-mid-banner__inner"
+             {% if banner_image %}style="background-image: url('{{ banner_image }}');"
+             {% else %}style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);"{% endif %}>
+            <div class="lavista-mid-banner__overlay"></div>
+            <div class="container lavista-mid-banner__content">
+                <p class="lavista-mid-banner__label">{{ theme.settings.get('mid_banner_label_text', 'EXCLUSIVE COLLECTION') }}</p>
+                <h2 class="lavista-mid-banner__title">{{ theme.settings.get('mid_banner_title', 'عطرك يُعرّفك') }}</h2>
+                <p class="lavista-mid-banner__text">{{ theme.settings.get('mid_banner_text', '') }}</p>
+                <a href="{{ theme.settings.get('mid_banner_cta_link', '/products') }}" class="lavista-btn lavista-btn--light">
+                    {{ theme.settings.get('mid_banner_cta_text', 'تسوق الآن') }}
+                </a>
+            </div>
+        </div>
+    </section>
+{% endif %}
