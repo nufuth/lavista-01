@@ -1,0 +1,17 @@
+{% if theme.settings.get('show_bestsellers', true) %}
+<section class="lavista-products-section lavista-products-section--alt">
+    <div class="container">
+        <div class="lavista-section-header">
+            <div class="lavista-section-header__left">
+                <h2>{{ theme.settings.get('bestsellers_title', 'الأكثر مبيعاً') }}</h2>
+            </div>
+            <a href="{{ link('products') }}" class="lavista-section-header__link">عرض الكل</a>
+        </div>
+        <div class="lavista-products-grid">
+            <salla-products-list source="best_selling" count="8">
+                <template>{% include 'pages/partials/product/card.twig' %}</template>
+            </salla-products-list>
+        </div>
+    </div>
+</section>
+{% endif %}
