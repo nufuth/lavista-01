@@ -1,0 +1,17 @@
+{% if theme.settings.get('show_new_arrivals', true) %}
+<section class="lavista-products-section">
+    <div class="container">
+        <div class="lavista-section-header">
+            <div class="lavista-section-header__left">
+                <h2>{{ theme.settings.get('new_arrivals_title', 'وصل حديثاً') }}</h2>
+            </div>
+            <a href="{{ link('products') }}" class="lavista-section-header__link">عرض الكل</a>
+        </div>
+        <div class="lavista-products-grid">
+            <salla-products-list source="latest" count="8">
+                <template>{% include 'pages/partials/product/card.twig' %}</template>
+            </salla-products-list>
+        </div>
+    </div>
+</section>
+{% endif %}
