@@ -1,73 +1,82 @@
-{#
-| Variable         | Type    | Description                     |
-|------------------|---------|---------------------------------|
-| cart             | object  |                                 |
-| cart.items_count | int     |                                 |
-| cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
-#}
-{% set important_links = theme.settings.get('important_links') %}
-<header class="store-header">
-  {# Top Nav #}
-  <div class="top-navbar">
-    <div class="container flex justify-between">
-      <div class="flex-1 flex items-center gap-2">
-          {# Footer Menu #}
-          {% if important_links %}
-            <salla-menu source="footer" topnav></salla-menu>
-          {% endif %}
+{% set logo_size = theme.settings.get('logo_size', 'medium') %}
+{% set logo_height_map = { 'small': '40px', 'medium': '70px', 'large': '100px', 'xlarge': '130px' } %}
+{% set logo_h = logo_height_map[logo_size] | default('70px') %}
+{% set is_transparent = theme.settings.get('header_transparent', true) %}
+{% set is_sticky = theme.settings.get('header_is_sticky', true) %}
+{% set header_bg = theme.settings.get('header_bg_color', '#ffffff') %}
 
-          {# Language & Currency Component #}
-          <div class="header-buttons">
-              {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
-                  <salla-localization-modal show-trigger></salla-localization-modal>
-              {% endif %}
-          </div>
+<header class="lavista-header{% if is_sticky %} lavista-header--sticky{% endif %}{% if is_transparent %} lavista-header--transparent{% endif %}"
+        id="lavista-header"
+        style="--header-bg: {{ header_bg }};">
 
-          {# Scopes | Branches #}
-          {% if store.scope %}
-              <button class="btn--rounded-gray"
-                      onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})">
-                  <i class="sicon-location rtl:ml-1 ltr:mr-1"></i> {{ store.scope.name }}
-              </button>
-          {% endif %}
+    {% if theme.settings.get('show_announcement', true) %}
+        {% set ann_bg   = theme.settings.get('announcement_bg_color', '#1a1a1a') %}
+        {% set ann_text = theme.settings.get('announcement_text_color', '#ffffff') %}
+        {% set ann_link = theme.settings.get('announcement_link', '') %}
+        <div class="announcement-bar" style="background: {{ ann_bg }}; color: {{ ann_text }};">
+            <div class="container">
+                {% if ann_link %}
+                    <a href="{{ ann_link }}" class="announcement-bar__text" style="color: {{ ann_text }};">
+                        {{ theme.settings.get('announcement_text', 'شحن مجاني للطلبات فوق 200 ريال') }}
+                    </a>
+                {% else %}
+                    <p class="announcement-bar__text">
+                        {{ theme.settings.get('announcement_text', 'شحن مجاني للطلبات فوق 200 ريال') }}
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
 
-          {# Search bar #}
-          <div class="header-search flex-1">
-            <salla-search inline oval height="36"></salla-search>
-          </div>
-      </div>
-
-      <salla-contacts is-header></salla-contacts>
+    <div class="header-top">
+        <div class="container header-top__inner">
+            <div class="header-top__actions header-top__actions--start">
+                <salla-user class="header-icon-btn" icon-only></salla-user>
+                {% if theme.settings.get('show_search_icon', true) %}
+                    <button class="header-icon-btn" onclick="salla.event.dispatch('search::open')" aria-label="بحث">
+                        <i class="sicon-search"></i>
+                    </button>
+                {% endif %}
+            </div>
+            <div class="header-logo" style="--logo-h: {{ logo_h }};">
+                <a href="{{ link('/') }}" class="header-logo__link" aria-label="{{ store.name }}">
+                    {% if store.logo %}
+                        <img src="{{ store.logo }}" alt="{{ store.name }}" class="header-logo__img" style="max-height: {{ logo_h }};" loading="eager">
+                    {% else %}
+                        <div class="header-logo__text">
+                            <span class="header-logo__name">LA VISTA</span>
+                            <span class="header-logo__sub">PERFUMES</span>
+                        </div>
+                    {% endif %}
+                </a>
+            </div>
+            <div class="header-top__actions header-top__actions--end">
+                {% if theme.settings.get('show_wishlist_icon', true) %}
+                    <a href="{{ link('wishlist') }}" class="header-icon-btn" aria-label="المفضلة">
+                        <i class="sicon-heart"></i>
+                    </a>
+                {% endif %}
+                <salla-cart-summary class="header-icon-btn header-cart-btn"></salla-cart-summary>
+            </div>
+        </div>
     </div>
-  </div>
 
-  {# Main Nav #}
-  <div id="mainnav" class="main-nav-container shadow-default bg-white flex items-center">
-      <div class="inner bg-inherit w-full">
-          <div class="container">
-              <div class="flex items-stretch justify-between relative">
-                  <div class="flex items-center">
-                      <a class="lg:hidden mburger mburger--collapse leading-none rtl:ml-4 ltr:mr-4" href="#mobile-menu" aria-label="Open-menu">
-                        <i class="sicon-menu text-primary text-2xl"></i>
-                      </a>
-                      <a class="navbar-brand" href="{{ store.url }}">
-                          <img fetchpriority="high" width="100%" height="100%" loading="eager" src="{{ store.logo|cdn(175) }}" alt="{{ store.name }} logo">
-                          {% if is_page('index') %}
-                            <h1 class="sr-only">{{ store.name }}</h1>
-                          {% else %}
-                            <h2 class="sr-only">{{ store.name }}</h2>
-                          {% endif %}
-                      </a>
-                      <custom-main-menu></custom-main-menu>
-                  </div>
-                  <div class="flex items-center justify-end my-2.5">
-                      <salla-user-menu avatar-only show-header show-trigger></salla-user-menu>
-                      <salla-cart-summary class="ml-4 rtl:ml-[unset] rtl:mr-4">
-                        <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
-                      </salla-cart-summary>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <nav class="main-nav" id="mainnav" role="navigation">
+        <div class="container">
+            <div class="main-nav__inner">
+                <button class="mobile-burger lg:hidden" onclick="salla.event.dispatch('menu::open')" aria-label="القائمة">
+                    <i class="sicon-menu"></i>
+                </button>
+                <salla-menu source="main" class="main-nav__menu hidden lg:flex"></salla-menu>
+                {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+                    <salla-localization-modal show-trigger class="main-nav__locale"></salla-localization-modal>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <salla-side-menu>
+        <salla-menu source="main"></salla-menu>
+    </salla-side-menu>
+    <salla-search></salla-search>
 </header>
