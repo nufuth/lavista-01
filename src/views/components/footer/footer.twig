@@ -1,87 +1,37 @@
-<footer class="lavista-footer{% if theme.settings.get('footer_is_dark', true) %} lavista-footer--dark{% endif %}">
-    {% if theme.settings.get('show_newsletter', true) %}
-    <div class="lavista-footer__newsletter">
-        <div class="container">
-            <div class="newsletter-inner">
-                <div class="newsletter-text">
-                    <h3>{{ theme.settings.get('newsletter_title', 'اشترك في نشرتنا') }}</h3>
-                    <p>{{ theme.settings.get('newsletter_subtitle', 'احصل على أحدث العروض أولاً') }}</p>
-                </div>
-                <salla-newsletter class="newsletter-form"></salla-newsletter>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-    <div class="lavista-footer__main">
-        <div class="container">
-            <div class="lavista-footer__grid">
-                <div class="lavista-footer__brand">
-                    <a href="{{ link('/') }}" class="lavista-footer__logo">
-                        {% if store.logo %}<img src="{{ store.logo }}" alt="{{ store.name }}" width="120" loading="lazy">
-                        {% else %}<div class="footer-logo-text"><span class="footer-logo-name">LA VISTA</span><span class="footer-logo-sub">PERFUMES</span></div>{% endif %}
-                    </a>
-                    <p class="lavista-footer__desc">{{ theme.settings.get('footer_about_text', 'عطور فاخرة تُعبّر عن شخصيتك.') }}</p>
-                    <div class="lavista-footer__social">
-                        {% if theme.settings.get('social_instagram') %}<a href="{{ theme.settings.get('social_instagram') }}" target="_blank" class="social-icon"><i class="sicon-instagram"></i></a>{% endif %}
-                        {% if theme.settings.get('social_twitter') %}<a href="{{ theme.settings.get('social_twitter') }}" target="_blank" class="social-icon"><i class="sicon-twitter"></i></a>{% endif %}
-                        {% if theme.settings.get('social_snapchat') %}<a href="{{ theme.settings.get('social_snapchat') }}" target="_blank" class="social-icon"><i class="sicon-snapchat"></i></a>{% endif %}
-                        {% if theme.settings.get('social_tiktok') %}<a href="{{ theme.settings.get('social_tiktok') }}" target="_blank" class="social-icon"><i class="sicon-tiktok"></i></a>{% endif %}
-                    </div>
-                </div>
-                <div class="lavista-footer__col">
-                    <h4 class="lavista-footer__title">روابط سريعة</h4>
-                    <ul class="lavista-footer__links">
-                        <li><a href="{{ link('/') }}">الرئيسية</a></li>
-                        <li><a href="{{ link('products') }}">المتجر</a></li>
-                        <li><a href="{{ link('page', 'about') }}">من نحن</a></li>
-                        <li><a href="{{ link('page', 'contact') }}">تواصل معنا</a></li>
-                    </ul>
-                </div>
-                <div class="lavista-footer__col">
-                    <h4 class="lavista-footer__title">خدمة العملاء</h4>
-                    <ul class="lavista-footer__links">
-                        <li><a href="{{ link('page', 'shipping') }}">سياسة الشحن</a></li>
-                        <li><a href="{{ link('page', 'returns') }}">الإرجاع</a></li>
-                        <li><a href="{{ link('page', 'privacy') }}">الخصوصية</a></li>
-                        <li><a href="{{ link('page', 'terms') }}">الشروط</a></li>
-                    </ul>
-                </div>
-                <div class="lavista-footer__col">
-                    <h4 class="lavista-footer__title">تواصل معنا</h4>
-                    <ul class="lavista-footer__contact">
-                        {% if store.contacts.email %}<li><i class="sicon-envelope"></i><a href="mailto:{{ store.contacts.email }}">{{ store.contacts.email }}</a></li>{% endif %}
-                        {% if store.contacts.phone %}<li><i class="sicon-phone"></i><a href="tel:{{ store.contacts.phone }}">{{ store.contacts.phone }}</a></li>{% endif %}
-                    </ul>
-                    <salla-trust-badges dark class="mt-6 block"></salla-trust-badges>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="lavista-footer__copyright">
-        <div class="container">
-            <div class="copyright-inner">
-                <p>© {{ "now"|date("Y") }} {{ store.name }} — جميع الحقوق محفوظة</p>
-                <salla-payment-icons></salla-payment-icons>
-            </div>
-        </div>
-    </div>
-</footer>
+{% extends 'layouts.master' %}
 
-{% if theme.settings.get('show_whatsapp_btn', true) %}
-    {% set wa_num = theme.settings.get('whatsapp_number', '') %}
-    {% if wa_num %}
-        <a href="https://wa.me/{{ wa_num }}?text={{ theme.settings.get('whatsapp_message', 'مرحباً') | url_encode }}"
-           target="_blank" class="lavista-whatsapp-btn" aria-label="واتساب">
-            <i class="sicon-whatsapp"></i>
-        </a>
-    {% endif %}
-{% endif %}
+{% block content %}
 
-{% if theme.settings.get('show_back_to_top', true) %}
-    <button class="lavista-back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <i class="sicon-arrow-up"></i>
-    </button>
-{% endif %}
+    {# ===== هيرو لافيستا ===== #}
+    {% set hero_h = {'fullscreen':'100vh','large':'80vh','medium':'60vh'}[theme.settings.get('hero_height','fullscreen')]|default('100vh') %}
+    {% set overlay = {'none':'0','light':'0.25','medium':'0.5','dark':'0.75'}[theme.settings.get('hero_overlay_opacity','medium')]|default('0.5') %}
 
-{% set custom_css = theme.settings.get('custom_css', '') %}
-{% if custom_css %}<style>{{ custom_css }}</style>{% endif %}
+    <section style="position:relative;overflow:hidden;height:{{ hero_h }};min-height:480px;display:flex;align-items:flex-end;">
+
+        {% if theme.settings.get('hero_type','image') == 'video' and theme.settings.get('hero_video_url','') %}
+            <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+                <source src="{{ theme.settings.get('hero_video_url') }}" type="video/mp4">
+            </video>
+        {% elseif theme.settings.get('hero_image','') %}
+            <img src="{{ theme.settings.get('hero_image') }}" alt="hero" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        {% else %}
+            <div style="position:absolute;inset:0;background:#1a1a1a;"></div>
+        {% endif %}
+
+        <div style="position:absolute;inset:0;background:{{ theme.settings.get('hero_overlay_color','#000') }};opacity:{{ overlay }};"></div>
+
+        <div style="position:relative;z-index:2;padding:0 40px 80px;width:100%;">
+            <p style="color:#C9A84C;letter-spacing:4px;font-size:12px;text-transform:uppercase;margin:0 0 12px;">{{ theme.settings.get('hero_label','THE NEW COLLECTION') }}</p>
+            <h1 style="color:#fff;font-size:clamp(2rem,6vw,5rem);font-weight:300;margin:0 0 16px;line-height:1.1;">{{ theme.settings.get('hero_title','LAVISTA') }}</h1>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;margin:0 0 32px;">{{ theme.settings.get('hero_subtitle','') }}</p>
+            <a href="{{ theme.settings.get('hero_cta_link','/products') }}"
+               style="display:inline-block;background:#fff;color:#1a1a1a;padding:14px 40px;text-decoration:none;font-weight:600;letter-spacing:1px;">
+                {{ theme.settings.get('hero_cta_text','اكتشف الآن') }}
+            </a>
+        </div>
+    </section>
+
+    {# ===== باقي مكونات سلة ===== #}
+    {% component home %}
+
+{% endblock %}
