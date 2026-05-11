@@ -1,5 +1,7 @@
 {% set is_transparent = theme.settings.get('header_transparent', true) %}
-{% set is_sticky = theme.settings.get('header_is_sticky', true) %}
+{% set is_sticky      = theme.settings.get('header_is_sticky', true) %}
+{% set logo_h         = theme.settings.get('logo_size', '48') %}
+{% set logo_w         = theme.settings.get('logo_max_width', '160') %}
 
 <div id="lv-hw" style="
     position: absolute;
@@ -8,6 +10,7 @@
     width: 100%;
     transition: background 0.35s ease, box-shadow 0.35s ease;
 ">
+
     {# ---- شريط الإعلانات ---- #}
     {% if theme.settings.get('show_announcement', true) and theme.settings.get('announcement_text', '') %}
     <div id="lv-ann" style="
@@ -39,29 +42,28 @@
         padding: 0 32px;
         background: transparent;
     ">
-        {# الجانب الأيسر: أيقونات #}
+
+        {# --- يسار: بحث + حساب + (زر جوال) --- #}
         <div style="display:flex;align-items:center;gap:20px;">
             {% if theme.settings.get('show_search', true) %}
             <button onclick="salla.event.dispatch('search::open')" aria-label="بحث"
-                style="background:none;border:none;cursor:pointer;color:inherit;padding:4px;font-size:21px;color:#fff;">
+                style="background:none;border:none;cursor:pointer;padding:4px;font-size:21px;color:#fff;transition:color 0.35s;" class="lv-icon-btn">
                 <i class="sicon-search"></i>
             </button>
             {% endif %}
-            <salla-user icon-only style="font-size:20px;color:#fff;"></salla-user>
-
-            {# زر القائمة للجوال #}
-            <button id="lv-mob-menu-btn" aria-label="القائمة"
-                style="background:none;border:none;cursor:pointer;color:#fff;font-size:22px;display:none;">
+            <salla-user icon-only class="lv-icon-btn" style="font-size:20px;color:#fff;transition:color 0.35s;"></salla-user>
+            <button id="lv-mob-btn" aria-label="القائمة"
+                style="background:none;border:none;cursor:pointer;color:#fff;font-size:22px;display:none;transition:color 0.35s;" class="lv-icon-btn">
                 <i class="sicon-align-right"></i>
             </button>
         </div>
 
-        {# الشعار في الوسط #}
+        {# --- وسط: الشعار --- #}
         <a href="{{ link('/') }}" style="text-decoration:none;text-align:center;display:block;">
             {% if store.logo %}
                 <img src="{{ store.logo }}" alt="{{ store.name }}"
                      id="lv-logo"
-                     style="max-height:54px;max-width:160px;object-fit:contain;display:block;margin:0 auto;filter:brightness(0) invert(1);transition:filter 0.35s;">
+                     style="height:{{ logo_h }}px;max-width:{{ logo_w }}px;width:auto;object-fit:contain;display:block;margin:0 auto;filter:brightness(0) invert(1);transition:filter 0.35s,height 0.35s;">
             {% else %}
                 <span id="lv-logo-text"
                     style="font-size:1.5rem;font-weight:200;letter-spacing:5px;color:#fff;transition:color 0.35s;">
@@ -70,43 +72,37 @@
             {% endif %}
         </a>
 
-        {# الجانب الأيمن #}
+        {# --- يمين: مفضلة + سلة --- #}
         <div style="display:flex;align-items:center;gap:20px;justify-content:flex-end;">
             {% if theme.settings.get('show_wishlist', true) %}
-            <a href="{{ link('wishlist') }}" aria-label="المفضلة"
-               style="font-size:21px;color:#fff;text-decoration:none;transition:color 0.35s;" id="lv-wish-icon">
+            <a href="{{ link('wishlist') }}" aria-label="المفضلة" id="lv-wish"
+               style="font-size:21px;color:#fff;text-decoration:none;transition:color 0.35s;" class="lv-icon-btn">
                 <i class="sicon-heart"></i>
             </a>
             {% endif %}
-            <div id="lv-cart-icon" style="color:#fff;transition:color 0.35s;">
+            <div id="lv-cart" style="color:#fff;transition:color 0.35s;" class="lv-icon-btn">
                 <salla-cart-summary style="font-size:20px;"></salla-cart-summary>
             </div>
         </div>
     </header>
 
-    {# ---- القائمة (ديسكتوب) ---- #}
-    <nav id="lv-nav" style="
-        border-top: 1px solid rgba(255,255,255,0.15);
-        transition: border-color 0.35s;
-    ">
-        <div style="
-            max-width:1280px;margin:0 auto;padding:0 32px;
-            display:flex;align-items:center;justify-content:center;height:46px;
-        ">
+    {# ---- القائمة الرئيسية (ديسكتوب) ---- #}
+    <nav id="lv-nav" style="border-top:1px solid rgba(255,255,255,0.15);transition:border-color 0.35s;">
+        <div style="max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:center;height:46px;">
             <salla-menu source="main" id="lv-main-menu"></salla-menu>
         </div>
     </nav>
 </div>
 
-{# ---- القائمة الجانبية للجوال ---- #}
+{# ---- مكونات سلا الجاهزة ---- #}
 <salla-side-menu>
     <salla-menu source="main"></salla-menu>
 </salla-side-menu>
 <salla-search></salla-search>
 
 <style>
-/* ===== القائمة desktop ===== */
-#lv-main-menu { display:flex;gap:0;list-style:none;margin:0;padding:0; }
+/* قائمة الديسكتوب */
+#lv-main-menu { display:flex; gap:0; list-style:none; margin:0; padding:0; }
 #lv-main-menu salla-mega-menu,
 #lv-main-menu > li > a,
 #lv-main-menu > li > button {
@@ -117,71 +113,71 @@
     text-decoration: none;
     transition: color 0.25s;
 }
-
-/* بعد التمرير → لون داكن للقائمة */
+/* بعد التمرير — ألوان داكنة */
+.lv-scrolled .lv-icon-btn,
+.lv-scrolled #lv-wish,
+.lv-scrolled #lv-cart { color: #1a1a1a !important; }
+.lv-scrolled salla-user { color: #1a1a1a !important; }
 .lv-scrolled #lv-main-menu salla-mega-menu,
 .lv-scrolled #lv-main-menu > li > a,
 .lv-scrolled #lv-main-menu > li > button { color: #1a1a1a !important; }
-.lv-scrolled #lv-wish-icon { color: #1a1a1a !important; }
-.lv-scrolled #lv-cart-icon { color: #1a1a1a !important; }
-.lv-scrolled #lv-header button { color: #1a1a1a !important; }
-.lv-scrolled salla-user { color: #1a1a1a !important; }
 
-/* ===== الجوال ===== */
+/* الجوال */
 @media (max-width: 768px) {
     #lv-header { padding: 0 16px; height: 60px; }
-    #lv-nav { display: none; }
-    #lv-mob-menu-btn { display: flex !important; }
-    #lv-hw { position: absolute !important; }
+    #lv-nav    { display: none; }
+    #lv-mob-btn { display: flex !important; }
 }
 </style>
 
 <script>
 (function () {
-    var wrap   = document.getElementById('lv-hw');
-    var ann    = document.getElementById('lv-ann');
-    var logo   = document.getElementById('lv-logo');
-    var nav    = document.getElementById('lv-nav');
-    var sticky = {{ is_sticky ? 'true' : 'false' }};
+    var wrap  = document.getElementById('lv-hw');
+    var ann   = document.getElementById('lv-ann');
+    var logo  = document.getElementById('lv-logo');
+    var ltxt  = document.getElementById('lv-logo-text');
+    var nav   = document.getElementById('lv-nav');
+    var sticky      = {{ is_sticky ? 'true' : 'false' }};
     var transparent = {{ is_transparent ? 'true' : 'false' }};
 
     if (!wrap) return;
 
-    function setScrolled(scrolled) {
+    function apply(scrolled) {
         if (scrolled) {
             wrap.classList.add('lv-scrolled');
-            wrap.style.position   = sticky ? 'fixed' : 'absolute';
+            wrap.style.position   = sticky ? 'fixed' : 'relative';
             wrap.style.background = '#fff';
-            wrap.style.boxShadow  = '0 2px 24px rgba(0,0,0,0.08)';
-            if (ann) ann.style.display = 'none';
-            if (logo) logo.style.filter = 'none';
+            wrap.style.boxShadow  = '0 2px 24px rgba(0,0,0,0.09)';
+            if (ann)  ann.style.display = 'none';
+            if (logo) logo.style.filter  = 'none';
+            if (ltxt) ltxt.style.color   = '#1a1a1a';
             if (nav)  nav.style.borderTopColor = 'rgba(0,0,0,0.07)';
         } else {
             wrap.classList.remove('lv-scrolled');
             wrap.style.position   = 'absolute';
             wrap.style.background = 'transparent';
             wrap.style.boxShadow  = 'none';
-            if (ann) ann.style.display = '';
-            if (logo) logo.style.filter = 'brightness(0) invert(1)';
+            if (ann)  ann.style.display = '';
+            if (logo) logo.style.filter  = 'brightness(0) invert(1)';
+            if (ltxt) ltxt.style.color   = '#fff';
             if (nav)  nav.style.borderTopColor = 'rgba(255,255,255,0.15)';
         }
     }
 
     if (transparent) {
         window.addEventListener('scroll', function () {
-            setScrolled(window.scrollY > 80);
+            apply(window.scrollY > 80);
         }, { passive: true });
-        setScrolled(false);
+        apply(false);
     } else {
-        setScrolled(true);
+        apply(true);
+        wrap.style.position = sticky ? 'fixed' : 'relative';
     }
 
-    /* زر القائمة الجوال */
-    var mobBtn = document.getElementById('lv-mob-menu-btn');
-    if (mobBtn) {
-        mobBtn.addEventListener('click', function () {
-            salla.event.dispatch('menu::open');
-        });
-    }
+    /* زر قائمة الجوال */
+    var mob = document.getElementById('lv-mob-btn');
+    if (mob) mob.addEventListener('click', function () {
+        salla.event.dispatch('menu::open');
+    });
 })();
 </script>
