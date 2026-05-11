@@ -1,82 +1,187 @@
-{% set logo_size = theme.settings.get('logo_size', 'medium') %}
-{% set logo_height_map = { 'small': '40px', 'medium': '70px', 'large': '100px', 'xlarge': '130px' } %}
-{% set logo_h = logo_height_map[logo_size] | default('70px') %}
 {% set is_transparent = theme.settings.get('header_transparent', true) %}
 {% set is_sticky = theme.settings.get('header_is_sticky', true) %}
-{% set header_bg = theme.settings.get('header_bg_color', '#ffffff') %}
 
-<header class="lavista-header{% if is_sticky %} lavista-header--sticky{% endif %}{% if is_transparent %} lavista-header--transparent{% endif %}"
-        id="lavista-header"
-        style="--header-bg: {{ header_bg }};">
-
-    {% if theme.settings.get('show_announcement', true) %}
-        {% set ann_bg   = theme.settings.get('announcement_bg_color', '#1a1a1a') %}
-        {% set ann_text = theme.settings.get('announcement_text_color', '#ffffff') %}
+<div id="lv-hw" style="
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 9000;
+    width: 100%;
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+">
+    {# ---- شريط الإعلانات ---- #}
+    {% if theme.settings.get('show_announcement', true) and theme.settings.get('announcement_text', '') %}
+    <div id="lv-ann" style="
+        background: rgba(0,0,0,0.55);
+        color: #fff;
+        text-align: center;
+        padding: 9px 16px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        backdrop-filter: blur(4px);
+    ">
         {% set ann_link = theme.settings.get('announcement_link', '') %}
-        <div class="announcement-bar" style="background: {{ ann_bg }}; color: {{ ann_text }};">
-            <div class="container">
-                {% if ann_link %}
-                    <a href="{{ ann_link }}" class="announcement-bar__text" style="color: {{ ann_text }};">
-                        {{ theme.settings.get('announcement_text', 'شحن مجاني للطلبات فوق 200 ريال') }}
-                    </a>
-                {% else %}
-                    <p class="announcement-bar__text">
-                        {{ theme.settings.get('announcement_text', 'شحن مجاني للطلبات فوق 200 ريال') }}
-                    </p>
-                {% endif %}
-            </div>
-        </div>
+        {% if ann_link %}
+            <a href="{{ ann_link }}" style="color:#fff;text-decoration:none;">
+                {{ theme.settings.get('announcement_text') }}
+            </a>
+        {% else %}
+            {{ theme.settings.get('announcement_text') }}
+        {% endif %}
+    </div>
     {% endif %}
 
-    <div class="header-top">
-        <div class="container header-top__inner">
-            <div class="header-top__actions header-top__actions--start">
-                <salla-user class="header-icon-btn" icon-only></salla-user>
-                {% if theme.settings.get('show_search_icon', true) %}
-                    <button class="header-icon-btn" onclick="salla.event.dispatch('search::open')" aria-label="بحث">
-                        <i class="sicon-search"></i>
-                    </button>
-                {% endif %}
-            </div>
-            <div class="header-logo" style="--logo-h: {{ logo_h }};">
-                <a href="{{ link('/') }}" class="header-logo__link" aria-label="{{ store.name }}">
-                    {% if store.logo %}
-                        <img src="{{ store.logo }}" alt="{{ store.name }}" class="header-logo__img" style="max-height: {{ logo_h }};" loading="eager">
-                    {% else %}
-                        <div class="header-logo__text">
-                            <span class="header-logo__name">LA VISTA</span>
-                            <span class="header-logo__sub">PERFUMES</span>
-                        </div>
-                    {% endif %}
-                </a>
-            </div>
-            <div class="header-top__actions header-top__actions--end">
-                {% if theme.settings.get('show_wishlist_icon', true) %}
-                    <a href="{{ link('wishlist') }}" class="header-icon-btn" aria-label="المفضلة">
-                        <i class="sicon-heart"></i>
-                    </a>
-                {% endif %}
-                <salla-cart-summary class="header-icon-btn header-cart-btn"></salla-cart-summary>
+    {# ---- الهيدر الرئيسي ---- #}
+    <header id="lv-header" style="
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        height: 68px;
+        padding: 0 32px;
+        background: transparent;
+    ">
+        {# الجانب الأيسر: أيقونات #}
+        <div style="display:flex;align-items:center;gap:20px;">
+            {% if theme.settings.get('show_search', true) %}
+            <button onclick="salla.event.dispatch('search::open')" aria-label="بحث"
+                style="background:none;border:none;cursor:pointer;color:inherit;padding:4px;font-size:21px;color:#fff;">
+                <i class="sicon-search"></i>
+            </button>
+            {% endif %}
+            <salla-user icon-only style="font-size:20px;color:#fff;"></salla-user>
+
+            {# زر القائمة للجوال #}
+            <button id="lv-mob-menu-btn" aria-label="القائمة"
+                style="background:none;border:none;cursor:pointer;color:#fff;font-size:22px;display:none;">
+                <i class="sicon-align-right"></i>
+            </button>
+        </div>
+
+        {# الشعار في الوسط #}
+        <a href="{{ link('/') }}" style="text-decoration:none;text-align:center;display:block;">
+            {% if store.logo %}
+                <img src="{{ store.logo }}" alt="{{ store.name }}"
+                     id="lv-logo"
+                     style="max-height:54px;max-width:160px;object-fit:contain;display:block;margin:0 auto;filter:brightness(0) invert(1);transition:filter 0.35s;">
+            {% else %}
+                <span id="lv-logo-text"
+                    style="font-size:1.5rem;font-weight:200;letter-spacing:5px;color:#fff;transition:color 0.35s;">
+                    {{ store.name }}
+                </span>
+            {% endif %}
+        </a>
+
+        {# الجانب الأيمن #}
+        <div style="display:flex;align-items:center;gap:20px;justify-content:flex-end;">
+            {% if theme.settings.get('show_wishlist', true) %}
+            <a href="{{ link('wishlist') }}" aria-label="المفضلة"
+               style="font-size:21px;color:#fff;text-decoration:none;transition:color 0.35s;" id="lv-wish-icon">
+                <i class="sicon-heart"></i>
+            </a>
+            {% endif %}
+            <div id="lv-cart-icon" style="color:#fff;transition:color 0.35s;">
+                <salla-cart-summary style="font-size:20px;"></salla-cart-summary>
             </div>
         </div>
-    </div>
+    </header>
 
-    <nav class="main-nav" id="mainnav" role="navigation">
-        <div class="container">
-            <div class="main-nav__inner">
-                <button class="mobile-burger lg:hidden" onclick="salla.event.dispatch('menu::open')" aria-label="القائمة">
-                    <i class="sicon-menu"></i>
-                </button>
-                <salla-menu source="main" class="main-nav__menu hidden lg:flex"></salla-menu>
-                {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
-                    <salla-localization-modal show-trigger class="main-nav__locale"></salla-localization-modal>
-                {% endif %}
-            </div>
+    {# ---- القائمة (ديسكتوب) ---- #}
+    <nav id="lv-nav" style="
+        border-top: 1px solid rgba(255,255,255,0.15);
+        transition: border-color 0.35s;
+    ">
+        <div style="
+            max-width:1280px;margin:0 auto;padding:0 32px;
+            display:flex;align-items:center;justify-content:center;height:46px;
+        ">
+            <salla-menu source="main" id="lv-main-menu"></salla-menu>
         </div>
     </nav>
+</div>
 
-    <salla-side-menu>
-        <salla-menu source="main"></salla-menu>
-    </salla-side-menu>
-    <salla-search></salla-search>
-</header>
+{# ---- القائمة الجانبية للجوال ---- #}
+<salla-side-menu>
+    <salla-menu source="main"></salla-menu>
+</salla-side-menu>
+<salla-search></salla-search>
+
+<style>
+/* ===== القائمة desktop ===== */
+#lv-main-menu { display:flex;gap:0;list-style:none;margin:0;padding:0; }
+#lv-main-menu salla-mega-menu,
+#lv-main-menu > li > a,
+#lv-main-menu > li > button {
+    color: #fff !important;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    padding: 0 16px;
+    text-decoration: none;
+    transition: color 0.25s;
+}
+
+/* بعد التمرير → لون داكن للقائمة */
+.lv-scrolled #lv-main-menu salla-mega-menu,
+.lv-scrolled #lv-main-menu > li > a,
+.lv-scrolled #lv-main-menu > li > button { color: #1a1a1a !important; }
+.lv-scrolled #lv-wish-icon { color: #1a1a1a !important; }
+.lv-scrolled #lv-cart-icon { color: #1a1a1a !important; }
+.lv-scrolled #lv-header button { color: #1a1a1a !important; }
+.lv-scrolled salla-user { color: #1a1a1a !important; }
+
+/* ===== الجوال ===== */
+@media (max-width: 768px) {
+    #lv-header { padding: 0 16px; height: 60px; }
+    #lv-nav { display: none; }
+    #lv-mob-menu-btn { display: flex !important; }
+    #lv-hw { position: absolute !important; }
+}
+</style>
+
+<script>
+(function () {
+    var wrap   = document.getElementById('lv-hw');
+    var ann    = document.getElementById('lv-ann');
+    var logo   = document.getElementById('lv-logo');
+    var nav    = document.getElementById('lv-nav');
+    var sticky = {{ is_sticky ? 'true' : 'false' }};
+    var transparent = {{ is_transparent ? 'true' : 'false' }};
+
+    if (!wrap) return;
+
+    function setScrolled(scrolled) {
+        if (scrolled) {
+            wrap.classList.add('lv-scrolled');
+            wrap.style.position   = sticky ? 'fixed' : 'absolute';
+            wrap.style.background = '#fff';
+            wrap.style.boxShadow  = '0 2px 24px rgba(0,0,0,0.08)';
+            if (ann) ann.style.display = 'none';
+            if (logo) logo.style.filter = 'none';
+            if (nav)  nav.style.borderTopColor = 'rgba(0,0,0,0.07)';
+        } else {
+            wrap.classList.remove('lv-scrolled');
+            wrap.style.position   = 'absolute';
+            wrap.style.background = 'transparent';
+            wrap.style.boxShadow  = 'none';
+            if (ann) ann.style.display = '';
+            if (logo) logo.style.filter = 'brightness(0) invert(1)';
+            if (nav)  nav.style.borderTopColor = 'rgba(255,255,255,0.15)';
+        }
+    }
+
+    if (transparent) {
+        window.addEventListener('scroll', function () {
+            setScrolled(window.scrollY > 80);
+        }, { passive: true });
+        setScrolled(false);
+    } else {
+        setScrolled(true);
+    }
+
+    /* زر القائمة الجوال */
+    var mobBtn = document.getElementById('lv-mob-menu-btn');
+    if (mobBtn) {
+        mobBtn.addEventListener('click', function () {
+            salla.event.dispatch('menu::open');
+        });
+    }
+})();
+</script>
