@@ -1,37 +1,155 @@
 {% extends 'layouts.master' %}
 
+{% block styles %}
+<style>
+* { box-sizing: border-box; }
+
+/* ===== الهيرو ===== */
+.lv-hero {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+.lv-hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.lv-hero__overlay {
+    position: absolute;
+    inset: 0;
+}
+.lv-hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 0 60px 100px;
+    max-width: 900px;
+}
+.lv-hero__label {
+    color: #C9A84C;
+    letter-spacing: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+    font-weight: 400;
+}
+.lv-hero__title {
+    color: #fff;
+    font-size: clamp(2.5rem, 7vw, 6rem);
+    font-weight: 200;
+    margin: 0 0 20px;
+    line-height: 1.05;
+    letter-spacing: -1px;
+}
+.lv-hero__subtitle {
+    color: rgba(255,255,255,0.75);
+    font-size: 1.1rem;
+    margin: 0 0 40px;
+    font-weight: 300;
+}
+.lv-hero__btn {
+    display: inline-block;
+    padding: 16px 48px;
+    background: #fff;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+.lv-hero__btn:hover {
+    background: #C9A84C;
+    color: #fff;
+}
+.lv-hero__btn--gold {
+    background: #C9A84C;
+    color: #fff;
+}
+.lv-hero__btn--outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+/* ===== واتساب ===== */
+.lv-whatsapp {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 9999;
+    width: 58px;
+    height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 24px rgba(37,211,102,0.45);
+    transition: transform 0.2s;
+}
+.lv-whatsapp:hover { transform: scale(1.1); }
+
+/* ===== تحسينات عامة ===== */
+body { background: #f9f7f4; }
+
+@media (max-width: 768px) {
+    .lv-hero__content { padding: 0 24px 60px; }
+    .lv-hero__btn { padding: 14px 32px; }
+}
+</style>
+{% endblock %}
+
 {% block content %}
 
-    {# ===== هيرو لافيستا ===== #}
+    {# ===== الهيرو ===== #}
     {% set hero_h = {'fullscreen':'100vh','large':'80vh','medium':'60vh'}[theme.settings.get('hero_height','fullscreen')]|default('100vh') %}
-    {% set overlay = {'none':'0','light':'0.25','medium':'0.5','dark':'0.75'}[theme.settings.get('hero_overlay_opacity','medium')]|default('0.5') %}
+    {% set overlay_op = {'none':'0','light':'0.2','medium':'0.45','dark':'0.7'}[theme.settings.get('hero_overlay_opacity','medium')]|default('0.45') %}
+    {% set hero_type = theme.settings.get('hero_type','image') %}
+    {% set hero_image = theme.settings.get('hero_image','') %}
+    {% set hero_video = theme.settings.get('hero_video_url','') %}
+    {% set cta_style = theme.settings.get('hero_cta_style','white') %}
 
-    <section style="position:relative;overflow:hidden;height:{{ hero_h }};min-height:480px;display:flex;align-items:flex-end;">
+    <section class="lv-hero" style="height:{{ hero_h }};min-height:500px;">
 
-        {% if theme.settings.get('hero_type','image') == 'video' and theme.settings.get('hero_video_url','') %}
-            <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-                <source src="{{ theme.settings.get('hero_video_url') }}" type="video/mp4">
+        {% if hero_type == 'video' and hero_video %}
+            <video autoplay muted loop playsinline class="lv-hero__bg">
+                <source src="{{ hero_video }}" type="video/mp4">
             </video>
-        {% elseif theme.settings.get('hero_image','') %}
-            <img src="{{ theme.settings.get('hero_image') }}" alt="hero" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        {% elseif hero_image %}
+            <img src="{{ hero_image }}" alt="hero" class="lv-hero__bg">
         {% else %}
-            <div style="position:absolute;inset:0;background:#1a1a1a;"></div>
+            <div class="lv-hero__bg" style="background:linear-gradient(160deg,#1a1a1a 0%,#2c2416 100%);"></div>
         {% endif %}
 
-        <div style="position:absolute;inset:0;background:{{ theme.settings.get('hero_overlay_color','#000') }};opacity:{{ overlay }};"></div>
+        <div class="lv-hero__overlay"
+             style="background:{{ theme.settings.get('hero_overlay_color','#000') }};opacity:{{ overlay_op }};"></div>
 
-        <div style="position:relative;z-index:2;padding:0 40px 80px;width:100%;">
-            <p style="color:#C9A84C;letter-spacing:4px;font-size:12px;text-transform:uppercase;margin:0 0 12px;">{{ theme.settings.get('hero_label','THE NEW COLLECTION') }}</p>
-            <h1 style="color:#fff;font-size:clamp(2rem,6vw,5rem);font-weight:300;margin:0 0 16px;line-height:1.1;">{{ theme.settings.get('hero_title','LAVISTA') }}</h1>
-            <p style="color:rgba(255,255,255,0.8);font-size:1rem;margin:0 0 32px;">{{ theme.settings.get('hero_subtitle','') }}</p>
+        <div class="lv-hero__content">
+            <p class="lv-hero__label">{{ theme.settings.get('hero_label','THE NEW COLLECTION') }}</p>
+            <h1 class="lv-hero__title">{{ theme.settings.get('hero_title','LAVISTA') }}</h1>
+            {% if theme.settings.get('hero_subtitle','') %}
+                <p class="lv-hero__subtitle">{{ theme.settings.get('hero_subtitle') }}</p>
+            {% endif %}
             <a href="{{ theme.settings.get('hero_cta_link','/products') }}"
-               style="display:inline-block;background:#fff;color:#1a1a1a;padding:14px 40px;text-decoration:none;font-weight:600;letter-spacing:1px;">
+               class="lv-hero__btn lv-hero__btn--{{ cta_style }}">
                 {{ theme.settings.get('hero_cta_text','اكتشف الآن') }}
             </a>
         </div>
     </section>
 
-    {# ===== باقي مكونات سلة ===== #}
+    {# ===== باقي مكونات المتجر ===== #}
     {% component home %}
 
-{% endblock %}
+    {# ===== واتساب ===== #}
+    {% if theme.settings.get('show_whatsapp_btn',true) and theme.settings.get('whatsapp_number','') %}
+        <a href="https://wa.me/{{ theme.settings.get('whatsapp_number') }}"
+           target="_blank" class="lv-whatsapp" aria-label="واتساب">
+            <svg width="28" height="28" fill="#fff" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.121 1.533 5.857L.057 23.571l5.866-1.54A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.214-3.48.913.929-3.395
