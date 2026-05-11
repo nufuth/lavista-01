@@ -41,7 +41,7 @@
                 {"label": "أبيض", "value": "#ffffff", "key": "sp-bg-1"},
                 {"label": "أسود", "value": "#000000", "key": "sp-bg-2"},
                 {"label": "كريمي", "value": "#f9f7f4", "key": "sp-bg-3"},
-                {"label": "ذهبي فاتح", "value": "#C9A84C", "key": "sp-bg-4"}
+                {"label": "ذهبي", "value": "#C9A84C", "key": "sp-bg-4"}
             ],
             "source": "Manual"
         },
@@ -81,6 +81,34 @@
             "label": "تثبيت الهيدر عند التمرير",
             "id": "header_is_sticky", "format": "switch",
             "value": true, "selected": true
+        },
+        {
+            "type": "items", "format": "dropdown-list", "icon": "sicon-image",
+            "label": "حجم الشعار (الارتفاع)",
+            "id": "logo_size",
+            "selected": [{"label": "متوسط — 48px", "value": "48", "key": "ls-2"}],
+            "options": [
+                {"label": "صغير جداً — 32px", "value": "32", "key": "ls-1"},
+                {"label": "متوسط — 48px", "value": "48", "key": "ls-2"},
+                {"label": "كبير — 65px", "value": "65", "key": "ls-3"},
+                {"label": "كبير جداً — 85px", "value": "85", "key": "ls-4"},
+                {"label": "ضخم — 110px", "value": "110", "key": "ls-5"}
+            ],
+            "source": "Manual"
+        },
+        {
+            "type": "items", "format": "dropdown-list", "icon": "sicon-image",
+            "label": "عرض الشعار الأقصى",
+            "id": "logo_max_width",
+            "selected": [{"label": "160px", "value": "160", "key": "lw-2"}],
+            "options": [
+                {"label": "100px", "value": "100", "key": "lw-1"},
+                {"label": "160px", "value": "160", "key": "lw-2"},
+                {"label": "200px", "value": "200", "key": "lw-3"},
+                {"label": "250px", "value": "250", "key": "lw-4"},
+                {"label": "300px", "value": "300", "key": "lw-5"}
+            ],
+            "source": "Manual"
         },
         {
             "type": "boolean", "icon": "sicon-toggle-off",
@@ -216,7 +244,7 @@
             "type": "string", "icon": "sicon-format-text-alt",
             "label": "نص زر البانر الوسطي",
             "id": "mid_banner_cta_text", "format": "text",
-            "value": "تسوق الآن", "placeholder": "تسوق الآن"
+            "value": "تسوق الآن"
         },
         {
             "type": "string", "icon": "sicon-link",
