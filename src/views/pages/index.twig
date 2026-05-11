@@ -1,218 +1,98 @@
-{% extends 'layouts.master' %}
+{% extends "layouts.master" %}
 
 {% block content %}
 
 <style>
-/* ========== SPLASH SCREEN ========== */
+/* ========== SPLASH ========== */
 #lv-splash {
-    position: fixed; inset: 0; z-index: 99999;
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column;
-    pointer-events: none;
-    animation: splashFade 0.7s ease 2.4s forwards;
+    position:fixed;inset:0;z-index:99999;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;
+    pointer-events:none;
+    animation:splashFade 0.7s ease 2.4s forwards;
 }
-#lv-splash img {
-    max-width: 220px; max-height: 130px;
-    object-fit: contain;
-    animation: splashScale 1s ease;
-}
-#lv-splash .splash-text {
-    font-size: 2.2rem; font-weight: 200;
-    letter-spacing: 10px; color: #1a1a1a;
-    animation: splashScale 1s ease;
-}
-@keyframes splashFade { to { opacity: 0; visibility: hidden; } }
-@keyframes splashScale { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+#lv-splash img { max-width:220px;max-height:130px;object-fit:contain;animation:splashScale 1s ease; }
+#lv-splash .splash-text { font-size:2rem;font-weight:200;letter-spacing:10px;color:#1a1a1a;animation:splashScale 1s ease; }
+@keyframes splashFade { to { opacity:0;visibility:hidden; } }
+@keyframes splashScale { from { opacity:0;transform:scale(0.9); } to { opacity:1;transform:scale(1); } }
 
 /* ========== HERO ========== */
-.lv-hero {
-    position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-}
-.lv-hero__bg {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%; object-fit: cover;
-}
-.lv-hero__video {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%; object-fit: cover;
-}
-.lv-hero__overlay { position: absolute; inset: 0; }
-.lv-hero__content {
-    position: relative; z-index: 2;
-    text-align: center; padding: 0 24px;
-}
-.lv-hero__label {
-    color: #C9A84C; letter-spacing: 5px;
-    font-size: 11px; text-transform: uppercase;
-    margin: 0 0 16px; display: block;
-}
-.lv-hero__title {
-    color: #fff;
-    font-size: clamp(2rem, 6vw, 5rem);
-    font-weight: 200; margin: 0 0 16px;
-    line-height: 1.05; letter-spacing: 2px;
-}
-.lv-hero__subtitle {
-    color: rgba(255,255,255,0.82);
-    font-size: 1rem; margin: 0 0 36px; display: block;
-}
-.lv-hero__btn {
-    display: inline-block; padding: 14px 48px;
-    background: transparent; color: #fff;
-    border: 1px solid rgba(255,255,255,0.8);
-    text-decoration: none; font-size: 13px;
-    letter-spacing: 3px; text-transform: uppercase;
-    transition: all 0.3s;
-}
-.lv-hero__btn:hover { background: #fff; color: #1a1a1a; }
+.lv-hero { position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center; }
+.lv-hero__bg { position:absolute;inset:0;width:100%;height:100%;object-fit:cover; }
+.lv-hero__video { position:absolute;inset:0;width:100%;height:100%;object-fit:cover; }
+.lv-hero__overlay { position:absolute;inset:0; }
+.lv-hero__content { position:relative;z-index:2;text-align:center;padding:0 24px; }
+.lv-hero__label { color:#C9A84C;letter-spacing:5px;font-size:11px;text-transform:uppercase;margin:0 0 16px;display:block; }
+.lv-hero__title { color:#fff;font-size:clamp(2rem,6vw,5rem);font-weight:200;margin:0 0 16px;line-height:1.05;letter-spacing:2px; }
+.lv-hero__subtitle { color:rgba(255,255,255,0.82);font-size:1rem;margin:0 0 36px;display:block; }
+.lv-hero__btn { display:inline-block;padding:14px 48px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.8);text-decoration:none;font-size:13px;letter-spacing:3px;text-transform:uppercase;transition:all 0.3s; }
+.lv-hero__btn:hover { background:#fff;color:#1a1a1a; }
 
 /* Slider */
-.lv-slider { position: absolute; inset: 0; }
-.lv-slider__item { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; }
-.lv-slider__item.active { opacity: 1; }
-.lv-slider__item img { width: 100%; height: 100%; object-fit: cover; }
-.lv-slider__dots {
-    position: absolute; bottom: 28px; left: 50%;
-    transform: translateX(-50%);
-    display: flex; gap: 8px; z-index: 3;
-}
-.lv-slider__dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: rgba(255,255,255,0.4); border: none;
-    cursor: pointer; padding: 0; transition: background 0.3s;
-}
-.lv-slider__dot.active { background: #fff; }
+.lv-slider { position:absolute;inset:0; }
+.lv-slider__item { position:absolute;inset:0;opacity:0;transition:opacity 1s ease; }
+.lv-slider__item.active { opacity:1; }
+.lv-slider__item img { width:100%;height:100%;object-fit:cover; }
+.lv-slider__dots { position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3; }
+.lv-slider__dot { width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);border:none;cursor:pointer;padding:0;transition:background 0.3s; }
+.lv-slider__dot.active { background:#fff; }
 
 /* مؤشر التمرير */
-.lv-hero__scroll {
-    position: absolute; bottom: 32px; left: 50%;
-    transform: translateX(-50%); z-index: 3;
-    display: flex; flex-direction: column; align-items: center;
-}
-.lv-hero__scroll span {
-    display: block; width: 1px; height: 52px;
-    background: rgba(255,255,255,0.45);
-    animation: scrollLine 1.8s ease infinite;
-}
-@keyframes scrollLine {
-    0%,100% { transform: scaleY(1); opacity: 1; }
-    50% { transform: scaleY(0.3); opacity: 0.3; }
-}
+.lv-hero__scroll { position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center; }
+.lv-hero__scroll span { display:block;width:1px;height:52px;background:rgba(255,255,255,0.45);animation:scrollLine 1.8s ease infinite; }
+@keyframes scrollLine { 0%,100%{transform:scaleY(1);opacity:1;} 50%{transform:scaleY(0.3);opacity:0.3;} }
 
-/* ========== EDITORIAL (قصة الماركة) ========== */
-.lv-editorial {
-    display: grid; grid-template-columns: 1fr 1fr;
-    align-items: stretch; min-height: 560px;
-}
-.lv-editorial__img { overflow: hidden; }
-.lv-editorial__img img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.7s ease; display: block;
-}
-.lv-editorial:hover .lv-editorial__img img { transform: scale(1.03); }
-.lv-editorial__body {
-    background: #f9f7f4;
-    display: flex; flex-direction: column;
-    justify-content: center; padding: 80px 64px;
-}
-.lv-editorial__label {
-    color: #C9A84C; letter-spacing: 5px;
-    font-size: 11px; text-transform: uppercase; margin: 0 0 20px;
-}
-.lv-editorial__title {
-    font-size: 2.2rem; font-weight: 200;
-    color: #1a1a1a; margin: 0 0 24px; line-height: 1.2;
-}
-.lv-editorial__text {
-    color: #666; line-height: 1.9; margin: 0 0 40px;
-    font-size: 15px;
-}
-.lv-editorial__btn {
-    display: inline-block; padding: 12px 36px;
-    border: 1px solid #1a1a1a; color: #1a1a1a;
-    text-decoration: none; font-size: 12px;
-    letter-spacing: 2px; text-transform: uppercase;
-    transition: all 0.3s; width: fit-content;
-}
-.lv-editorial__btn:hover { background: #1a1a1a; color: #fff; }
+/* ========== EDITORIAL ========== */
+.lv-editorial { display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:560px; }
+.lv-editorial__img { overflow:hidden; }
+.lv-editorial__img img { width:100%;height:100%;object-fit:cover;transition:transform 0.7s ease;display:block; }
+.lv-editorial:hover .lv-editorial__img img { transform:scale(1.03); }
+.lv-editorial__body { background:#f9f7f4;display:flex;flex-direction:column;justify-content:center;padding:80px 64px; }
+.lv-editorial__label { color:#C9A84C;letter-spacing:5px;font-size:11px;text-transform:uppercase;margin:0 0 20px; }
+.lv-editorial__title { font-size:2.2rem;font-weight:200;color:#1a1a1a;margin:0 0 24px;line-height:1.2; }
+.lv-editorial__text { color:#666;line-height:1.9;margin:0 0 40px;font-size:15px; }
+.lv-editorial__btn { display:inline-block;padding:12px 36px;border:1px solid #1a1a1a;color:#1a1a1a;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s;width:fit-content; }
+.lv-editorial__btn:hover { background:#1a1a1a;color:#fff; }
 
 /* ========== WHATSAPP ========== */
-.lv-wa {
-    position: fixed; bottom: 28px;
-    z-index: 9999; width: 54px; height: 54px;
-    background: #25D366; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 4px 20px rgba(37,211,102,.4);
-    transition: transform 0.2s;
-}
-.lv-wa:hover { transform: scale(1.1); }
-.lv-wa--left  { left: 26px; }
-.lv-wa--right { right: 26px; }
+.lv-wa { position:fixed;bottom:28px;z-index:9999;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform 0.2s; }
+.lv-wa:hover { transform:scale(1.1); }
+.lv-wa--left  { left:26px; }
+.lv-wa--right { right:26px; }
 
 /* ========== زر العودة للأعلى ========== */
-#lv-top-btn {
-    position: fixed; bottom: 28px; right: 26px;
-    z-index: 9998; width: 44px; height: 44px;
-    background: #1a1a1a; color: #fff;
-    border: none; cursor: pointer; border-radius: 50%;
-    display: none; align-items: center; justify-content: center;
-    font-size: 18px; transition: opacity 0.3s;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-}
-#lv-top-btn:hover { background: #C9A84C; }
+#lv-top-btn { position:fixed;bottom:28px;right:26px;z-index:9998;width:44px;height:44px;background:#1a1a1a;color:#fff;border:none;cursor:pointer;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:background 0.2s; }
+#lv-top-btn:hover { background:#C9A84C; }
 
-/* ========== أنماط عناوين الأقسام ========== */
-.s-block__title {
-    padding: 0 0 10px !important;
-    border-bottom: 1px solid #efefef !important;
-    margin-bottom: 36px !important;
-}
-.s-block__title h2 {
-    font-size: 1.3rem !important;
-    font-weight: 300 !important;
-    letter-spacing: 1.5px !important;
-    color: #1a1a1a !important;
-}
-.s-block__display-all {
-    font-size: 11px !important;
-    letter-spacing: 2px !important;
-    text-transform: uppercase !important;
-    color: #1a1a1a !important;
-    border-bottom: 1px solid #1a1a1a !important;
-    text-decoration: none !important;
-    padding-bottom: 2px !important;
-    font-weight: 400 !important;
-}
+/* ========== عناوين الأقسام ========== */
+.s-block__title { padding:0 0 10px !important;border-bottom:1px solid #efefef !important;margin-bottom:36px !important; }
+.s-block__title h2 { font-size:1.3rem !important;font-weight:300 !important;letter-spacing:1.5px !important;color:#1a1a1a !important; }
+.s-block__display-all { font-size:11px !important;letter-spacing:2px !important;text-transform:uppercase !important;color:#1a1a1a !important;border-bottom:1px solid #1a1a1a !important;text-decoration:none !important;padding-bottom:2px !important;font-weight:400 !important; }
 
 /* ========== RESPONSIVE ========== */
-@media (max-width: 1024px) {
-    .lv-editorial { grid-template-columns: 1fr; min-height: auto; }
-    .lv-editorial__img { min-height: 380px; }
-    .lv-editorial__body { padding: 56px 40px; }
+@media (max-width:1024px) {
+    .lv-editorial { grid-template-columns:1fr;min-height:auto; }
+    .lv-editorial__img { min-height:380px; }
+    .lv-editorial__body { padding:56px 40px; }
 }
-@media (max-width: 768px) {
-    .lv-editorial__body { padding: 40px 24px; }
-    .lv-editorial__title { font-size: 1.8rem; }
-    .lv-wa { width: 48px; height: 48px; bottom: 20px; }
-    .lv-wa--left  { left: 18px; }
-    .lv-wa--right { right: 18px; }
-    #lv-top-btn   { bottom: 20px; right: 18px; }
+@media (max-width:768px) {
+    .lv-editorial__body { padding:40px 24px; }
+    .lv-editorial__title { font-size:1.8rem; }
+    .lv-wa { width:48px;height:48px;bottom:20px; }
+    .lv-wa--left  { left:18px; }
+    .lv-wa--right { right:18px; }
+    #lv-top-btn { bottom:20px;right:18px; }
 }
-@media (max-width: 480px) {
-    .lv-hero__btn { padding: 11px 28px; font-size: 12px; }
-    .lv-editorial__body { padding: 32px 20px; }
-    .lv-editorial__title { font-size: 1.5rem; }
+@media (max-width:480px) {
+    .lv-hero__btn { padding:11px 28px;font-size:12px; }
+    .lv-editorial__body { padding:32px 20px; }
+    .lv-editorial__title { font-size:1.5rem; }
 }
 </style>
 
-{# ====================================================
-   SPLASH SCREEN
-   ==================================================== #}
+{# SPLASH #}
 {% if theme.settings.get('show_splash', true) %}
-<div id="lv-splash" style="background:{{ theme.settings.get('splash_bg', '#ffffff') }};">
-    {% if theme.settings.get('splash_image', '') %}
+<div id="lv-splash" style="background:{{ theme.settings.get('splash_bg', '#ffffff') }}">
+    {% if theme.settings.get('splash_image') %}
         <img src="{{ theme.settings.get('splash_image') }}" alt="{{ store.name }}">
     {% elseif store.logo %}
         <img src="{{ store.logo }}" alt="{{ store.name }}">
@@ -222,98 +102,181 @@
 </div>
 {% endif %}
 
-{# ====================================================
-   HERO
-   ==================================================== #}
-{% set hh = theme.settings.get('hero_height', 'fullscreen') %}
-{% if hh == 'large' %}{% set hero_h = '80vh' %}
-{% elseif hh == 'medium' %}{% set hero_h = '60vh' %}
-{% else %}{% set hero_h = '100vh' %}{% endif %}
+{# HERO #}
+{% if theme.settings.get('hero_height') == 'large' %}
+    {% set hero_h = '80vh' %}
+{% elseif theme.settings.get('hero_height') == 'medium' %}
+    {% set hero_h = '60vh' %}
+{% else %}
+    {% set hero_h = '100vh' %}
+{% endif %}
 
-{% set oo = theme.settings.get('hero_overlay_opacity', 'none') %}
-{% if oo == 'light' %}{% set ov = '0.2' %}
-{% elseif oo == 'medium' %}{% set ov = '0.45' %}
-{% elseif oo == 'dark' %}{% set ov = '0.7' %}
-{% else %}{% set ov = '0' %}{% endif %}
-
-{% set hero_type  = theme.settings.get('hero_type', 'image') %}
-{% set hero_img1  = theme.settings.get('hero_image', '') %}
-{% set hero_img2  = theme.settings.get('hero_image_2', '') %}
-{% set hero_img3  = theme.settings.get('hero_image_3', '') %}
-{% set hero_label = theme.settings.get('hero_label', '') %}
-{% set hero_title = theme.settings.get('hero_title', '') %}
-{% set hero_sub   = theme.settings.get('hero_subtitle', '') %}
-{% set hero_cta   = theme.settings.get('hero_cta_text', '') %}
+{% if theme.settings.get('hero_overlay_opacity') == 'light' %}
+    {% set hero_ov = '0.2' %}
+{% elseif theme.settings.get('hero_overlay_opacity') == 'medium' %}
+    {% set hero_ov = '0.45' %}
+{% elseif theme.settings.get('hero_overlay_opacity') == 'dark' %}
+    {% set hero_ov = '0.7' %}
+{% else %}
+    {% set hero_ov = '0' %}
+{% endif %}
 
 <section class="lv-hero" style="height:{{ hero_h }};min-height:460px;">
 
-    {# --- خلفية الهيرو --- #}
-    {% if hero_type == 'video' and theme.settings.get('hero_video_url', '') %}
+    {% if theme.settings.get('hero_type') == 'video' and theme.settings.get('hero_video_url') %}
         <video autoplay muted loop playsinline class="lv-hero__video">
             <source src="{{ theme.settings.get('hero_video_url') }}" type="video/mp4">
         </video>
 
-    {% elseif hero_type == 'slider' %}
+    {% elseif theme.settings.get('hero_type') == 'slider' %}
         <div class="lv-slider">
-            {% if hero_img1 %}<div class="lv-slider__item active"><img src="{{ hero_img1 }}" alt="slide 1"></div>{% endif %}
-            {% if hero_img2 %}<div class="lv-slider__item"><img src="{{ hero_img2 }}" alt="slide 2"></div>{% endif %}
-            {% if hero_img3 %}<div class="lv-slider__item"><img src="{{ hero_img3 }}" alt="slide 3"></div>{% endif %}
+            {% if theme.settings.get('hero_image') %}
+                <div class="lv-slider__item active"><img src="{{ theme.settings.get('hero_image') }}" alt="slide 1"></div>
+            {% endif %}
+            {% if theme.settings.get('hero_image_2') %}
+                <div class="lv-slider__item"><img src="{{ theme.settings.get('hero_image_2') }}" alt="slide 2"></div>
+            {% endif %}
+            {% if theme.settings.get('hero_image_3') %}
+                <div class="lv-slider__item"><img src="{{ theme.settings.get('hero_image_3') }}" alt="slide 3"></div>
+            {% endif %}
         </div>
         <div class="lv-slider__dots">
-            {% if hero_img1 %}<button class="lv-slider__dot active" onclick="lvSlide(0)"></button>{% endif %}
-            {% if hero_img2 %}<button class="lv-slider__dot" onclick="lvSlide(1)"></button>{% endif %}
-            {% if hero_img3 %}<button class="lv-slider__dot" onclick="lvSlide(2)"></button>{% endif %}
+            {% if theme.settings.get('hero_image') %}
+                <button class="lv-slider__dot active"></button>
+            {% endif %}
+            {% if theme.settings.get('hero_image_2') %}
+                <button class="lv-slider__dot"></button>
+            {% endif %}
+            {% if theme.settings.get('hero_image_3') %}
+                <button class="lv-slider__dot"></button>
+            {% endif %}
         </div>
 
-    {% elseif hero_img1 %}
-        <img src="{{ hero_img1 }}" alt="{{ store.name }}" class="lv-hero__bg">
+    {% elseif theme.settings.get('hero_image') %}
+        <img src="{{ theme.settings.get('hero_image') }}" alt="{{ store.name }}" class="lv-hero__bg">
 
     {% else %}
         <div class="lv-hero__bg" style="background:linear-gradient(160deg,#1a1a1a 0%,#2c2416 100%);"></div>
     {% endif %}
 
-    {# --- طبقة التعتيم --- #}
-    {% if ov != '0' %}
-        <div class="lv-hero__overlay" style="background:#000;opacity:{{ ov }};"></div>
+    {% if hero_ov != '0' %}
+        <div class="lv-hero__overlay" style="background:#000;opacity:{{ hero_ov }};"></div>
     {% endif %}
 
-    {# --- المحتوى النصي --- #}
-    {% if hero_label or hero_title or hero_sub or hero_cta %}
+    {% if theme.settings.get('hero_label') or theme.settings.get('hero_title') or theme.settings.get('hero_subtitle') or theme.settings.get('hero_cta_text') %}
     <div class="lv-hero__content">
-        {% if hero_label %}<span class="lv-hero__label">{{ hero_label }}</span>{% endif %}
-        {% if hero_title %}<h1 class="lv-hero__title">{{ hero_title }}</h1>{% endif %}
-        {% if hero_sub %}<span class="lv-hero__subtitle">{{ hero_sub }}</span>{% endif %}
-        {% if hero_cta %}
+        {% if theme.settings.get('hero_label') %}
+            <span class="lv-hero__label">{{ theme.settings.get('hero_label') }}</span>
+        {% endif %}
+        {% if theme.settings.get('hero_title') %}
+            <h1 class="lv-hero__title">{{ theme.settings.get('hero_title') }}</h1>
+        {% endif %}
+        {% if theme.settings.get('hero_subtitle') %}
+            <span class="lv-hero__subtitle">{{ theme.settings.get('hero_subtitle') }}</span>
+        {% endif %}
+        {% if theme.settings.get('hero_cta_text') %}
             <a href="{{ theme.settings.get('hero_cta_link', '/products') }}" class="lv-hero__btn">
-                {{ hero_cta }}
+                {{ theme.settings.get('hero_cta_text') }}
             </a>
         {% endif %}
     </div>
     {% endif %}
 
-    {# --- مؤشر التمرير --- #}
     {% if theme.settings.get('show_hero_scroll', true) %}
-    <div class="lv-hero__scroll"><span></span></div>
+        <div class="lv-hero__scroll"><span></span></div>
     {% endif %}
 
 </section>
 
-{# ====================================================
-   مكونات سلة الجاهزة (منتجات + فئات + سلايدرات)
-   ==================================================== #}
+{# مكونات سلة #}
 {% component home %}
 
-{# ====================================================
-   البانر الوسطي
-   ==================================================== #}
-{% if theme.settings.get('show_mid_banner', true) and theme.settings.get('mid_banner_image', '') %}
-{% set mid_img   = theme.settings.get('mid_banner_image') %}
-{% set mid_link  = theme.settings.get('mid_banner_link', '/products') %}
-{% set mid_title = theme.settings.get('mid_banner_title', '') %}
+{# البانر الوسطي #}
+{% if theme.settings.get('show_mid_banner', true) and theme.settings.get('mid_banner_image') %}
 <section style="position:relative;overflow:hidden;">
-    <a href="{{ mid_link }}" style="display:block;">
-        <img src="{{ mid_img }}" alt="banner"
-             style="width:100%;height:auto;display:block;max-height:620px;object-fit:cover;
-                    transition:transform 0.6s ease;"
-             onmouseover="this.style.transform='scale(1.02)'"
-             onmouseout="this.style.transform='scale(1)'">
+    <a href="{{ theme.settings.get('mid_banner_link', '/products') }}" style="display:block;">
+        <img src="{{ theme.settings.get('mid_banner_image') }}" alt="banner" style="width:100%;height:auto;display:block;max-height:620px;object-fit:cover;">
+    </a>
+    {% if theme.settings.get('mid_banner_title') %}
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:24px;pointer-events:none;">
+        <h2 style="color:#fff;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:200;margin:0 0 28px;letter-spacing:2px;">{{ theme.settings.get('mid_banner_title') }}</h2>
+        {% if theme.settings.get('mid_banner_cta_text') %}
+        <a href="{{ theme.settings.get('mid_banner_link', '/products') }}" style="display:inline-block;padding:13px 44px;border:1px solid #fff;color:#fff;text-decoration:none;font-size:12px;letter-spacing:3px;text-transform:uppercase;pointer-events:all;">
+            {{ theme.settings.get('mid_banner_cta_text') }}
+        </a>
+        {% endif %}
+    </div>
+    {% endif %}
+</section>
+{% endif %}
+
+{# البانر الثاني #}
+{% if theme.settings.get('show_banner2') and theme.settings.get('banner2_image') %}
+<a href="{{ theme.settings.get('banner2_link', '/products') }}" style="display:block;overflow:hidden;">
+    <img src="{{ theme.settings.get('banner2_image') }}" alt="banner 2" style="width:100%;height:auto;display:block;">
+</a>
+{% endif %}
+
+{# قصة الماركة #}
+{% if theme.settings.get('show_editorial', true) and theme.settings.get('editorial_image') %}
+<section class="lv-editorial">
+    <div class="lv-editorial__img">
+        <img src="{{ theme.settings.get('editorial_image') }}" alt="{{ theme.settings.get('editorial_title', '') }}">
+    </div>
+    <div class="lv-editorial__body">
+        <p class="lv-editorial__label">{{ theme.settings.get('editorial_label', 'OUR STORY') }}</p>
+        <h2 class="lv-editorial__title">{{ theme.settings.get('editorial_title', 'فن العطر الفاخر') }}</h2>
+        <p class="lv-editorial__text">{{ theme.settings.get('editorial_text', '') }}</p>
+        <a href="{{ theme.settings.get('editorial_cta_link', '/page/about') }}" class="lv-editorial__btn">
+            {{ theme.settings.get('editorial_cta_text', 'اعرف أكثر') }}
+        </a>
+    </div>
+</section>
+{% endif %}
+
+{# واتساب #}
+{% if theme.settings.get('show_whatsapp_btn', true) and theme.settings.get('whatsapp_number') %}
+<a href="https://wa.me/{{ theme.settings.get('whatsapp_number') }}" target="_blank" class="lv-wa lv-wa--{{ theme.settings.get('whatsapp_position', 'left') }}" aria-label="واتساب">
+    <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.121 1.533 5.857L.057 23.571l5.866-1.54A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.214-3.48.913.929-3.395-.234-.349A9.818 9.818 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"/></svg>
+</a>
+{% endif %}
+
+{# زر العودة للأعلى #}
+{% if theme.settings.get('show_back_to_top', true) %}
+<button id="lv-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="أعلى">
+    <i class="sicon-chevron-up"></i>
+</button>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function(){
+    /* Slider */
+    var lvIdx = 0;
+    var items = document.querySelectorAll('.lv-slider__item');
+    var dots  = document.querySelectorAll('.lv-slider__dot');
+    function lvSlide(n){
+        if(!items.length) return;
+        items.forEach(function(el){ el.classList.remove('active'); });
+        dots.forEach(function(el){ el.classList.remove('active'); });
+        lvIdx = (n + items.length) % items.length;
+        items[lvIdx].classList.add('active');
+        if(dots[lvIdx]) dots[lvIdx].classList.add('active');
+    }
+    dots.forEach(function(dot, i){
+        dot.addEventListener('click', function(){ lvSlide(i); });
+    });
+    if(items.length > 1) setInterval(function(){ lvSlide(lvIdx+1); }, 5000);
+
+    /* زر العودة للأعلى */
+    var topBtn = document.getElementById('lv-top-btn');
+    if(topBtn){
+        window.addEventListener('scroll', function(){
+            topBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+        }, {passive:true});
+    }
+})();
+</script>
+{% endblock %}
