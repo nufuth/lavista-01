@@ -1,3 +1,53 @@
+
+<style>
+/* Header شفاف فوق الهيرو في الصفحة الرئيسية */
+.lv-home-page .s-header-wrapper,
+.lv-home-page header,
+.lv-home-page .s-header {
+    position: absolute !important;
+    top: 0; left: 0; right: 0;
+    background: transparent !important;
+    box-shadow: none !important;
+    z-index: 1000;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+.lv-home-page .s-header-wrapper.lv-scrolled,
+.lv-home-page header.lv-scrolled,
+.lv-home-page .s-header.lv-scrolled {
+    position: fixed !important;
+    background: rgba(255,255,255,0.97) !important;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.07) !important;
+}
+</style>
+<script>
+(function(){
+    var isHome = document.body.classList.contains('s-home-page')
+              || window.location.pathname === '/'
+              || window.location.pathname === '';
+    if(!isHome) return;
+    document.body.classList.add('lv-home-page');
+    var header = document.querySelector('.s-header-wrapper') ||
+                 document.querySelector('.s-header') ||
+                 document.querySelector('header');
+    if(!header) return;
+    window.addEventListener('scroll', function(){
+        if(window.scrollY > 60){
+            header.classList.add('lv-scrolled');
+        } else {
+            header.classList.remove('lv-scrolled');
+        }
+    },{passive:true});
+})();
+</script>
+
+
+
+
+
+
+
+
+
 {% set is_transparent = theme.settings.get('header_transparent', true) %}
 {% set is_sticky      = theme.settings.get('header_is_sticky', true) %}
 {% set logo_h         = theme.settings.get('logo_size', '48') %}
