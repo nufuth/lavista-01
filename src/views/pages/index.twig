@@ -1,5 +1,37 @@
 {% extends 'layouts.master' %}
 
 {% block content %}
+
+    {# ===== هيرو لافيستا ===== #}
+    {% set hero_h = {'fullscreen':'100vh','large':'80vh','medium':'60vh'}[theme.settings.get('hero_height','fullscreen')]|default('100vh') %}
+    {% set overlay = {'none':'0','light':'0.25','medium':'0.5','dark':'0.75'}[theme.settings.get('hero_overlay_opacity','medium')]|default('0.5') %}
+
+    <section style="position:relative;overflow:hidden;height:{{ hero_h }};min-height:480px;display:flex;align-items:flex-end;">
+
+        {% if theme.settings.get('hero_type','image') == 'video' and theme.settings.get('hero_video_url','') %}
+            <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+                <source src="{{ theme.settings.get('hero_video_url') }}" type="video/mp4">
+            </video>
+        {% elseif theme.settings.get('hero_image','') %}
+            <img src="{{ theme.settings.get('hero_image') }}" alt="hero" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        {% else %}
+            <div style="position:absolute;inset:0;background:#1a1a1a;"></div>
+        {% endif %}
+
+        <div style="position:absolute;inset:0;background:{{ theme.settings.get('hero_overlay_color','#000') }};opacity:{{ overlay }};"></div>
+
+        <div style="position:relative;z-index:2;padding:0 40px 80px;width:100%;">
+            <p style="color:#C9A84C;letter-spacing:4px;font-size:12px;text-transform:uppercase;margin:0 0 12px;">{{ theme.settings.get('hero_label','THE NEW COLLECTION') }}</p>
+            <h1 style="color:#fff;font-size:clamp(2rem,6vw,5rem);font-weight:300;margin:0 0 16px;line-height:1.1;">{{ theme.settings.get('hero_title','LAVISTA') }}</h1>
+            <p style="color:rgba(255,255,255,0.8);font-size:1rem;margin:0 0 32px;">{{ theme.settings.get('hero_subtitle','') }}</p>
+            <a href="{{ theme.settings.get('hero_cta_link','/products') }}"
+               style="display:inline-block;background:#fff;color:#1a1a1a;padding:14px 40px;text-decoration:none;font-weight:600;letter-spacing:1px;">
+                {{ theme.settings.get('hero_cta_text','اكتشف الآن') }}
+            </a>
+        </div>
+    </section>
+
+    {# ===== باقي مكونات سلة ===== #}
     {% component home %}
+
 {% endblock %}
