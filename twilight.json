@@ -1,504 +1,203 @@
-{
-  "name": {
-    "ar": "لافيستا",
-    "en": "lavista-01"
-  },
-  "repository": "https://github.com/SallaApp/theme-raed",
-  "author_email": "lavistabrand@gmail.com",
-  "features": [
-    "mega-menu",
-    "fonts",
-    "color",
-    "breadcrumb",
-    "unite-cards-height",
-    "component-featured-products",
-    "component-fixed-banner",
-    "component-fixed-products",
-    "component-products-slider",
-    "component-photos-slider",
-    "component-parallax-background",
-    "component-testimonials",
-    "component-square-photos",
-    "component-store-features",
-    "component-youtube",
-    "menu-images",
-    "filters"
-  ],
-  "settings": [
-    {
-      "type": "static",
-      "format": "title",
-      "id": "lv-s-splash",
-      "value": "<div style='background:#1a1a1a;border-radius:8px;padding:12px;text-align:center;margin-bottom:12px'><h6 style='color:#C9A84C;margin:0;font-size:14px'>✦ شاشة البداية</h6></div>",
-      "variant": "h6"
-    },
-    {
-      "type": "boolean",
-      "id": "show_splash",
-      "label": "تفعيل شاشة البداية",
-      "format": "switch",
-      "value": false,
-      "selected": false
-    },
-    {
-      "id": "splash_type",
-      "type": "items",
-      "format": "dropdown-list",
-      "label": "نوع شاشة البداية",
-      "selected": [{ "label": "بوابة فاخرة", "value": "gateway", "key": "lv-st-1" }],
-      "options": [
-        { "label": "شعار بسيط", "value": "logo", "key": "lv-st-2" },
-        { "label": "بوابة فاخرة", "value": "gateway", "key": "lv-st-1" }
-      ],
-      "source": "Manual",
-      "required": true
-    },
-    {
-      "type": "string",
-      "id": "splash_image",
-      "label": "شعار شاشة البداية (اختياري)",
-      "format": "image"
-    },
-    {
-      "type": "string",
-      "id": "splash_text",
-      "label": "نص تحت الشعار في البوابة",
-      "format": "text",
-      "value": "Luxury Perfumes"
-    },
-    {
-      "type": "static",
-      "id": "lv-l-1",
-      "format": "line"
-    },
-    {
-      "type": "static",
-      "format": "title",
-      "id": "lv-s-hero",
-      "value": "<div style='background:#1a1a1a;border-radius:8px;padding:12px;text-align:center;margin-bottom:12px'><h6 style='color:#C9A84C;margin:0;font-size:14px'>✦ قسم الهيرو</h6></div>",
-      "variant": "h6"
-    },
-    {
-      "id": "hero_type",
-      "type": "items",
-      "format": "dropdown-list",
-      "label": "نوع الهيرو",
-      "selected": [{ "label": "صورة ثابتة", "value": "image", "key": "lv-ht-1" }],
-      "options": [
-        { "label": "صورة ثابتة", "value": "image", "key": "lv-ht-1" },
-        { "label": "سلايدر صور", "value": "slider", "key": "lv-ht-2" },
-        { "label": "فيديو", "value": "video", "key": "lv-ht-3" }
-      ],
-      "source": "Manual",
-      "required": true
-    },
-    {
-      "type": "string",
-      "id": "hero_image",
-      "label": "صورة الهيرو الرئيسية",
-      "format": "image"
-    },
-    {
-      "type": "string",
-      "id": "hero_image_2",
-      "label": "صورة الهيرو الثانية (للسلايدر)",
-      "format": "image"
-    },
-    {
-      "type": "string",
-      "id": "hero_image_3",
-      "label": "صورة الهيرو الثالثة (للسلايدر)",
-      "format": "image"
-    },
-    {
-      "type": "string",
-      "id": "hero_video_url",
-      "label": "رابط الفيديو للهيرو",
-      "format": "text",
-      "value": ""
-    },
-    {
-      "id": "hero_overlay_opacity",
-      "type": "items",
-      "format": "dropdown-list",
-      "label": "طبقة التعتيم على الهيرو",
-      "selected": [{ "label": "بدون", "value": "none", "key": "lv-ho-1" }],
-      "options": [
-        { "label": "بدون", "value": "none", "key": "lv-ho-1" },
-        { "label": "خفيف", "value": "light", "key": "lv-ho-2" },
-        { "label": "متوسط", "value": "medium", "key": "lv-ho-3" },
-        { "label": "داكن", "value": "dark", "key": "lv-ho-4" }
-      ],
-      "source": "Manual",
-      "required": true
-    },
-    {
-      "type": "string",
-      "id": "hero_label",
-      "label": "نص صغير فوق العنوان",
-      "format": "text",
-      "value": ""
-    },
-    {
-      "type": "string",
-      "id": "hero_title",
-      "label": "العنوان الرئيسي على الهيرو",
-      "format": "text",
-      "value": ""
-    },
-    {
-      "type": "string",
-      "id": "hero_subtitle",
-      "label": "العنوان الفرعي على الهيرو",
-      "format": "text",
-      "value": ""
-    },
-    {
-      "type": "string",
-      "id": "hero_cta_text",
-      "label": "نص زر الهيرو",
-      "format": "text",
-      "value": ""
-    },
-    {
-      "type": "string",
-      "id": "hero_cta_link",
-      "label": "رابط زر الهيرو",
-      "format": "text",
-      "value": "/products"
-    },
-    {
-      "type": "boolean",
-      "id": "show_hero_scroll",
-      "label": "مؤشر التمرير أسفل الهيرو",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "static",
-      "id": "lv-l-2",
-      "format": "line"
-    },
-    {
-      "type": "static",
-      "format": "title",
-      "id": "lv-s-banners",
-      "value": "<div style='background:#1a1a1a;border-radius:8px;padding:12px;text-align:center;margin-bottom:12px'><h6 style='color:#C9A84C;margin:0;font-size:14px'>✦ البنرات</h6></div>",
-      "variant": "h6"
-    },
-    {
-      "type": "boolean",
-      "id": "show_mid_banner",
-      "label": "اظهار البنر الوسطي",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "string",
-      "id": "mid_banner_image",
-      "label": "صورة البنر الوسطي",
-      "format": "image"
-    },
-    {
-      "type": "string",
-      "id": "mid_banner_title",
-      "label": "عنوان البنر الوسطي (اختياري)",
-      "format": "text",
-      "value": ""
-    },
-    {
-      "type": "string",
-      "id": "mid_banner_cta_text",
-      "label": "نص زر البنر الوسطي",
-      "format": "text",
-      "value": ""
-    },
-    {
-      "type": "string",
-      "id": "mid_banner_link",
-      "label": "رابط البنر الوسطي",
-      "format": "text",
-      "value": "/products"
-    },
-    {
-      "type": "boolean",
-      "id": "show_banner2",
-      "label": "اظهار البنر الثاني",
-      "format": "switch",
-      "value": false,
-      "selected": false
-    },
-    {
-      "type": "string",
-      "id": "banner2_image",
-      "label": "صورة البنر الثاني",
-      "format": "image"
-    },
-    {
-      "type": "string",
-      "id": "banner2_link",
-      "label": "رابط البنر الثاني",
-      "format": "text",
-      "value": "/products"
-    },
-    {
-      "type": "static",
-      "id": "lv-l-3",
-      "format": "line"
-    },
-    {
-      "type": "static",
-      "format": "title",
-      "id": "lv-s-editorial",
-      "value": "<div style='background:#1a1a1a;border-radius:8px;padding:12px;text-align:center;margin-bottom:12px'><h6 style='color:#C9A84C;margin:0;font-size:14px'>✦ قصة الماركة</h6></div>",
-      "variant": "h6"
-    },
-    {
-      "type": "boolean",
-      "id": "show_editorial",
-      "label": "اظهار قسم قصة الماركة",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "string",
-      "id": "editorial_image",
-      "label": "صورة قصة الماركة",
-      "format": "image"
-    },
-    {
-      "type": "string",
-      "id": "editorial_label",
-      "label": "النص الصغير (مثال: OUR STORY)",
-      "format": "text",
-      "value": "OUR STORY"
-    },
-    {
-      "type": "string",
-      "id": "editorial_title",
-      "label": "العنوان الرئيسي",
-      "format": "text",
-      "value": "فن العطر الفاخر"
-    },
-    {
-      "type": "string",
-      "id": "editorial_text",
-      "label": "النص التعريفي",
-      "format": "textarea",
-      "value": ""
-    },
-    {
-      "type": "string",
-      "id": "editorial_cta_text",
-      "label": "نص الزر",
-      "format": "text",
-      "value": "اعرف أكثر"
-    },
-    {
-      "type": "string",
-      "id": "editorial_cta_link",
-      "label": "رابط الزر",
-      "format": "text",
-      "value": "/page/about"
-    },
-    {
-      "type": "static",
-      "id": "lv-l-4",
-      "format": "line"
-    },
-    {
-      "type": "static",
-      "format": "title",
-      "id": "lv-s-contact",
-      "value": "<div style='background:#1a1a1a;border-radius:8px;padding:12px;text-align:center;margin-bottom:12px'><h6 style='color:#C9A84C;margin:0;font-size:14px'>✦ التواصل</h6></div>",
-      "variant": "h6"
-    },
-    {
-      "type": "boolean",
-      "id": "show_whatsapp_btn",
-      "label": "اظهار زر واتساب العائم",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "string",
-      "id": "whatsapp_number",
-      "label": "رقم واتساب (مثال: 966500000000)",
-      "format": "text",
-      "value": ""
-    },
-    {
-      "type": "string",
-      "id": "whatsapp_message",
-      "label": "رسالة واتساب الافتراضية",
-      "format": "text",
-      "value": "مرحبا أود الاستفسار"
-    },
-    {
-      "id": "whatsapp_position",
-      "type": "items",
-      "format": "dropdown-list",
-      "label": "موضع زر واتساب",
-      "selected": [{ "label": "يسار", "value": "left", "key": "lv-wp-1" }],
-      "options": [
-        { "label": "يسار", "value": "left", "key": "lv-wp-1" },
-        { "label": "يمين", "value": "right", "key": "lv-wp-2" }
-      ],
-      "source": "Manual",
-      "required": true
-    },
-    {
-      "type": "boolean",
-      "id": "show_back_to_top",
-      "label": "اظهار زر العودة للأعلى",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "static",
-      "id": "lv-l-5",
-      "format": "line"
-    },
-    {
-      "type": "static",
-      "format": "title",
-      "id": "lv-s-orig",
-      "value": "<div style='background:#21636d;border-radius:8px;padding:12px;text-align:center;margin-bottom:12px'><h6 style='color:#fff;margin:0;font-size:14px'>إعدادات القالب الأصلية</h6></div>",
-      "variant": "h6"
-    },
-    {
-      "id": "squar_photo_bg_image_size",
-      "type": "items",
-      "format": "dropdown-list",
-      "label": "طريقة عرض الصور في قسم قائمة عناصر",
-      "selected": [{ "label": "اظهار الصورة كاملةً في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }],
-      "options": [
-        { "label": "تغطية الصورة كامل المساحة (Cover)", "value": "cover", "key": "e9c8ea8f-c5c6-234e-935-3bce269afde4" },
-        { "label": "اظهار الصورة كاملةً في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }
-      ],
-      "source": "Manual",
-      "required": true
-    },
-    {
-      "type": "boolean",
-      "id": "vertical_fixed_products",
-      "label": "وضع عمودي للمنتجات الثابتة",
-      "format": "switch",
-      "value": false,
-      "selected": false
-    },
-    {
-      "type": "boolean",
-      "id": "is_more_button_enabled",
-      "label": "عرض زر الكل في الصفحة الرئيسية",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "static",
-      "id": "static-line1",
-      "format": "line"
-    },
-    {
-      "id": "header_is_sticky",
-      "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير",
-      "type": "boolean",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "boolean",
-      "id": "topnav_is_dark",
-      "label": "شريط علوي داكن",
-      "format": "switch",
-      "value": true,
-      "selected": false
-    },
-    {
-      "type": "boolean",
-      "id": "important_links",
-      "label": "عرض روابط الصفحات الهامة في الشريط العلوي",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "boolean",
-      "id": "enable_more_menu",
-      "label": "تفعيل قائمة المزيد في القائمة الرئيسية",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "static",
-      "id": "static-line3",
-      "format": "line"
-    },
-    {
-      "type": "boolean",
-      "id": "footer_is_dark",
-      "label": "الوضع الداكن للفوتر",
-      "format": "switch",
-      "value": true,
-      "selected": false
-    },
-    {
-      "type": "static",
-      "id": "static-line5",
-      "format": "line"
-    },
-    {
-      "type": "boolean",
-      "id": "enable_add_product_toast",
-      "label": "تفعيل إشعار الإضافة للسلة",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "boolean",
-      "id": "sticky_add_to_cart",
-      "label": "تثبيت زر الإضافة أسفل شاشة الجوال",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "boolean",
-      "id": "show_tags",
-      "label": "اظهار الوسوم",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "id": "slider_background_size",
-      "type": "items",
-      "format": "dropdown-list",
-      "label": "طريقة عرض صور المنتج",
-      "selected": [{ "label": "اظهار الصورة كاملةً في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }],
-      "options": [
-        { "label": "تغطية الصورة كامل المساحة (Cover)", "value": "cover", "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4" },
-        { "label": "اظهار الصورة كاملةً في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }
-      ],
-      "source": "Manual",
-      "required": true
-    },
-    {
-      "type": "boolean",
-      "id": "imageZoom",
-      "label": "تكبير صور المنتج عند التمرير",
-      "format": "switch",
-      "value": false,
-      "selected": false
+{% extends "layouts.master" %}
+
+{% block content %}
+<style>
+#lv-gateway{position:fixed;inset:0;z-index:99999;pointer-events:all}
+.lv-gw-panel{position:absolute;top:0;bottom:0;width:50%;background:#0e0d0c;transition:transform 1.1s cubic-bezier(0.77,0,0.18,1)}
+.lv-gw-panel--left{left:0}
+.lv-gw-panel--right{right:0}
+.lv-gw-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;pointer-events:none}
+.lv-gw-line,.lv-gw-line-b{height:1px;background:#C9A84C;width:0;animation:gwLine 1.2s ease 0.3s forwards}
+.lv-gw-line{margin-bottom:40px}
+.lv-gw-line-b{margin-top:40px}
+@keyframes gwLine{to{width:180px}}
+.lv-gw-logo{max-width:200px;max-height:90px;object-fit:contain;opacity:0;animation:gwFade 0.9s ease 0.8s forwards}
+.lv-gw-text{color:#fff;font-size:2rem;font-weight:200;letter-spacing:12px;text-transform:uppercase;opacity:0;animation:gwFade 0.9s ease 0.8s forwards}
+.lv-gw-sub{color:#C9A84C;font-size:10px;letter-spacing:5px;text-transform:uppercase;margin-top:14px;opacity:0;animation:gwFade 0.9s ease 1.1s forwards}
+.lv-gw-btn{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.45);font-size:10px;letter-spacing:4px;text-transform:uppercase;opacity:0;animation:gwFade 0.8s ease 1.8s forwards;border:none;background:transparent;cursor:pointer;z-index:3;padding:10px 24px}
+@keyframes gwFade{to{opacity:1}}
+#lv-gateway.lv-open .lv-gw-panel--left{transform:translateX(-100%)}
+#lv-gateway.lv-open .lv-gw-panel--right{transform:translateX(100%)}
+#lv-gateway.lv-gone{opacity:0;pointer-events:none;transition:opacity 0.4s ease 0.9s}
+.lv-hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.lv-hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lv-hero__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lv-hero__overlay{position:absolute;inset:0}
+.lv-hero__content{position:relative;z-index:2;text-align:center;padding:0 24px}
+.lv-hero__label{color:#C9A84C;letter-spacing:5px;font-size:11px;text-transform:uppercase;margin:0 0 16px;display:block}
+.lv-hero__title{color:#fff;font-size:clamp(2rem,6vw,5rem);font-weight:200;margin:0 0 16px;line-height:1.05;letter-spacing:2px}
+.lv-hero__subtitle{color:rgba(255,255,255,0.82);font-size:1rem;margin:0 0 36px;display:block}
+.lv-hero__btn{display:inline-block;padding:14px 48px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.8);text-decoration:none;font-size:13px;letter-spacing:3px;text-transform:uppercase;transition:all 0.3s}
+.lv-hero__btn:hover{background:#fff;color:#1a1a1a}
+.lv-slider{position:absolute;inset:0}
+.lv-slider__item{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
+.lv-slider__item.active{opacity:1}
+.lv-slider__item img{width:100%;height:100%;object-fit:cover}
+.lv-slider__dots{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
+.lv-slider__dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);border:none;cursor:pointer;padding:0;transition:background 0.3s}
+.lv-slider__dot.active{background:#fff}
+.lv-hero__scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:3}
+.lv-hero__scroll span{display:block;width:1px;height:52px;background:rgba(255,255,255,0.45);animation:scrollAnim 1.8s ease infinite}
+@keyframes scrollAnim{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(0.3);opacity:0.3}}
+.lv-editorial{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:560px}
+.lv-editorial__img{overflow:hidden}
+.lv-editorial__img img{width:100%;height:100%;object-fit:cover;display:block}
+.lv-editorial__body{background:#f9f7f4;display:flex;flex-direction:column;justify-content:center;padding:80px 64px}
+.lv-editorial__label{color:#C9A84C;letter-spacing:5px;font-size:11px;text-transform:uppercase;margin:0 0 20px}
+.lv-editorial__title{font-size:2.2rem;font-weight:200;color:#1a1a1a;margin:0 0 24px;line-height:1.2}
+.lv-editorial__text{color:#666;line-height:1.9;margin:0 0 40px;font-size:15px}
+.lv-editorial__btn{display:inline-block;padding:12px 36px;border:1px solid #1a1a1a;color:#1a1a1a;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:all 0.3s}
+.lv-editorial__btn:hover{background:#1a1a1a;color:#fff}
+.lv-wa{position:fixed;bottom:28px;z-index:9999;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform 0.2s}
+.lv-wa:hover{transform:scale(1.1)}
+.lv-wa--left{left:26px}
+.lv-wa--right{right:26px}
+#lv-top-btn{position:fixed;bottom:28px;right:26px;z-index:9998;width:44px;height:44px;background:#1a1a1a;color:#fff;border:none;cursor:pointer;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:background 0.2s}
+#lv-top-btn:hover{background:#C9A84C}
+@media(max-width:1024px){.lv-editorial{grid-template-columns:1fr;min-height:auto}.lv-editorial__img{min-height:380px}.lv-editorial__body{padding:56px 40px}}
+@media(max-width:768px){.lv-editorial__body{padding:40px 24px}.lv-editorial__title{font-size:1.8rem}.lv-wa{width:48px;height:48px}.lv-wa--left{left:18px}.lv-wa--right{right:18px}#lv-top-btn{bottom:20px;right:18px}}
+</style>
+
+{% if theme.settings.get('show_splash', true) %}
+    {% if theme.settings.get('splash_type', 'gateway') == 'gateway' %}
+    <div id="lv-gateway">
+        <div class="lv-gw-panel lv-gw-panel--left"></div>
+        <div class="lv-gw-panel lv-gw-panel--right"></div>
+        <div class="lv-gw-center">
+            <div class="lv-gw-line"></div>
+            {% if theme.settings.get('splash_image') %}
+                <img src="{{ theme.settings.get('splash_image') }}" alt="{{ store.name }}" class="lv-gw-logo">
+            {% elseif store.logo %}
+                <img src="{{ store.logo }}" alt="{{ store.name }}" class="lv-gw-logo">
+            {% else %}
+                <div class="lv-gw-text">{{ store.name }}</div>
+            {% endif %}
+            <div class="lv-gw-sub">{{ theme.settings.get('splash_text', 'Luxury Perfumes') }}</div>
+            <div class="lv-gw-line-b"></div>
+        </div>
+        <button class="lv-gw-btn" id="lv-gw-enter">enter</button>
+    </div>
+    {% else %}
+    <div id="lv-splash" style="position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:#fff;animation:splashOut 0.7s ease 2.4s forwards">
+        {% if theme.settings.get('splash_image') %}
+            <img src="{{ theme.settings.get('splash_image') }}" alt="{{ store.name }}" style="max-width:220px;max-height:130px;object-fit:contain">
+        {% elseif store.logo %}
+            <img src="{{ store.logo }}" alt="{{ store.name }}" style="max-width:220px;max-height:130px;object-fit:contain">
+        {% else %}
+            <div style="font-size:2rem;font-weight:200;letter-spacing:10px;color:#1a1a1a">{{ store.name }}</div>
+        {% endif %}
+    </div>
+    <style>@keyframes splashOut{to{opacity:0;visibility:hidden}}</style>
+    {% endif %}
+{% endif %}
+
+<section class="lv-hero" style="height:100vh">
+    {% if theme.settings.get('hero_type') == 'video' and theme.settings.get('hero_video_url') %}
+        <video autoplay muted loop playsinline class="lv-hero__video">
+            <source src="{{ theme.settings.get('hero_video_url') }}" type="video/mp4">
+        </video>
+    {% elseif theme.settings.get('hero_type') == 'slider' %}
+        <div class="lv-slider">
+            {% if theme.settings.get('hero_image') %}<div class="lv-slider__item active"><img src="{{ theme.settings.get('hero_image') }}" alt="slide1"></div>{% endif %}
+            {% if theme.settings.get('hero_image_2') %}<div class="lv-slider__item"><img src="{{ theme.settings.get('hero_image_2') }}" alt="slide2"></div>{% endif %}
+            {% if theme.settings.get('hero_image_3') %}<div class="lv-slider__item"><img src="{{ theme.settings.get('hero_image_3') }}" alt="slide3"></div>{% endif %}
+        </div>
+        <div class="lv-slider__dots">
+            {% if theme.settings.get('hero_image') %}<button class="lv-slider__dot active"></button>{% endif %}
+            {% if theme.settings.get('hero_image_2') %}<button class="lv-slider__dot"></button>{% endif %}
+            {% if theme.settings.get('hero_image_3') %}<button class="lv-slider__dot"></button>{% endif %}
+        </div>
+    {% elseif theme.settings.get('hero_image') %}
+        <img src="{{ theme.settings.get('hero_image') }}" alt="{{ store.name }}" class="lv-hero__bg">
+    {% else %}
+        <div class="lv-hero__bg" style="background:linear-gradient(160deg,#1a1a1a 0%,#2c2416 100%)"></div>
+    {% endif %}
+    {% if theme.settings.get('hero_overlay_opacity') == 'light' %}<div class="lv-hero__overlay" style="background:rgba(0,0,0,0.2)"></div>{% endif %}
+    {% if theme.settings.get('hero_overlay_opacity') == 'medium' %}<div class="lv-hero__overlay" style="background:rgba(0,0,0,0.45)"></div>{% endif %}
+    {% if theme.settings.get('hero_overlay_opacity') == 'dark' %}<div class="lv-hero__overlay" style="background:rgba(0,0,0,0.7)"></div>{% endif %}
+    {% if theme.settings.get('hero_title') or theme.settings.get('hero_cta_text') %}
+    <div class="lv-hero__content">
+        {% if theme.settings.get('hero_label') %}<span class="lv-hero__label">{{ theme.settings.get('hero_label') }}</span>{% endif %}
+        {% if theme.settings.get('hero_title') %}<h1 class="lv-hero__title">{{ theme.settings.get('hero_title') }}</h1>{% endif %}
+        {% if theme.settings.get('hero_subtitle') %}<span class="lv-hero__subtitle">{{ theme.settings.get('hero_subtitle') }}</span>{% endif %}
+        {% if theme.settings.get('hero_cta_text') %}<a href="{{ theme.settings.get('hero_cta_link', '/products') }}" class="lv-hero__btn">{{ theme.settings.get('hero_cta_text') }}</a>{% endif %}
+    </div>
+    {% endif %}
+    {% if theme.settings.get('show_hero_scroll', true) %}<div class="lv-hero__scroll"><span></span></div>{% endif %}
+</section>
+
+{% component home %}
+
+{% if theme.settings.get('show_mid_banner', true) and theme.settings.get('mid_banner_image') %}
+<section style="position:relative;overflow:hidden">
+    <a href="{{ theme.settings.get('mid_banner_link', '/products') }}" style="display:block">
+        <img src="{{ theme.settings.get('mid_banner_image') }}" alt="banner" style="width:100%;height:auto;display:block;max-height:620px;object-fit:cover">
+    </a>
+    {% if theme.settings.get('mid_banner_title') %}
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:24px;pointer-events:none">
+        <h2 style="color:#fff;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:200;margin:0 0 28px;letter-spacing:2px">{{ theme.settings.get('mid_banner_title') }}</h2>
+        {% if theme.settings.get('mid_banner_cta_text') %}
+        <a href="{{ theme.settings.get('mid_banner_link', '/products') }}" style="display:inline-block;padding:13px 44px;border:1px solid #fff;color:#fff;text-decoration:none;font-size:12px;letter-spacing:3px;pointer-events:all">{{ theme.settings.get('mid_banner_cta_text') }}</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</section>
+{% endif %}
+
+{% if theme.settings.get('show_banner2') and theme.settings.get('banner2_image') %}
+<a href="{{ theme.settings.get('banner2_link', '/products') }}" style="display:block;overflow:hidden">
+    <img src="{{ theme.settings.get('banner2_image') }}" alt="banner2" style="width:100%;height:auto;display:block">
+</a>
+{% endif %}
+
+{% if theme.settings.get('show_editorial', true) and theme.settings.get('editorial_image') %}
+<section class="lv-editorial">
+    <div class="lv-editorial__img"><img src="{{ theme.settings.get('editorial_image') }}" alt="story"></div>
+    <div class="lv-editorial__body">
+        <p class="lv-editorial__label">{{ theme.settings.get('editorial_label', 'OUR STORY') }}</p>
+        <h2 class="lv-editorial__title">{{ theme.settings.get('editorial_title', 'story') }}</h2>
+        <p class="lv-editorial__text">{{ theme.settings.get('editorial_text', '') }}</p>
+        <a href="{{ theme.settings.get('editorial_cta_link', '/page/about') }}" class="lv-editorial__btn">{{ theme.settings.get('editorial_cta_text', 'more') }}</a>
+    </div>
+</section>
+{% endif %}
+
+{% if theme.settings.get('show_whatsapp_btn', true) and theme.settings.get('whatsapp_number') %}
+<a href="https://wa.me/{{ theme.settings.get('whatsapp_number') }}" target="_blank" class="lv-wa lv-wa--{{ theme.settings.get('whatsapp_position', 'left') }}" aria-label="whatsapp">
+    <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.121 1.533 5.857L.057 23.571l5.866-1.54A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.214-3.48.913.929-3.395-.234-.349A9.818 9.818 0 012.182 12 9.818 9.818 0 0112 2.182 9.818 9.818 0 0121.818 12 9.818 9.818 0 0112 21.818z"/></svg>
+</a>
+{% endif %}
+
+{% if theme.settings.get('show_back_to_top', true) %}
+<button id="lv-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="top">
+    <i class="sicon-chevron-up"></i>
+</button>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function(){
+    var gw=document.getElementById('lv-gateway');
+    var gwBtn=document.getElementById('lv-gw-enter');
+    function openGW(){if(!gw)return;gw.classList.add('lv-open');setTimeout(function(){gw.classList.add('lv-gone');},900);}
+    if(gw){setTimeout(openGW,3200);if(gwBtn)gwBtn.addEventListener('click',openGW);}
+    var idx=0;
+    var slides=document.querySelectorAll('.lv-slider__item');
+    var dots=document.querySelectorAll('.lv-slider__dot');
+    function goSlide(n){
+        if(!slides.length)return;
+        slides.forEach(function(s){s.classList.remove('active');});
+        dots.forEach(function(d){d.classList.remove('active');});
+        idx=(n+slides.length)%slides.length;
+        slides[idx].classList.add('active');
+        if(dots[idx])dots[idx].classList.add('active');
     }
-  ]
-}
+    dots.forEach(function(d,i){d.addEventListener('click',function(){goSlide(i);});});
+    if(slides.length>1)setInterval(function(){goSlide(idx+1);},5000);
+    var tb=document.getElementById('lv-top-btn');
+    if(tb)window.addEventListener('scroll',function(){tb.style.display=window.scrollY>400?'flex':'none';},{passive:true});
+})();
+</script>
+{% endblock %}
