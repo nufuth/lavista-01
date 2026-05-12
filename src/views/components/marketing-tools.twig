@@ -37,17 +37,17 @@
 @media(max-width:767px){#lv-ab{padding:8px 14px;font-size:10px;bottom:15px;left:5%}#lv-ap{width:240px;bottom:65px;left:5%}}
 </style>
 
-{% if theme.settings.get('show_sales_pop', true) %}
+{% if theme.settings.get('show_sales_pop') %}
 <div id="lv-pops">
-    <div class="lv-pop-n">{{ theme.settings.get('sales_pop_1', '') }}</div>
-    <div class="lv-pop-n">{{ theme.settings.get('sales_pop_2', '') }}</div>
-    <div class="lv-pop-n">{{ theme.settings.get('sales_pop_3', '') }}</div>
-    <div class="lv-pop-n">{{ theme.settings.get('sales_pop_4', '') }}</div>
-    <div class="lv-pop-n">{{ theme.settings.get('sales_pop_5', '') }}</div>
+    <div class="lv-pop-n">{{ theme.settings.get('sales_pop_1') }}</div>
+    <div class="lv-pop-n">{{ theme.settings.get('sales_pop_2') }}</div>
+    <div class="lv-pop-n">{{ theme.settings.get('sales_pop_3') }}</div>
+    <div class="lv-pop-n">{{ theme.settings.get('sales_pop_4') }}</div>
+    <div class="lv-pop-n">{{ theme.settings.get('sales_pop_5') }}</div>
 </div>
 {% endif %}
 
-{% if theme.settings.get('show_assistant', true) %}
+{% if theme.settings.get('show_assistant') %}
 <input type="checkbox" id="lv-ao">
 <input type="radio" name="lv-r" id="lv-r0" checked>
 <input type="radio" name="lv-r" id="lv-r1">
@@ -55,42 +55,42 @@
 <input type="radio" name="lv-r" id="lv-r3">
 <input type="radio" name="lv-r" id="lv-r4">
 <div id="lv-asst-wrap">
-    <label for="lv-ao" id="lv-ab">{{ theme.settings.get('assistant_btn_text', 'محتار وش تختار؟') }}</label>
+    <label for="lv-ao" id="lv-ab">{{ theme.settings.get('assistant_btn_text') }}</label>
     <div id="lv-ap">
         <div class="lv-aph">
-            <span style="font-weight:bold;font-size:14px">{{ theme.settings.get('assistant_title', 'مساعدك الذكي') }}</span>
+            <span style="font-weight:bold;font-size:14px">{{ theme.settings.get('assistant_title') }}</span>
             <label for="lv-ao" class="lv-ax">&times;</label>
         </div>
         <div class="lv-aq">
-            <p>{{ theme.settings.get('assistant_question', 'وش تبحث عنه؟') }}</p>
-            <label for="lv-r1" class="lv-apo">{{ theme.settings.get('assistant_opt1', 'الخيار الاول') }}</label>
-            <label for="lv-r2" class="lv-apo">{{ theme.settings.get('assistant_opt2', 'الخيار الثاني') }}</label>
-            <label for="lv-r3" class="lv-apo">{{ theme.settings.get('assistant_opt3', 'الخيار الثالث') }}</label>
-            <label for="lv-r4" class="lv-apo">{{ theme.settings.get('assistant_opt4', 'الخيار الرابع') }}</label>
+            <p>{{ theme.settings.get('assistant_question') }}</p>
+            <label for="lv-r1" class="lv-apo">{{ theme.settings.get('assistant_opt1') }}</label>
+            <label for="lv-r2" class="lv-apo">{{ theme.settings.get('assistant_opt2') }}</label>
+            <label for="lv-r3" class="lv-apo">{{ theme.settings.get('assistant_opt3') }}</label>
+            <label for="lv-r4" class="lv-apo">{{ theme.settings.get('assistant_opt4') }}</label>
         </div>
         <div class="lv-ar" id="lv-ar1">
-            <h4>{{ theme.settings.get('assistant_res1_title', '') }}</h4>
-            <p>{{ theme.settings.get('assistant_res1_desc', '') }}</p>
-            <a href="{{ theme.settings.get('assistant_res1_link', '/') }}">{{ theme.settings.get('assistant_res1_cta', 'اطلبه الان') }}</a>
-            <label for="lv-r0" class="lv-areset">{{ theme.settings.get('assistant_try_again', 'جرب مرة ثانية') }}</label>
+            <h4>{{ theme.settings.get('assistant_res1_title') }}</h4>
+            <p>{{ theme.settings.get('assistant_res1_desc') }}</p>
+            <a href="{{ theme.settings.get('assistant_res1_link') }}">{{ theme.settings.get('assistant_res1_cta') }}</a>
+            <label for="lv-r0" class="lv-areset">{{ theme.settings.get('assistant_try_again') }}</label>
         </div>
         <div class="lv-ar" id="lv-ar2">
-            <h4>{{ theme.settings.get('assistant_res2_title', '') }}</h4>
-            <p>{{ theme.settings.get('assistant_res2_desc', '') }}</p>
-            <a href="{{ theme.settings.get('assistant_res2_link', '/') }}">{{ theme.settings.get('assistant_res2_cta', 'اطلبه الان') }}</a>
-            <label for="lv-r0" class="lv-areset">{{ theme.settings.get('assistant_try_again', 'جرب مرة ثانية') }}</label>
+            <h4>{{ theme.settings.get('assistant_res2_title') }}</h4>
+            <p>{{ theme.settings.get('assistant_res2_desc') }}</p>
+            <a href="{{ theme.settings.get('assistant_res2_link') }}">{{ theme.settings.get('assistant_res2_cta') }}</a>
+            <label for="lv-r0" class="lv-areset">{{ theme.settings.get('assistant_try_again') }}</label>
         </div>
         <div class="lv-ar" id="lv-ar3">
-            <h4>{{ theme.settings.get('assistant_res3_title', '') }}</h4>
-            <p>{{ theme.settings.get('assistant_res3_desc', '') }}</p>
-            <a href="{{ theme.settings.get('assistant_res3_link', '/') }}">{{ theme.settings.get('assistant_res3_cta', 'اطلبه الان') }}</a>
-            <label for="lv-r0" class="lv-areset">{{ theme.settings.get('assistant_try_again', 'جرب مرة ثانية') }}</label>
+            <h4>{{ theme.settings.get('assistant_res3_title') }}</h4>
+            <p>{{ theme.settings.get('assistant_res3_desc') }}</p>
+            <a href="{{ theme.settings.get('assistant_res3_link') }}">{{ theme.settings.get('assistant_res3_cta') }}</a>
+            <label for="lv-r0" class="lv-areset">{{ theme.settings.get('assistant_try_again') }}</label>
         </div>
         <div class="lv-ar" id="lv-ar4">
-            <h4>{{ theme.settings.get('assistant_res4_title', '') }}</h4>
-            <p>{{ theme.settings.get('assistant_res4_desc', '') }}</p>
-            <a href="{{ theme.settings.get('assistant_res4_link', '/') }}">{{ theme.settings.get('assistant_res4_cta', 'اطلبه الان') }}</a>
-            <label for="lv-r0" class="lv-areset">{{ theme.settings.get('assistant_try_again', 'جرب مرة ثانية') }}</label>
+            <h4>{{ theme.settings.get('assistant_res4_title') }}</h4>
+            <p>{{ theme.settings.get('assistant_res4_desc') }}</p>
+            <a href="{{ theme.settings.get('assistant_res4_link') }}">{{ theme.settings.get('assistant_res4_cta') }}</a>
+            <label for="lv-r0" class="lv-areset">{{ theme.settings.get('assistant_try_again') }}</label>
         </div>
     </div>
 </div>
