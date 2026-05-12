@@ -35,54 +35,226 @@
     {
       "type": "boolean",
       "id": "show_sales_pop",
-      "label": "اشعار المبيعات",
+      "label": "تفعيل اشعارات المبيعات",
       "format": "switch",
       "value": true,
       "selected": true
+    },
+    {
+      "type": "string",
+      "id": "sales_pop_1",
+      "label": "نص الاشعار الاول",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "sales_pop_2",
+      "label": "نص الاشعار الثاني",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "sales_pop_3",
+      "label": "نص الاشعار الثالث",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "sales_pop_4",
+      "label": "نص الاشعار الرابع",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "sales_pop_5",
+      "label": "نص الاشعار الخامس",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "static",
+      "id": "lv-l-sp",
+      "format": "line"
     },
     {
       "type": "boolean",
       "id": "show_assistant",
-      "label": "المساعد الذكي محتار وش تختار",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "boolean",
-      "id": "show_viewers",
-      "label": "عداد المشاهدين في صفحة المنتج",
+      "label": "تفعيل المساعد الذكي",
       "format": "switch",
       "value": true,
       "selected": true
     },
     {
       "type": "string",
-      "id": "assistant_d26_link",
-      "label": "رابط عطر D26 في المساعد",
+      "id": "assistant_btn_text",
+      "label": "نص زر المساعد",
       "format": "text",
-      "value": "https://lavista.sa/ar/p1"
+      "value": "محتار وش تختار؟"
     },
     {
       "type": "string",
-      "id": "assistant_d27_link",
-      "label": "رابط عطر D27 في المساعد",
+      "id": "assistant_title",
+      "label": "عنوان لوح المساعد",
       "format": "text",
-      "value": "https://lavista.sa/ar/p2"
+      "value": "مساعدك الذكي"
     },
     {
       "type": "string",
-      "id": "assistant_d28_link",
-      "label": "رابط عطر D28 في المساعد",
+      "id": "assistant_question",
+      "label": "سؤال المساعد",
       "format": "text",
-      "value": "https://lavista.sa/ar/p3"
+      "value": "وش تبحث عنه؟"
     },
     {
       "type": "string",
-      "id": "assistant_gift_link",
-      "label": "رابط بوكس الاهداء في المساعد",
+      "id": "assistant_opt1",
+      "label": "نص الخيار الاول",
       "format": "text",
-      "value": "https://lavista.sa/ar/p4"
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "assistant_opt2",
+      "label": "نص الخيار الثاني",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "assistant_opt3",
+      "label": "نص الخيار الثالث",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "assistant_opt4",
+      "label": "نص الخيار الرابع",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "assistant_res1_title",
+      "label": "عنوان نتيجة الخيار الاول",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "assistant_res1_desc",
+      "label": "وصف نتيجة الخيار الاول",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "assistant_res1_link",
+      "label": "رابط نتيجة الخيار الاول",
+      "format": "text",
+      "value": "/"
+    },
+    {
+      "type": "string",
+      "id": "assistant_res1_cta",
+      "label": "نص زر نتيجة الخيار الاول",
+      "format": "text",
+      "value": "اطلبه الان"
+    },
+    {
+      "type": "string",
+      "id": "assistant_res2_title",
+      "label": "عنوان نتيجة الخيار الثاني",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "assistant_res2_desc",
+      "label": "وصف نتيجة الخيار الثاني",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "assistant_res2_link",
+      "label": "رابط نتيجة الخيار الثاني",
+      "format": "text",
+      "value": "/"
+    },
+    {
+      "type": "string",
+      "id": "assistant_res2_cta",
+      "label": "نص زر نتيجة الخيار الثاني",
+      "format": "text",
+      "value": "اطلبه الان"
+    },
+    {
+      "type": "string",
+      "id": "assistant_res3_title",
+      "label": "عنوان نتيجة الخيار الثالث",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "assistant_res3_desc",
+      "label": "وصف نتيجة الخيار الثالث",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "assistant_res3_link",
+      "label": "رابط نتيجة الخيار الثالث",
+      "format": "text",
+      "value": "/"
+    },
+    {
+      "type": "string",
+      "id": "assistant_res3_cta",
+      "label": "نص زر نتيجة الخيار الثالث",
+      "format": "text",
+      "value": "اطلبه الان"
+    },
+    {
+      "type": "string",
+      "id": "assistant_res4_title",
+      "label": "عنوان نتيجة الخيار الرابع",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "assistant_res4_desc",
+      "label": "وصف نتيجة الخيار الرابع",
+      "format": "text",
+      "value": ""
+    },
+    {
+      "type": "string",
+      "id": "assistant_res4_link",
+      "label": "رابط نتيجة الخيار الرابع",
+      "format": "text",
+      "value": "/"
+    },
+    {
+      "type": "string",
+      "id": "assistant_res4_cta",
+      "label": "نص زر نتيجة الخيار الرابع",
+      "format": "text",
+      "value": "اطلبه الان"
+    },
+    {
+      "type": "string",
+      "id": "assistant_try_again",
+      "label": "نص زر التكرار",
+      "format": "text",
+      "value": "جرب مرة ثانية"
     },
     {
       "type": "static",
