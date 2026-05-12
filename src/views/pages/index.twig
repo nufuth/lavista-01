@@ -56,41 +56,6 @@
 #lv-top-btn:hover{background:#C9A84C}
 @media(max-width:1024px){.lv-editorial{grid-template-columns:1fr;min-height:auto}.lv-editorial__img{min-height:380px}.lv-editorial__body{padding:56px 40px}}
 @media(max-width:768px){.lv-editorial__body{padding:40px 24px}.lv-editorial__title{font-size:1.8rem}.lv-wa{width:48px;height:48px}.lv-wa--left{left:18px}.lv-wa--right{right:18px}#lv-top-btn{bottom:20px;right:18px}}
-#lv-ab{position:fixed;bottom:20px;left:20px;background:#1a1a1a;color:#fff;padding:10px 18px;z-index:9997;font-weight:bold;cursor:pointer;border:1px solid #C9A84C;font-size:12px;display:flex;align-items:center;font-family:inherit}
-#lv-ap{position:fixed;bottom:75px;left:20px;width:270px;background:#fff;border:2px solid #1a1a1a;z-index:9997;direction:rtl;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.18)}
-.lv-aph{background:#1a1a1a;color:#fff;padding:10px 15px;display:flex;justify-content:space-between;align-items:center}
-.lv-ax{cursor:pointer;font-size:22px;line-height:1}
-.lv-aq{padding:15px;text-align:center}
-.lv-aq p{font-weight:bold;margin:0 0 12px;font-size:13px}
-.lv-apo{display:block;width:100%;padding:9px;margin:5px 0;background:#fff;border:1px solid #1a1a1a;font-weight:bold;cursor:pointer;font-size:11px;transition:background 0.3s,color 0.3s;text-align:center;box-sizing:border-box}
-.lv-apo:hover{background:#1a1a1a;color:#fff}
-.lv-ar{display:none;padding:15px;text-align:center}
-.lv-ar h4{font-size:14px;margin:0 0 8px;color:#1a1a1a}
-.lv-ar p{font-size:12px;color:#666;margin:0 0 14px}
-.lv-ar a{display:block;background:#1a1a1a;color:#fff;padding:10px;text-decoration:none;font-weight:bold;font-size:13px}
-.lv-ar a:hover{background:#C9A84C}
-.lv-areset{display:block;text-decoration:underline;color:#999;margin-top:10px;cursor:pointer;font-size:11px;text-align:center}
-#lv-ao:checked~#lv-asst-wrap #lv-ab{display:none}
-#lv-ao:checked~#lv-asst-wrap #lv-ap{display:block}
-#lv-r1:checked~#lv-asst-wrap .lv-aq{display:none}
-#lv-r1:checked~#lv-asst-wrap #lv-ar1{display:block}
-#lv-r2:checked~#lv-asst-wrap .lv-aq{display:none}
-#lv-r2:checked~#lv-asst-wrap #lv-ar2{display:block}
-#lv-r3:checked~#lv-asst-wrap .lv-aq{display:none}
-#lv-r3:checked~#lv-asst-wrap #lv-ar3{display:block}
-#lv-r4:checked~#lv-asst-wrap .lv-aq{display:none}
-#lv-r4:checked~#lv-asst-wrap #lv-ar4{display:block}
-#lv-r0:checked~#lv-asst-wrap .lv-aq{display:block}
-#lv-r0:checked~#lv-asst-wrap .lv-ar{display:none}
-@media(max-width:767px){#lv-ab{padding:8px 14px;font-size:10px;bottom:15px;left:5%}#lv-ap{width:240px;bottom:65px;left:5%}}
-#lv-pops{position:fixed;bottom:20px;right:20px;z-index:9996;pointer-events:none;width:255px;height:60px}
-.lv-pop-n{position:absolute;bottom:0;right:0;width:100%;background:#fff;border-right:4px solid #C9A84C;padding:10px 12px;direction:rtl;font-size:12px;font-family:inherit;box-shadow:0 4px 20px rgba(0,0,0,0.12);opacity:0;transform:translateY(80px);animation:lvPop 90s infinite}
-.lv-pop-n:nth-child(2){animation-delay:18s}
-.lv-pop-n:nth-child(3){animation-delay:36s}
-.lv-pop-n:nth-child(4){animation-delay:54s}
-.lv-pop-n:nth-child(5){animation-delay:72s}
-@keyframes lvPop{0%,2%,12%,100%{opacity:0;transform:translateY(80px)}4%,10%{opacity:1;transform:translateY(0)}}
-@media(max-width:767px){#lv-pops{right:4%;bottom:14px;width:200px}}
 </style>
 
 {% if theme.settings.get('show_splash', true) %}
@@ -207,65 +172,6 @@
 <button id="lv-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="top">
     <i class="sicon-chevron-up"></i>
 </button>
-{% endif %}
-
-{% if theme.settings.get('show_assistant', true) %}
-<input type="checkbox" id="lv-ao" style="display:none">
-<input type="radio" name="lv-r" id="lv-r0" style="display:none" checked>
-<input type="radio" name="lv-r" id="lv-r1" style="display:none">
-<input type="radio" name="lv-r" id="lv-r2" style="display:none">
-<input type="radio" name="lv-r" id="lv-r3" style="display:none">
-<input type="radio" name="lv-r" id="lv-r4" style="display:none">
-<div id="lv-asst-wrap">
-    <label for="lv-ao" id="lv-ab">محتار وش تختار؟</label>
-    <div id="lv-ap">
-        <div class="lv-aph">
-            <span style="font-weight:bold;font-size:14px">مساعد لافيستا</span>
-            <label for="lv-ao" class="lv-ax">&times;</label>
-        </div>
-        <div class="lv-aq">
-            <p>وش جوك في العطور؟</p>
-            <label for="lv-r1" class="lv-apo">فخم ورسمي رجالي</label>
-            <label for="lv-r2" class="lv-apo">ناعم وانثوي نسائي</label>
-            <label for="lv-r3" class="lv-apo">بارد ومنعش يومي</label>
-            <label for="lv-r4" class="lv-apo">بوكس الاهداء</label>
-        </div>
-        <div class="lv-ar" id="lv-ar1">
-            <h4>لافيستا D28</h4>
-            <p>الهيبة والحضور للمناسبات الرسمية</p>
-            <a href="{{ theme.settings.get('assistant_d28_link', '/') }}">اطلبه الان</a>
-            <label for="lv-r0" class="lv-areset">جرب مرة ثانية</label>
-        </div>
-        <div class="lv-ar" id="lv-ar2">
-            <h4>لافيستا D26</h4>
-            <p>عطر الانوثة والرقة</p>
-            <a href="{{ theme.settings.get('assistant_d26_link', '/') }}">اطلبيه الان</a>
-            <label for="lv-r0" class="lv-areset">جرب مرة ثانية</label>
-        </div>
-        <div class="lv-ar" id="lv-ar3">
-            <h4>لافيستا D27</h4>
-            <p>انتعاش يومي بارد ومميز</p>
-            <a href="{{ theme.settings.get('assistant_d27_link', '/') }}">اطلبه الان</a>
-            <label for="lv-r0" class="lv-areset">جرب مرة ثانية</label>
-        </div>
-        <div class="lv-ar" id="lv-ar4">
-            <h4>بوكس الاهداء</h4>
-            <p>هدية فخمة تبيض الوجه وتجمل محتواها</p>
-            <a href="{{ theme.settings.get('assistant_gift_link', '/') }}">اطلبه الان</a>
-            <label for="lv-r0" class="lv-areset">جرب مرة ثانية</label>
-        </div>
-    </div>
-</div>
-{% endif %}
-
-{% if theme.settings.get('show_sales_pop', true) %}
-<div id="lv-pops">
-    <div class="lv-pop-n">سارة من جدة طلبت <strong>عطر D26</strong></div>
-    <div class="lv-pop-n">محمد من الرياض طلب <strong>عطر D28</strong></div>
-    <div class="lv-pop-n">نورة من مكة طلبت <strong>بوكس الاهداء</strong></div>
-    <div class="lv-pop-n">فهد من الدمام طلب <strong>المجموعة الكاملة</strong></div>
-    <div class="lv-pop-n">ريم من القصيم طلبت <strong>عطر D27</strong></div>
-</div>
 {% endif %}
 
 {% endblock %}
