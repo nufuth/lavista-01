@@ -29,7 +29,7 @@
       "type": "static",
       "format": "title",
       "id": "lv-section-marketing",
-      "value": "\n\n###### أدوات التسويق\n\n",
+      "value": "\n\n###### ادوات التسويق\n\n",
       "variant": "h6"
     },
     {
@@ -184,13 +184,13 @@
     {
       "type": "string",
       "id": "hero_image_2",
-      "label": "صورة الهيرو الثانية (للسلايدر)",
+      "label": "صورة الهيرو الثانية للسلايدر",
       "format": "image"
     },
     {
       "type": "string",
       "id": "hero_image_3",
-      "label": "صورة الهيرو الثالثة (للسلايدر)",
+      "label": "صورة الهيرو الثالثة للسلايدر",
       "format": "image"
     },
     {
@@ -232,7 +232,7 @@
     {
       "type": "string",
       "id": "hero_label",
-      "label": "نص صغير فوق العنوان (مثال: NEW COLLECTION)",
+      "label": "نص صغير فوق العنوان",
       "format": "text",
       "value": ""
     },
@@ -301,7 +301,7 @@
     {
       "type": "string",
       "id": "mid_banner_title",
-      "label": "عنوان على البنر الوسطي (اختياري)",
+      "label": "عنوان على البنر الوسطي اختياري",
       "format": "text",
       "value": ""
     },
@@ -369,7 +369,7 @@
     {
       "type": "string",
       "id": "editorial_label",
-      "label": "النص الصغير (مثال: OUR STORY)",
+      "label": "النص الصغير مثال OUR STORY",
       "format": "text",
       "value": "OUR STORY"
     },
@@ -424,7 +424,7 @@
     {
       "type": "string",
       "id": "whatsapp_number",
-      "label": "رقم واتساب (مثال: 966500000000)",
+      "label": "رقم واتساب مثال 966500000000",
       "format": "text",
       "value": ""
     },
@@ -473,10 +473,10 @@
       "type": "items",
       "format": "dropdown-list",
       "label": "طريقة عرض الصور في قسم قائمة عناصر",
-      "selected": [{ "label": "اظهار الصورة كاملة في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }],
+      "selected": [{ "label": "اظهار الصورة كاملة في المنتصف Contain", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }],
       "options": [
-        { "label": "تغطية الصورة كامل المساحة (Cover)", "value": "cover", "key": "e9c8ea8f-c5c6-234e-935-3bce269afde4" },
-        { "label": "اظهار الصورة كاملة في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }
+        { "label": "تغطية الصورة كامل المساحة Cover", "value": "cover", "key": "e9c8ea8f-c5c6-234e-935-3bce269afde4" },
+        { "label": "اظهار الصورة كاملة في المنتصف Contain", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }
       ],
       "source": "Manual",
       "required": true
@@ -602,10 +602,10 @@
       "type": "items",
       "format": "dropdown-list",
       "label": "طريقة عرض الصور في سليدر صور المنتج",
-      "selected": [{ "label": "اظهار الصورة كاملة في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }],
+      "selected": [{ "label": "اظهار الصورة كاملة في المنتصف Contain", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }],
       "options": [
-        { "label": "تغطية الصورة كامل المساحة (Cover)", "value": "cover", "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4" },
-        { "label": "اظهار الصورة كاملة في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }
+        { "label": "تغطية الصورة كامل المساحة Cover", "value": "cover", "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4" },
+        { "label": "اظهار الصورة كاملة في المنتصف Contain", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }
       ],
       "source": "Manual",
       "required": true
@@ -618,6 +618,5 @@
       "value": false,
       "selected": false
     }
-  ],
-  "components": []
+  ]
 }
