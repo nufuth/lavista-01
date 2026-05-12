@@ -2,6 +2,12 @@
 
 {% block content %}
 <style>
+{% if not theme.settings.get('show_header_nav', true) %}
+.header__nav,.header__center,.header-nav,.main-nav,.nav-links,.mega-menu,.header__menu,.categories-nav,.header__bottom{display:none!important}
+{% endif %}
+{% if not theme.settings.get('show_header_logo', true) %}
+.header__logo,.logo,.site-logo,.header-logo,.header__brand{display:none!important}
+{% endif %}
 #lv-gateway{position:fixed;inset:0;z-index:99999;pointer-events:all}
 .lv-gw-panel{position:absolute;top:0;bottom:0;width:50%;background:#0e0d0c;transition:transform 1.1s cubic-bezier(0.77,0,0.18,1)}
 .lv-gw-panel--left{left:0}
@@ -173,6 +179,8 @@
     <i class="sicon-chevron-up"></i>
 </button>
 {% endif %}
+
+{% include 'components/marketing-tools.twig' %}
 
 {% endblock %}
 
