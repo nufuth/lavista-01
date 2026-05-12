@@ -28,6 +28,82 @@
     {
       "type": "static",
       "format": "title",
+      "id": "lv-section-marketing",
+      "value": "\n\n###### أدوات التسويق\n\n",
+      "variant": "h6"
+    },
+    {
+      "type": "boolean",
+      "id": "show_sales_pop",
+      "label": "اشعار المبيعات (فلان من مدينة طلب...)",
+      "format": "switch",
+      "value": true,
+      "selected": true
+    },
+    {
+      "type": "boolean",
+      "id": "show_assistant",
+      "label": "المساعد الذكي (محتار وش تختار؟)",
+      "format": "switch",
+      "value": true,
+      "selected": true
+    },
+    {
+      "type": "boolean",
+      "id": "show_viewers",
+      "label": "عداد المشاهدين في صفحة المنتج",
+      "format": "switch",
+      "value": true,
+      "selected": true
+    },
+    {
+      "type": "static",
+      "id": "lv-line-assist",
+      "format": "line"
+    },
+    {
+      "type": "static",
+      "format": "title",
+      "id": "lv-section-assistant-links",
+      "value": "\n\n###### روابط المساعد الذكي\n\n",
+      "variant": "h6"
+    },
+    {
+      "type": "string",
+      "id": "assistant_d26_link",
+      "label": "رابط عطر D26",
+      "format": "text",
+      "value": "https://lavista.sa/ar/p1"
+    },
+    {
+      "type": "string",
+      "id": "assistant_d27_link",
+      "label": "رابط عطر D27",
+      "format": "text",
+      "value": "https://lavista.sa/ar/p2"
+    },
+    {
+      "type": "string",
+      "id": "assistant_d28_link",
+      "label": "رابط عطر D28",
+      "format": "text",
+      "value": "https://lavista.sa/ar/p3"
+    },
+    {
+      "type": "string",
+      "id": "assistant_gift_link",
+      "label": "رابط بوكس الاهداء",
+      "format": "text",
+      "value": "https://lavista.sa/ar/p4"
+    },
+    {
+      "type": "static",
+      "id": "lv-line-marketing-end",
+      "format": "line"
+    },
+    {
+      "type": "static",
+      "format": "title",
       "id": "lv-section-splash",
       "value": "\n\n###### شاشة البداية\n\n",
       "variant": "h6"
@@ -56,7 +132,7 @@
     {
       "type": "string",
       "id": "splash_image",
-      "label": "شعار شاشة البداية (اختياري - يستخدم شعار المتجر إن تُرك فارغاً)",
+      "label": "شعار شاشة البداية (اختياري)",
       "format": "image"
     },
     {
@@ -82,7 +158,7 @@
       "type": "static",
       "format": "title",
       "id": "lv-section-hero",
-      "value": "\n\n###### قسم الهيرو (الصورة الرئيسية)\n\n",
+      "value": "\n\n###### قسم الهيرو\n\n",
       "variant": "h6"
     },
     {
@@ -120,7 +196,7 @@
     {
       "type": "string",
       "id": "hero_video_url",
-      "label": "رابط الفيديو (MP4) للهيرو",
+      "label": "رابط الفيديو MP4 للهيرو",
       "format": "text",
       "value": ""
     },
@@ -132,8 +208,8 @@
       "selected": [{ "label": "شاشة كاملة", "value": "fullscreen", "key": "lv-hh-1" }],
       "options": [
         { "label": "شاشة كاملة", "value": "fullscreen", "key": "lv-hh-1" },
-        { "label": "كبير (80%)", "value": "large", "key": "lv-hh-2" },
-        { "label": "متوسط (60%)", "value": "medium", "key": "lv-hh-3" }
+        { "label": "كبير 80%", "value": "large", "key": "lv-hh-2" },
+        { "label": "متوسط 60%", "value": "medium", "key": "lv-hh-3" }
       ],
       "source": "Manual",
       "required": true
@@ -177,7 +253,7 @@
     {
       "type": "string",
       "id": "hero_cta_text",
-      "label": "نص زر الهيرو (مثال: تسوق الآن)",
+      "label": "نص زر الهيرو",
       "format": "text",
       "value": ""
     },
@@ -191,7 +267,7 @@
     {
       "type": "boolean",
       "id": "show_hero_scroll",
-      "label": "إظهار مؤشر التمرير أسفل الهيرو",
+      "label": "مؤشر التمرير اسفل الهيرو",
       "format": "switch",
       "value": true,
       "selected": true
@@ -211,7 +287,7 @@
     {
       "type": "boolean",
       "id": "show_mid_banner",
-      "label": "إظهار البنر الوسطي",
+      "label": "اظهار البنر الوسطي",
       "format": "switch",
       "value": true,
       "selected": true
@@ -246,7 +322,7 @@
     {
       "type": "boolean",
       "id": "show_banner2",
-      "label": "إظهار البنر الثاني",
+      "label": "اظهار البنر الثاني",
       "format": "switch",
       "value": false,
       "selected": false
@@ -279,7 +355,7 @@
     {
       "type": "boolean",
       "id": "show_editorial",
-      "label": "إظهار قسم قصة الماركة",
+      "label": "اظهار قسم قصة الماركة",
       "format": "switch",
       "value": true,
       "selected": true
@@ -316,7 +392,7 @@
       "id": "editorial_cta_text",
       "label": "نص الزر",
       "format": "text",
-      "value": "اعرف أكثر"
+      "value": "اعرف اكثر"
     },
     {
       "type": "string",
@@ -340,7 +416,7 @@
     {
       "type": "boolean",
       "id": "show_whatsapp_btn",
-      "label": "إظهار زر واتساب العائم",
+      "label": "اظهار زر واتساب العائم",
       "format": "switch",
       "value": true,
       "selected": true
@@ -357,7 +433,7 @@
       "id": "whatsapp_message",
       "label": "رسالة واتساب الافتراضية",
       "format": "text",
-      "value": "مرحباً، أود الاستفسار"
+      "value": "مرحبا اود الاستفسار"
     },
     {
       "id": "whatsapp_position",
@@ -375,7 +451,7 @@
     {
       "type": "boolean",
       "id": "show_back_to_top",
-      "label": "إظهار زر العودة للأعلى",
+      "label": "اظهار زر العودة للاعلى",
       "format": "switch",
       "value": true,
       "selected": true
@@ -389,7 +465,7 @@
       "type": "static",
       "format": "title",
       "id": "lv-section-original",
-      "value": "\n\n###### إعدادات القالب الأصلية\n\n",
+      "value": "\n\n###### اعدادات القالب الاصلية\n\n",
       "variant": "h6"
     },
     {
@@ -397,10 +473,10 @@
       "type": "items",
       "format": "dropdown-list",
       "label": "طريقة عرض الصور في قسم قائمة عناصر",
-      "selected": [{ "label": "اظهار الصورة كاملةً في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }],
+      "selected": [{ "label": "اظهار الصورة كاملة في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }],
       "options": [
         { "label": "تغطية الصورة كامل المساحة (Cover)", "value": "cover", "key": "e9c8ea8f-c5c6-234e-935-3bce269afde4" },
-        { "label": "اظهار الصورة كاملةً في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }
+        { "label": "اظهار الصورة كاملة في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }
       ],
       "source": "Manual",
       "required": true
@@ -416,7 +492,7 @@
     {
       "type": "boolean",
       "id": "is_more_button_enabled",
-      "label": "عرض (زر الكل) في الصفحة الرئيسية",
+      "label": "عرض زر الكل في الصفحة الرئيسية",
       "format": "switch",
       "value": true,
       "selected": true
@@ -430,12 +506,12 @@
       "type": "static",
       "format": "title",
       "id": "static-label2",
-      "value": "\n\n###### خيارات أعلى الصفحة\n\n",
+      "value": "\n\n###### خيارات اعلى الصفحة\n\n",
       "variant": "h6"
     },
     {
       "id": "header_is_sticky",
-      "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير لأسفل",
+      "label": "تثبت القائمة الرئيسية اعلى الصفحة عند التمرير",
       "type": "boolean",
       "format": "switch",
       "value": true,
@@ -474,7 +550,7 @@
       "type": "static",
       "format": "title",
       "id": "static-label4",
-      "value": "\n\n###### خيارات أسفل الصفحة\n\n",
+      "value": "\n\n###### خيارات اسفل الصفحة\n\n",
       "variant": "h6"
     },
     {
@@ -500,7 +576,7 @@
     {
       "type": "boolean",
       "id": "enable_add_product_toast",
-      "label": "تفعيل إشعار الإضافة للسلة المحسن",
+      "label": "تفعيل اشعار الاضافة للسلة المحسن",
       "format": "switch",
       "value": true,
       "selected": true
@@ -508,7 +584,7 @@
     {
       "type": "boolean",
       "id": "sticky_add_to_cart",
-      "label": "تثبيت زر الإضافة والكمية أسفل شاشة الجوال",
+      "label": "تثبيت زر الاضافة والكمية اسفل شاشة الجوال",
       "format": "switch",
       "value": true,
       "selected": true
@@ -526,10 +602,10 @@
       "type": "items",
       "format": "dropdown-list",
       "label": "طريقة عرض الصور في سليدر صور المنتج",
-      "selected": [{ "label": "اظهار الصورة كاملةً في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }],
+      "selected": [{ "label": "اظهار الصورة كاملة في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }],
       "options": [
         { "label": "تغطية الصورة كامل المساحة (Cover)", "value": "cover", "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4" },
-        { "label": "اظهار الصورة كاملةً في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }
+        { "label": "اظهار الصورة كاملة في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }
       ],
       "source": "Manual",
       "required": true
