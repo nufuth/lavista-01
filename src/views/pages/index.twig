@@ -200,7 +200,7 @@
         <p class="lv-editorial__label">{{ theme.settings.get('editorial_label', 'OUR STORY') }}</p>
         <h2 class="lv-editorial__title">{{ theme.settings.get('editorial_title', 'فن العطر الفاخر') }}</h2>
         <p class="lv-editorial__text">{{ theme.settings.get('editorial_text', '') }}</p>
-        <a href="{{ theme.settings.get('editorial_cta_link', '/page/about') }}" class="lv-editorial__btn">{{ theme.settings.get('editorial_cta_text', 'اعرف أكثر') }}</a>
+        <a href="{{ theme.settings.get('editorial_cta_link', '/page/about') }}" class="lv-editorial__btn">{{ theme.settings.get('editorial_cta_text', 'اعرف اكثر') }}</a>
     </div>
 </section>
 {% endif %}
@@ -236,6 +236,76 @@
     if(items.length>1)setInterval(function(){lvSlide(lvIdx+1);},5000);
     var topBtn=document.getElementById('lv-top-btn');
     if(topBtn){window.addEventListener('scroll',function(){topBtn.style.display=window.scrollY>400?'flex':'none';},{passive:true});}
+})();
+</script>
+
+<script>
+var LV={
+    salesPop:{{ theme.settings.get('show_sales_pop', true) ? 'true' : 'false' }},
+    assistant:{{ theme.settings.get('show_assistant', true) ? 'true' : 'false' }},
+    viewers:{{ theme.settings.get('show_viewers', true) ? 'true' : 'false' }},
+    d26:"{{ theme.settings.get('assistant_d26_link', 'https://lavista.sa/ar/p1') }}",
+    d27:"{{ theme.settings.get('assistant_d27_link', 'https://lavista.sa/ar/p2') }}",
+    d28:"{{ theme.settings.get('assistant_d28_link', 'https://lavista.sa/ar/p3') }}",
+    gift:"{{ theme.settings.get('assistant_gift_link', 'https://lavista.sa/ar/p4') }}"
+};
+(function(){
+    var names=["عبدالله","سارة","محمد","نورة","فهد","ريم","خالد","مها","حصة","منيرة","مرام","جميلة","الجوري","غيث","سالم","عبدالعزيز","هيثم","بندر"];
+    var cities=["الرياض","جدة","الدمام","مكة","القصيم","الخبر","عرعر","المجمعة","حائل","تبوك","ابها"];
+    var prods=["عطر لافيستا D26","عطر لافيستا D27","عطر لافيستا D28","المجموعة الكاملة","المجموعة النسائية","المجموعة الرجالية","بوكس الاهداء"];
+
+    if(LV.assistant){
+        var as=document.createElement('style');
+        as.innerHTML='#lv-assist-btn{position:fixed;bottom:20px;left:20px;background:#000;color:#fff;padding:10px 18px;z-index:99997;font-weight:bold;cursor:pointer;border:1px solid #fff;font-size:12px;display:flex;align-items:center;font-family:inherit}#lv-assist-popup{position:fixed;bottom:75px;left:20px;width:270px;background:#fff;border:2px solid #000;z-index:99997;direction:rtl;font-family:inherit;display:none}.lv-ph{background:#000;color:#fff;padding:10px 15px;display:flex;justify-content:space-between;align-items:center}.lv-ab{display:block;width:100%;padding:8px;margin:6px 0;background:#fff;border:1px solid #000;font-weight:bold;cursor:pointer;font-size:11px;transition:0.3s}.lv-ab:hover{background:#000;color:#fff}@media(max-width:767px){#lv-assist-btn{padding:8px 14px;font-size:10px;bottom:15px;left:5%}#lv-assist-popup{width:240px;bottom:65px;left:5%}}';
+        document.head.appendChild(as);
+        var aw=document.createElement('div');
+        aw.innerHTML='<div id="lv-assist-btn" onclick="document.getElementById(\'lv-assist-popup\').style.display=\'block\';this.style.display=\'none\'">محتار وش تختار؟</div><div id="lv-assist-popup"><div class="lv-ph"><h3 style="margin:0;font-size:14px">مساعد لافيستا</h3><span onclick="document.getElementById(\'lv-assist-popup\').style.display=\'none\';document.getElementById(\'lv-assist-btn\').style.display=\'flex\'" style="cursor:pointer;font-size:20px">x</span></div><div id="lv-as1" style="padding:15px;text-align:center"><p style="font-weight:bold;margin-bottom:12px;font-size:13px">وش جوك في العطور؟</p><button class="lv-ab" onclick="lvRes(\'D28\')">فخم ورسمي رجالي</button><button class="lv-ab" onclick="lvRes(\'D26\')">ناعم وانثوي نسائي</button><button class="lv-ab" onclick="lvRes(\'D27\')">بارد ومنعش يومي</button><button class="lv-ab" onclick="lvRes(\'Gift\')">بوكس الاهداء</button></div><div id="lv-as2" style="display:none;padding:15px;text-align:center"><h4 id="lv-r-t" style="font-size:14px;margin-bottom:10px"></h4><p id="lv-r-d" style="font-size:12px;color:#666;margin-bottom:15px"></p><a id="lv-r-l" href="#" style="display:block;background:#000;color:#fff;padding:10px;text-decoration:none;font-weight:bold;font-size:13px">اطلبه الان</a><button onclick="document.getElementById(\'lv-as1\').style.display=\'block\';document.getElementById(\'lv-as2\').style.display=\'none\'" style="background:none;border:none;text-decoration:underline;color:#999;margin-top:10px;cursor:pointer;font-size:11px">جرب مرة ثانية</button></div></div>';
+        document.body.appendChild(aw);
+        window.lvRes=function(c){
+            document.getElementById('lv-as1').style.display='none';
+            document.getElementById('lv-as2').style.display='block';
+            var t=document.getElementById('lv-r-t'),d=document.getElementById('lv-r-d'),l=document.getElementById('lv-r-l');
+            if(c==='D28'){t.innerText='لافيستا D28';d.innerText='الهيبة والحضور للمناسبات الرسمية.';l.href=LV.d28;}
+            else if(c==='D26'){t.innerText='لافيستا D26';d.innerText='عطر الانوثة والرقة.. مزيج انثوي خيالي.';l.href=LV.d26;}
+            else if(c==='D27'){t.innerText='لافيستا D27';d.innerText='انتعاش يومي بارد ومميز.';l.href=LV.d27;}
+            else{t.innerText='بوكس الاهداء';d.innerText='هدية فخمة تبيض الوجه وتجمل محتواها.';l.href=LV.gift;}
+        };
+    }
+
+    if(LV.salesPop){
+        var ps=document.createElement('style');
+        ps.innerHTML='#lv-spop{position:fixed;bottom:20px;right:20px;background:#fff;width:260px;border:2px solid #000;padding:10px;z-index:99996;display:flex;align-items:center;direction:rtl;transition:0.5s;transform:translateY(150px);opacity:0;font-family:inherit}#lv-spop.on{transform:translateY(0);opacity:1}@media(max-width:767px){#lv-spop{width:70%;right:5%;bottom:15px;padding:6px 10px}}';
+        document.head.appendChild(ps);
+        var sp=document.createElement('div');
+        sp.id='lv-spop';
+        sp.innerHTML='<div style="width:35px;margin-left:10px;flex-shrink:0"><img src="https://cdn-icons-png.flaticon.com/512/2956/2956820.png" style="width:100%"></div><div><p id="lv-sp-txt" style="margin:0;font-size:12px"></p><span style="font-size:9px;color:#27ae60;background:#eafaf1;padding:2px 5px;margin-top:3px;display:inline-block">شراء موثق</span></div>';
+        document.body.appendChild(sp);
+        setInterval(function(){
+            var n=names[Math.floor(Math.random()*names.length)];
+            var c=cities[Math.floor(Math.random()*cities.length)];
+            var p=prods[Math.floor(Math.random()*prods.length)];
+            document.getElementById('lv-sp-txt').innerHTML='<strong>'+n+'</strong> من <strong>'+c+'</strong><br>طلب <strong>'+p+'</strong>';
+            sp.classList.add('on');
+            setTimeout(function(){sp.classList.remove('on');},6000);
+        },22000);
+    }
+
+    if(LV.viewers){
+        var vs=document.createElement('style');
+        vs.innerHTML='@keyframes lv-blink{0%,100%{opacity:1}50%{opacity:0.3}}';
+        document.head.appendChild(vs);
+        setInterval(function(){
+            if(document.getElementById('lv-viewers'))return;
+            if(!window.location.pathname.includes('/p'))return;
+            var title=document.querySelector('.product-details__title')||document.querySelector('.product-title')||document.querySelector('h1');
+            if(!title)return;
+            var v=document.createElement('div');
+            v.id='lv-viewers';
+            v.style.cssText='color:#d32f2f;font-weight:bold;font-size:13px;margin:10px 0;display:flex;align-items:center;font-family:inherit';
+            v.innerHTML='<span style="width:7px;height:7px;background:#d32f2f;border-radius:50%;margin-left:7px;animation:lv-blink 1.5s infinite;flex-shrink:0"></span> يشاهد هذا المنتج <strong style="margin:0 4px">'+(Math.floor(Math.random()*25)+25)+'</strong> شخص الان';
+            title.parentNode.insertBefore(v,title.nextSibling);
+        },2000);
+    }
 })();
 </script>
 {% endblock %}
