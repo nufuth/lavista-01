@@ -28,14 +28,14 @@
     {
       "type": "static",
       "format": "title",
-      "id": "lv-section-marketing",
+      "id": "lv-s-mkt",
       "value": "\n\n###### ادوات التسويق\n\n",
       "variant": "h6"
     },
     {
       "type": "boolean",
       "id": "show_sales_pop",
-      "label": "اشعار المبيعات (فلان من مدينة طلب...)",
+      "label": "اشعار المبيعات",
       "format": "switch",
       "value": true,
       "selected": true
@@ -43,7 +43,7 @@
     {
       "type": "boolean",
       "id": "show_assistant",
-      "label": "المساعد الذكي (محتار وش تختار؟)",
+      "label": "المساعد الذكي محتار وش تختار",
       "format": "switch",
       "value": true,
       "selected": true
@@ -57,54 +57,42 @@
       "selected": true
     },
     {
-      "type": "static",
-      "id": "lv-line-assist",
-      "format": "line"
-    },
-    {
-      "type": "static",
-      "format": "title",
-      "id": "lv-section-assistant-links",
-      "value": "\n\n###### روابط المساعد الذكي\n\n",
-      "variant": "h6"
-    },
-    {
       "type": "string",
       "id": "assistant_d26_link",
-      "label": "رابط عطر D26",
+      "label": "رابط عطر D26 في المساعد",
       "format": "text",
       "value": "https://lavista.sa/ar/p1"
     },
     {
       "type": "string",
       "id": "assistant_d27_link",
-      "label": "رابط عطر D27",
+      "label": "رابط عطر D27 في المساعد",
       "format": "text",
       "value": "https://lavista.sa/ar/p2"
     },
     {
       "type": "string",
       "id": "assistant_d28_link",
-      "label": "رابط عطر D28",
+      "label": "رابط عطر D28 في المساعد",
       "format": "text",
       "value": "https://lavista.sa/ar/p3"
     },
     {
       "type": "string",
       "id": "assistant_gift_link",
-      "label": "رابط بوكس الاهداء",
+      "label": "رابط بوكس الاهداء في المساعد",
       "format": "text",
       "value": "https://lavista.sa/ar/p4"
     },
     {
       "type": "static",
-      "id": "lv-line-marketing-end",
+      "id": "lv-l-mkt",
       "format": "line"
     },
     {
       "type": "static",
       "format": "title",
-      "id": "lv-section-splash",
+      "id": "lv-s-splash",
       "value": "\n\n###### شاشة البداية\n\n",
       "variant": "h6"
     },
@@ -132,7 +120,7 @@
     {
       "type": "string",
       "id": "splash_image",
-      "label": "شعار شاشة البداية (اختياري)",
+      "label": "شعار شاشة البداية اختياري",
       "format": "image"
     },
     {
@@ -143,21 +131,14 @@
       "value": "Luxury Perfumes"
     },
     {
-      "type": "string",
-      "id": "splash_bg",
-      "label": "لون خلفية شاشة الشعار البسيط",
-      "format": "color",
-      "value": "#ffffff"
-    },
-    {
       "type": "static",
-      "id": "lv-line-1",
+      "id": "lv-l-1",
       "format": "line"
     },
     {
       "type": "static",
       "format": "title",
-      "id": "lv-section-hero",
+      "id": "lv-s-hero",
       "value": "\n\n###### قسم الهيرو\n\n",
       "variant": "h6"
     },
@@ -196,7 +177,7 @@
     {
       "type": "string",
       "id": "hero_video_url",
-      "label": "رابط الفيديو MP4 للهيرو",
+      "label": "رابط الفيديو للهيرو",
       "format": "text",
       "value": ""
     },
@@ -274,13 +255,13 @@
     },
     {
       "type": "static",
-      "id": "lv-line-2",
+      "id": "lv-l-2",
       "format": "line"
     },
     {
       "type": "static",
       "format": "title",
-      "id": "lv-section-banners",
+      "id": "lv-s-banners",
       "value": "\n\n###### البنرات\n\n",
       "variant": "h6"
     },
@@ -301,7 +282,7 @@
     {
       "type": "string",
       "id": "mid_banner_title",
-      "label": "عنوان على البنر الوسطي اختياري",
+      "label": "عنوان البنر الوسطي اختياري",
       "format": "text",
       "value": ""
     },
@@ -342,14 +323,14 @@
     },
     {
       "type": "static",
-      "id": "lv-line-3",
+      "id": "lv-l-3",
       "format": "line"
     },
     {
       "type": "static",
       "format": "title",
-      "id": "lv-section-editorial",
-      "value": "\n\n###### قسم قصة الماركة\n\n",
+      "id": "lv-s-editorial",
+      "value": "\n\n###### قصة الماركة\n\n",
       "variant": "h6"
     },
     {
@@ -403,13 +384,13 @@
     },
     {
       "type": "static",
-      "id": "lv-line-4",
+      "id": "lv-l-4",
       "format": "line"
     },
     {
       "type": "static",
       "format": "title",
-      "id": "lv-section-contact",
+      "id": "lv-s-contact",
       "value": "\n\n###### التواصل\n\n",
       "variant": "h6"
     },
@@ -458,13 +439,13 @@
     },
     {
       "type": "static",
-      "id": "lv-line-5",
+      "id": "lv-l-5",
       "format": "line"
     },
     {
       "type": "static",
       "format": "title",
-      "id": "lv-section-original",
+      "id": "lv-s-orig",
       "value": "\n\n###### اعدادات القالب الاصلية\n\n",
       "variant": "h6"
     },
@@ -473,10 +454,10 @@
       "type": "items",
       "format": "dropdown-list",
       "label": "طريقة عرض الصور في قسم قائمة عناصر",
-      "selected": [{ "label": "اظهار الصورة كاملة في المنتصف Contain", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }],
+      "selected": [{ "label": "Contain", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }],
       "options": [
-        { "label": "تغطية الصورة كامل المساحة Cover", "value": "cover", "key": "e9c8ea8f-c5c6-234e-935-3bce269afde4" },
-        { "label": "اظهار الصورة كاملة في المنتصف Contain", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }
+        { "label": "Cover", "value": "cover", "key": "e9c8ea8f-c5c6-234e-935-3bce269afde4" },
+        { "label": "Contain", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }
       ],
       "source": "Manual",
       "required": true
@@ -484,7 +465,7 @@
     {
       "type": "boolean",
       "id": "vertical_fixed_products",
-      "label": "وضع عمودي للمنتجات في مربع المنتجات الثابتة",
+      "label": "وضع عمودي للمنتجات الثابتة",
       "format": "switch",
       "value": false,
       "selected": false
@@ -511,7 +492,7 @@
     },
     {
       "id": "header_is_sticky",
-      "label": "تثبت القائمة الرئيسية اعلى الصفحة عند التمرير",
+      "label": "تثبت القائمة عند التمرير",
       "type": "boolean",
       "format": "switch",
       "value": true,
@@ -522,7 +503,7 @@
       "id": "topnav_is_dark",
       "label": "شريط علوي داكن",
       "format": "switch",
-      "value": true,
+      "value": false,
       "selected": false
     },
     {
@@ -536,7 +517,7 @@
     {
       "type": "boolean",
       "id": "enable_more_menu",
-      "label": "تفعيل قائمة المزيد في القائمة الرئيسية",
+      "label": "تفعيل قائمة المزيد",
       "format": "switch",
       "value": true,
       "selected": true
@@ -558,7 +539,7 @@
       "id": "footer_is_dark",
       "label": "الوضع الداكن للفوتر",
       "format": "switch",
-      "value": true,
+      "value": false,
       "selected": false
     },
     {
@@ -576,7 +557,7 @@
     {
       "type": "boolean",
       "id": "enable_add_product_toast",
-      "label": "تفعيل اشعار الاضافة للسلة المحسن",
+      "label": "تفعيل اشعار الاضافة للسلة",
       "format": "switch",
       "value": true,
       "selected": true
@@ -584,7 +565,7 @@
     {
       "type": "boolean",
       "id": "sticky_add_to_cart",
-      "label": "تثبيت زر الاضافة والكمية اسفل شاشة الجوال",
+      "label": "تثبيت زر الاضافة اسفل شاشة الجوال",
       "format": "switch",
       "value": true,
       "selected": true
@@ -601,11 +582,11 @@
       "id": "slider_background_size",
       "type": "items",
       "format": "dropdown-list",
-      "label": "طريقة عرض الصور في سليدر صور المنتج",
-      "selected": [{ "label": "اظهار الصورة كاملة في المنتصف Contain", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }],
+      "label": "طريقة عرض صور المنتج",
+      "selected": [{ "label": "Contain", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }],
       "options": [
-        { "label": "تغطية الصورة كامل المساحة Cover", "value": "cover", "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4" },
-        { "label": "اظهار الصورة كاملة في المنتصف Contain", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }
+        { "label": "Cover", "value": "cover", "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4" },
+        { "label": "Contain", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }
       ],
       "source": "Manual",
       "required": true
@@ -613,7 +594,7 @@
     {
       "type": "boolean",
       "id": "imageZoom",
-      "label": "تكبير الصور في سليدر صور المنتج",
+      "label": "تكبير صور المنتج",
       "format": "switch",
       "value": false,
       "selected": false
