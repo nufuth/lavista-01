@@ -29,7 +29,7 @@
       "type": "static",
       "format": "title",
       "id": "lv-s-splash",
-      "value": "\n\n###### شاشة البداية\n\n",
+      "value": "<div style='background:#1a1a1a;border-radius:8px;padding:12px;text-align:center;margin-bottom:12px'><h6 style='color:#C9A84C;margin:0;font-size:14px'>✦ شاشة البداية</h6></div>",
       "variant": "h6"
     },
     {
@@ -37,8 +37,8 @@
       "id": "show_splash",
       "label": "تفعيل شاشة البداية",
       "format": "switch",
-      "value": true,
-      "selected": true
+      "value": false,
+      "selected": false
     },
     {
       "id": "splash_type",
@@ -56,7 +56,7 @@
     {
       "type": "string",
       "id": "splash_image",
-      "label": "شعار شاشة البداية اختياري",
+      "label": "شعار شاشة البداية (اختياري)",
       "format": "image"
     },
     {
@@ -75,7 +75,7 @@
       "type": "static",
       "format": "title",
       "id": "lv-s-hero",
-      "value": "\n\n###### قسم الهيرو\n\n",
+      "value": "<div style='background:#1a1a1a;border-radius:8px;padding:12px;text-align:center;margin-bottom:12px'><h6 style='color:#C9A84C;margin:0;font-size:14px'>✦ قسم الهيرو</h6></div>",
       "variant": "h6"
     },
     {
@@ -101,13 +101,13 @@
     {
       "type": "string",
       "id": "hero_image_2",
-      "label": "صورة الهيرو الثانية للسلايدر",
+      "label": "صورة الهيرو الثانية (للسلايدر)",
       "format": "image"
     },
     {
       "type": "string",
       "id": "hero_image_3",
-      "label": "صورة الهيرو الثالثة للسلايدر",
+      "label": "صورة الهيرو الثالثة (للسلايدر)",
       "format": "image"
     },
     {
@@ -170,7 +170,7 @@
     {
       "type": "boolean",
       "id": "show_hero_scroll",
-      "label": "مؤشر التمرير اسفل الهيرو",
+      "label": "مؤشر التمرير أسفل الهيرو",
       "format": "switch",
       "value": true,
       "selected": true
@@ -184,7 +184,7 @@
       "type": "static",
       "format": "title",
       "id": "lv-s-banners",
-      "value": "\n\n###### البنرات\n\n",
+      "value": "<div style='background:#1a1a1a;border-radius:8px;padding:12px;text-align:center;margin-bottom:12px'><h6 style='color:#C9A84C;margin:0;font-size:14px'>✦ البنرات</h6></div>",
       "variant": "h6"
     },
     {
@@ -204,7 +204,7 @@
     {
       "type": "string",
       "id": "mid_banner_title",
-      "label": "عنوان البنر الوسطي اختياري",
+      "label": "عنوان البنر الوسطي (اختياري)",
       "format": "text",
       "value": ""
     },
@@ -252,7 +252,7 @@
       "type": "static",
       "format": "title",
       "id": "lv-s-editorial",
-      "value": "\n\n###### قصة الماركة\n\n",
+      "value": "<div style='background:#1a1a1a;border-radius:8px;padding:12px;text-align:center;margin-bottom:12px'><h6 style='color:#C9A84C;margin:0;font-size:14px'>✦ قصة الماركة</h6></div>",
       "variant": "h6"
     },
     {
@@ -272,7 +272,7 @@
     {
       "type": "string",
       "id": "editorial_label",
-      "label": "النص الصغير مثال OUR STORY",
+      "label": "النص الصغير (مثال: OUR STORY)",
       "format": "text",
       "value": "OUR STORY"
     },
@@ -295,7 +295,7 @@
       "id": "editorial_cta_text",
       "label": "نص الزر",
       "format": "text",
-      "value": "اعرف اكثر"
+      "value": "اعرف أكثر"
     },
     {
       "type": "string",
@@ -313,7 +313,7 @@
       "type": "static",
       "format": "title",
       "id": "lv-s-contact",
-      "value": "\n\n###### التواصل\n\n",
+      "value": "<div style='background:#1a1a1a;border-radius:8px;padding:12px;text-align:center;margin-bottom:12px'><h6 style='color:#C9A84C;margin:0;font-size:14px'>✦ التواصل</h6></div>",
       "variant": "h6"
     },
     {
@@ -327,7 +327,7 @@
     {
       "type": "string",
       "id": "whatsapp_number",
-      "label": "رقم واتساب مثال 966500000000",
+      "label": "رقم واتساب (مثال: 966500000000)",
       "format": "text",
       "value": ""
     },
@@ -336,7 +336,7 @@
       "id": "whatsapp_message",
       "label": "رسالة واتساب الافتراضية",
       "format": "text",
-      "value": "مرحبا اود الاستفسار"
+      "value": "مرحبا أود الاستفسار"
     },
     {
       "id": "whatsapp_position",
@@ -354,7 +354,7 @@
     {
       "type": "boolean",
       "id": "show_back_to_top",
-      "label": "اظهار زر العودة للاعلى",
+      "label": "اظهار زر العودة للأعلى",
       "format": "switch",
       "value": true,
       "selected": true
@@ -368,7 +368,7 @@
       "type": "static",
       "format": "title",
       "id": "lv-s-orig",
-      "value": "\n\n###### اعدادات القالب الاصلية\n\n",
+      "value": "<div style='background:#21636d;border-radius:8px;padding:12px;text-align:center;margin-bottom:12px'><h6 style='color:#fff;margin:0;font-size:14px'>إعدادات القالب الأصلية</h6></div>",
       "variant": "h6"
     },
     {
@@ -376,10 +376,10 @@
       "type": "items",
       "format": "dropdown-list",
       "label": "طريقة عرض الصور في قسم قائمة عناصر",
-      "selected": [{ "label": "Contain", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }],
+      "selected": [{ "label": "اظهار الصورة كاملةً في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }],
       "options": [
-        { "label": "Cover", "value": "cover", "key": "e9c8ea8f-c5c6-234e-935-3bce269afde4" },
-        { "label": "Contain", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }
+        { "label": "تغطية الصورة كامل المساحة (Cover)", "value": "cover", "key": "e9c8ea8f-c5c6-234e-935-3bce269afde4" },
+        { "label": "اظهار الصورة كاملةً في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-654b-b978-b2807935ced9" }
       ],
       "source": "Manual",
       "required": true
@@ -406,15 +406,8 @@
       "format": "line"
     },
     {
-      "type": "static",
-      "format": "title",
-      "id": "static-label2",
-      "value": "\n\n###### خيارات اعلى الصفحة\n\n",
-      "variant": "h6"
-    },
-    {
       "id": "header_is_sticky",
-      "label": "تثبت القائمة عند التمرير",
+      "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير",
       "type": "boolean",
       "format": "switch",
       "value": true,
@@ -425,7 +418,7 @@
       "id": "topnav_is_dark",
       "label": "شريط علوي داكن",
       "format": "switch",
-      "value": false,
+      "value": true,
       "selected": false
     },
     {
@@ -439,7 +432,7 @@
     {
       "type": "boolean",
       "id": "enable_more_menu",
-      "label": "تفعيل قائمة المزيد",
+      "label": "تفعيل قائمة المزيد في القائمة الرئيسية",
       "format": "switch",
       "value": true,
       "selected": true
@@ -450,18 +443,11 @@
       "format": "line"
     },
     {
-      "type": "static",
-      "format": "title",
-      "id": "static-label4",
-      "value": "\n\n###### خيارات اسفل الصفحة\n\n",
-      "variant": "h6"
-    },
-    {
       "type": "boolean",
       "id": "footer_is_dark",
       "label": "الوضع الداكن للفوتر",
       "format": "switch",
-      "value": false,
+      "value": true,
       "selected": false
     },
     {
@@ -470,16 +456,9 @@
       "format": "line"
     },
     {
-      "type": "static",
-      "format": "title",
-      "id": "static-label6",
-      "value": "\n\n###### خيارات صفحة المنتج\n\n",
-      "variant": "h6"
-    },
-    {
       "type": "boolean",
       "id": "enable_add_product_toast",
-      "label": "تفعيل اشعار الاضافة للسلة",
+      "label": "تفعيل إشعار الإضافة للسلة",
       "format": "switch",
       "value": true,
       "selected": true
@@ -487,7 +466,7 @@
     {
       "type": "boolean",
       "id": "sticky_add_to_cart",
-      "label": "تثبيت زر الاضافة اسفل شاشة الجوال",
+      "label": "تثبيت زر الإضافة أسفل شاشة الجوال",
       "format": "switch",
       "value": true,
       "selected": true
@@ -505,10 +484,10 @@
       "type": "items",
       "format": "dropdown-list",
       "label": "طريقة عرض صور المنتج",
-      "selected": [{ "label": "Contain", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }],
+      "selected": [{ "label": "اظهار الصورة كاملةً في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }],
       "options": [
-        { "label": "Cover", "value": "cover", "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4" },
-        { "label": "Contain", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }
+        { "label": "تغطية الصورة كامل المساحة (Cover)", "value": "cover", "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4" },
+        { "label": "اظهار الصورة كاملةً في المنتصف (Contain)", "value": "contain", "key": "f4adec13-6e4c-433b-b141-b2807935ced9" }
       ],
       "source": "Manual",
       "required": true
@@ -516,7 +495,7 @@
     {
       "type": "boolean",
       "id": "imageZoom",
-      "label": "تكبير صور المنتج",
+      "label": "تكبير صور المنتج عند التمرير",
       "format": "switch",
       "value": false,
       "selected": false
