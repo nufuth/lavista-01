@@ -3,14 +3,14 @@
 {% block content %}
 <style>
 {% if theme.settings.show_header_nav %}
-.header__nav,.header__center,.header-nav,.main-nav,.nav-links,.mega-menu,.header__menu,.categories-nav,.header__bottom{display:block!important;visibility:visible!important}
+custom-main-menu{display:block!important;visibility:visible!important}
 {% else %}
-.header__nav,.header__center,.header-nav,.main-nav,.nav-links,.mega-menu,.header__menu,.categories-nav,.header__bottom{display:none!important}
+custom-main-menu{display:none!important}
 {% endif %}
 {% if theme.settings.show_header_logo %}
-.header__logo,.logo,.site-logo,.header-logo,.header__brand{display:block!important;visibility:visible!important}
+.navbar-brand{display:flex!important;visibility:visible!important}
 {% else %}
-.header__logo,.logo,.site-logo,.header-logo,.header__brand{display:none!important}
+.navbar-brand{display:none!important}
 {% endif %}
 #lv-gateway{position:fixed;inset:0;z-index:99999;pointer-events:all}
 .lv-gw-panel{position:absolute;top:0;bottom:0;width:50%;background:#0e0d0c;transition:transform 1.1s cubic-bezier(0.77,0,0.18,1)}
