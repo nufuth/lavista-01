@@ -445,22 +445,6 @@
       "selected": true
     },
     {
-      "type": "boolean",
-      "id": "show_header_nav",
-      "label": "اظهار قائمة التنقل في الهدر",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
-      "type": "boolean",
-      "id": "show_header_logo",
-      "label": "اظهار الشعار في الهدر",
-      "format": "switch",
-      "value": true,
-      "selected": true
-    },
-    {
       "type": "static",
       "id": "static-line3",
       "format": "line"
