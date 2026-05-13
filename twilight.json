@@ -159,4 +159,184 @@
             "id": "show_splash",
             "label": "تفعيل شاشة البداية",
             "description": "تظهر لثوان عند أول دخول للمتجر",
-            "format
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "id": "splash_type",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "نوع شاشة البداية",
+            "selected": [
+                { "label": "بوابة فاخرة (أسود — للعطور)", "value": "gateway", "key": "lv-st-1" }
+            ],
+            "options": [
+                { "label": "شعار بسيط (أبيض)", "value": "logo", "key": "lv-st-2" },
+                { "label": "بوابة فاخرة (أسود — للعطور)", "value": "gateway", "key": "lv-st-1" }
+            ],
+            "source": "Manual",
+            "required": true
+        },
+        {
+            "type": "string",
+            "id": "splash_image",
+            "label": "شعار مخصص لشاشة البداية (اختياري — يستخدم شعار المتجر تلقائيًا)",
+            "format": "image"
+        },
+        {
+            "type": "string",
+            "id": "splash_text",
+            "label": "النص تحت الشعار في البوابة",
+            "format": "text",
+            "value": "Luxury Perfumes"
+        },
+
+        { "type": "static", "id": "lv-line-2", "format": "line" },
+
+        {
+            "type": "static",
+            "format": "title",
+            "id": "lv-group-banners",
+            "value": "<div style='background:#111;border-radius:8px;padding:14px 18px;margin-bottom:8px;border-right:3px solid #C9A84C'><h6 style='color:#C9A84C;margin:0;font-size:13px;letter-spacing:3px;font-weight:400'>✦ LA VISTA — البنرات</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "id": "show_mid_banner",
+            "label": "اظهار البنر الوسطي",
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "string",
+            "id": "mid_banner_image",
+            "label": "صورة البنر الوسطي",
+            "description": "المقاس المثالي: 1920×600 بكسل",
+            "format": "image"
+        },
+        {
+            "type": "string",
+            "id": "mid_banner_title",
+            "label": "عنوان على البنر (اختياري)",
+            "format": "text",
+            "value": ""
+        },
+        {
+            "type": "string",
+            "id": "mid_banner_cta_text",
+            "label": "نص زر البنر (اختياري)",
+            "format": "text",
+            "value": ""
+        },
+        {
+            "type": "string",
+            "id": "mid_banner_link",
+            "label": "رابط البنر الوسطي",
+            "format": "text",
+            "value": "/products"
+        },
+        {
+            "type": "boolean",
+            "id": "show_banner2",
+            "label": "اظهار البنر الثاني",
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "string",
+            "id": "banner2_image",
+            "label": "صورة البنر الثاني",
+            "format": "image"
+        },
+        {
+            "type": "string",
+            "id": "banner2_link",
+            "label": "رابط البنر الثاني",
+            "format": "text",
+            "value": "/products"
+        },
+
+        { "type": "static", "id": "lv-line-3", "format": "line" },
+
+        {
+            "type": "static",
+            "format": "title",
+            "id": "lv-group-editorial",
+            "value": "<div style='background:#111;border-radius:8px;padding:14px 18px;margin-bottom:8px;border-right:3px solid #C9A84C'><h6 style='color:#C9A84C;margin:0;font-size:13px;letter-spacing:3px;font-weight:400'>✦ LA VISTA — قصة الماركة</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "id": "show_editorial",
+            "label": "اظهار قسم قصة الماركة",
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "string",
+            "id": "editorial_image",
+            "label": "صورة القسم",
+            "description": "المقاس المثالي: 800×1000 بكسل (عمودية)",
+            "format": "image"
+        },
+        {
+            "type": "string",
+            "id": "editorial_label",
+            "label": "نص صغير فوق العنوان (مثال: OUR STORY)",
+            "format": "text",
+            "value": "OUR STORY"
+        },
+        {
+            "type": "string",
+            "id": "editorial_title",
+            "label": "العنوان الرئيسي",
+            "format": "text",
+            "value": ""
+        },
+        {
+            "type": "string",
+            "id": "editorial_text",
+            "label": "النص التعريفي",
+            "format": "textarea",
+            "value": ""
+        },
+        {
+            "type": "string",
+            "id": "editorial_cta_text",
+            "label": "نص الزر",
+            "format": "text",
+            "value": "اعرف أكثر"
+        },
+        {
+            "type": "string",
+            "id": "editorial_cta_link",
+            "label": "رابط الزر",
+            "format": "text",
+            "value": "/page/about"
+        },
+
+        { "type": "static", "id": "lv-line-4", "format": "line" },
+
+        {
+            "type": "static",
+            "format": "title",
+            "id": "lv-group-contact",
+            "value": "<div style='background:#111;border-radius:8px;padding:14px 18px;margin-bottom:8px;border-right:3px solid #C9A84C'><h6 style='color:#C9A84C;margin:0;font-size:13px;letter-spacing:3px;font-weight:400'>✦ LA VISTA — التواصل</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "id": "show_whatsapp_btn",
+            "label": "اظهار زر واتساب العائم",
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "string",
+            "id": "whatsapp_number",
+            "label": "رقم واتساب (بدون +
