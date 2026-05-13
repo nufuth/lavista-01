@@ -25,69 +25,35 @@
         "filters"
     ],
     "settings": [
+
         {
             "type": "static",
             "format": "title",
-            "id": "lv-title-splash",
-            "value": "<div style='background:#111;border-radius:8px;padding:12px 16px;margin-bottom:8px'><h6 style='color:#C9A84C;margin:0;font-size:13px;letter-spacing:2px'>✦ شاشة البداية</h6></div>",
+            "id": "lv-group-hero",
+            "value": "<div style='background:#111;border-radius:8px;padding:14px 18px;margin-bottom:8px;border-right:3px solid #C9A84C'><h6 style='color:#C9A84C;margin:0;font-size:13px;letter-spacing:3px;font-weight:400'>✦ LA VISTA — الهيرو</h6></div>",
             "variant": "h6"
         },
         {
             "type": "boolean",
-            "id": "show_splash",
-            "label": "تفعيل شاشة البداية",
+            "id": "show_transparent_header",
+            "label": "هدر شفاف فوق الهيرو (يصبح أبيض عند التمرير)",
+            "description": "يجعل الهدر يطفو شفافًا فوق صورة الهيرو في الصفحة الرئيسية فقط",
             "format": "switch",
             "value": false,
             "selected": false
-        },
-        {
-            "id": "splash_type",
-            "type": "items",
-            "format": "dropdown-list",
-            "label": "نوع شاشة البداية",
-            "selected": [{ "label": "بوابة فاخرة", "value": "gateway", "key": "lv-st-1" }],
-            "options": [
-                { "label": "شعار بسيط (أبيض)", "value": "logo", "key": "lv-st-2" },
-                { "label": "بوابة فاخرة (أسود)", "value": "gateway", "key": "lv-st-1" }
-            ],
-            "source": "Manual",
-            "required": true
-        },
-        {
-            "type": "string",
-            "id": "splash_image",
-            "label": "شعار مخصص لشاشة البداية (اختياري - يستخدم شعار المتجر افتراضياً)",
-            "format": "image"
-        },
-        {
-            "type": "string",
-            "id": "splash_text",
-            "label": "نص تحت الشعار في البوابة",
-            "format": "text",
-            "value": "Luxury Perfumes"
-        },
-        {
-            "type": "static",
-            "id": "lv-line-1",
-            "format": "line"
-        },
-        {
-            "type": "static",
-            "format": "title",
-            "id": "lv-title-hero",
-            "value": "<div style='background:#111;border-radius:8px;padding:12px 16px;margin-bottom:8px'><h6 style='color:#C9A84C;margin:0;font-size:13px;letter-spacing:2px'>✦ قسم الهيرو</h6></div>",
-            "variant": "h6"
         },
         {
             "id": "hero_type",
             "type": "items",
             "format": "dropdown-list",
             "label": "نوع الهيرو",
-            "selected": [{ "label": "صورة ثابتة", "value": "image", "key": "lv-ht-1" }],
+            "selected": [
+                { "label": "صورة ثابتة", "value": "image", "key": "lv-ht-1" }
+            ],
             "options": [
                 { "label": "صورة ثابتة", "value": "image", "key": "lv-ht-1" },
-                { "label": "سلايدر (3 صور)", "value": "slider", "key": "lv-ht-2" },
-                { "label": "فيديو", "value": "video", "key": "lv-ht-3" }
+                { "label": "سلايدر (حتى 3 صور)", "value": "slider", "key": "lv-ht-2" },
+                { "label": "فيديو (MP4)", "value": "video", "key": "lv-ht-3" }
             ],
             "source": "Manual",
             "required": true
@@ -96,6 +62,7 @@
             "type": "string",
             "id": "hero_image",
             "label": "صورة الهيرو الرئيسية",
+            "description": "المقاس المثالي: 1920×1080 بكسل",
             "format": "image"
         },
         {
@@ -113,7 +80,7 @@
         {
             "type": "string",
             "id": "hero_video_url",
-            "label": "رابط الفيديو (للفيديو فقط)",
+            "label": "رابط الفيديو MP4 (للفيديو فقط)",
             "format": "text",
             "value": ""
         },
@@ -122,12 +89,14 @@
             "type": "items",
             "format": "dropdown-list",
             "label": "طبقة التعتيم على الهيرو",
-            "selected": [{ "label": "بدون تعتيم", "value": "none", "key": "lv-ho-1" }],
+            "selected": [
+                { "label": "بدون تعتيم", "value": "none", "key": "lv-ho-1" }
+            ],
             "options": [
                 { "label": "بدون تعتيم", "value": "none", "key": "lv-ho-1" },
-                { "label": "خفيف", "value": "light", "key": "lv-ho-2" },
-                { "label": "متوسط", "value": "medium", "key": "lv-ho-3" },
-                { "label": "داكن", "value": "dark", "key": "lv-ho-4" }
+                { "label": "خفيف — 20%", "value": "light", "key": "lv-ho-2" },
+                { "label": "متوسط — 45%", "value": "medium", "key": "lv-ho-3" },
+                { "label": "داكن — 70%", "value": "dark", "key": "lv-ho-4" }
             ],
             "source": "Manual",
             "required": true
@@ -135,7 +104,7 @@
         {
             "type": "string",
             "id": "hero_label",
-            "label": "نص صغير فوق العنوان (مثال: SINCE 2020)",
+            "label": "نص فوق العنوان (مثال: SINCE 2018)",
             "format": "text",
             "value": ""
         },
@@ -175,399 +144,19 @@
             "value": true,
             "selected": true
         },
-        {
-            "type": "static",
-            "id": "lv-line-2",
-            "format": "line"
-        },
+
+        { "type": "static", "id": "lv-line-1", "format": "line" },
+
         {
             "type": "static",
             "format": "title",
-            "id": "lv-title-banners",
-            "value": "<div style='background:#111;border-radius:8px;padding:12px 16px;margin-bottom:8px'><h6 style='color:#C9A84C;margin:0;font-size:13px;letter-spacing:2px'>✦ البنرات</h6></div>",
+            "id": "lv-group-splash",
+            "value": "<div style='background:#111;border-radius:8px;padding:14px 18px;margin-bottom:8px;border-right:3px solid #C9A84C'><h6 style='color:#C9A84C;margin:0;font-size:13px;letter-spacing:3px;font-weight:400'>✦ LA VISTA — شاشة البداية</h6></div>",
             "variant": "h6"
         },
         {
             "type": "boolean",
-            "id": "show_mid_banner",
-            "label": "اظهار البنر الوسطي",
-            "format": "switch",
-            "value": false,
-            "selected": false
-        },
-        {
-            "type": "string",
-            "id": "mid_banner_image",
-            "label": "صورة البنر الوسطي",
-            "format": "image"
-        },
-        {
-            "type": "string",
-            "id": "mid_banner_title",
-            "label": "عنوان على البنر الوسطي (اختياري)",
-            "format": "text",
-            "value": ""
-        },
-        {
-            "type": "string",
-            "id": "mid_banner_cta_text",
-            "label": "نص زر البنر الوسطي (اختياري)",
-            "format": "text",
-            "value": ""
-        },
-        {
-            "type": "string",
-            "id": "mid_banner_link",
-            "label": "رابط البنر الوسطي",
-            "format": "text",
-            "value": "/products"
-        },
-        {
-            "type": "boolean",
-            "id": "show_banner2",
-            "label": "اظهار البنر الثاني",
-            "format": "switch",
-            "value": false,
-            "selected": false
-        },
-        {
-            "type": "string",
-            "id": "banner2_image",
-            "label": "صورة البنر الثاني",
-            "format": "image"
-        },
-        {
-            "type": "string",
-            "id": "banner2_link",
-            "label": "رابط البنر الثاني",
-            "format": "text",
-            "value": "/products"
-        },
-        {
-            "type": "static",
-            "id": "lv-line-3",
-            "format": "line"
-        },
-        {
-            "type": "static",
-            "format": "title",
-            "id": "lv-title-editorial",
-            "value": "<div style='background:#111;border-radius:8px;padding:12px 16px;margin-bottom:8px'><h6 style='color:#C9A84C;margin:0;font-size:13px;letter-spacing:2px'>✦ قصة الماركة</h6></div>",
-            "variant": "h6"
-        },
-        {
-            "type": "boolean",
-            "id": "show_editorial",
-            "label": "اظهار قسم قصة الماركة",
-            "format": "switch",
-            "value": false,
-            "selected": false
-        },
-        {
-            "type": "string",
-            "id": "editorial_image",
-            "label": "صورة قصة الماركة",
-            "format": "image"
-        },
-        {
-            "type": "string",
-            "id": "editorial_label",
-            "label": "نص صغير (مثال: OUR STORY)",
-            "format": "text",
-            "value": "OUR STORY"
-        },
-        {
-            "type": "string",
-            "id": "editorial_title",
-            "label": "العنوان الرئيسي",
-            "format": "text",
-            "value": ""
-        },
-        {
-            "type": "string",
-            "id": "editorial_text",
-            "label": "النص التعريفي",
-            "format": "textarea",
-            "value": ""
-        },
-        {
-            "type": "string",
-            "id": "editorial_cta_text",
-            "label": "نص الزر",
-            "format": "text",
-            "value": "اعرف أكثر"
-        },
-        {
-            "type": "string",
-            "id": "editorial_cta_link",
-            "label": "رابط الزر",
-            "format": "text",
-            "value": "/page/about"
-        },
-        {
-            "type": "static",
-            "id": "lv-line-4",
-            "format": "line"
-        },
-        {
-            "type": "static",
-            "format": "title",
-            "id": "lv-title-contact",
-            "value": "<div style='background:#111;border-radius:8px;padding:12px 16px;margin-bottom:8px'><h6 style='color:#C9A84C;margin:0;font-size:13px;letter-spacing:2px'>✦ التواصل</h6></div>",
-            "variant": "h6"
-        },
-        {
-            "type": "boolean",
-            "id": "show_whatsapp_btn",
-            "label": "اظهار زر واتساب العائم",
-            "format": "switch",
-            "value": false,
-            "selected": false
-        },
-        {
-            "type": "string",
-            "id": "whatsapp_number",
-            "label": "رقم واتساب بدون + (مثال: 966500000000)",
-            "format": "text",
-            "value": ""
-        },
-        {
-            "id": "whatsapp_position",
-            "type": "items",
-            "format": "dropdown-list",
-            "label": "موضع زر واتساب",
-            "selected": [{ "label": "يسار", "value": "l", "key": "lv-wp-1" }],
-            "options": [
-                { "label": "يسار", "value": "l", "key": "lv-wp-1" },
-                { "label": "يمين", "value": "r", "key": "lv-wp-2" }
-            ],
-            "source": "Manual",
-            "required": true
-        },
-        {
-            "type": "boolean",
-            "id": "show_back_to_top",
-            "label": "اظهار زر العودة للأعلى",
-            "format": "switch",
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "static",
-            "id": "lv-line-5",
-            "format": "line"
-        },
-        {
-            "type": "static",
-            "format": "title",
-            "id": "static-label2",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أعلى الصفحة</h6></div>",
-            "variant": "h6"
-        },
-        {
-            "id": "squar_photo_bg_image_size",
-            "type": "items",
-            "format": "dropdown-list",
-            "label": "طريقة عرض الصور في قسم قائمة عناصر ",
-            "description": null,
-            "labelHTML": null,
-            "icon": "sicon-list",
-            "selected": [
-                {
-                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
-                    "value": "contain",
-                    "key": "f4adec13-6e4c-654b-b978-b2807935ced9"
-                }
-            ],
-            "options": [
-                {
-                    "label": "تغطية الصورة كامل المساحة مع المحافظة على أبعاد الصورة (Cover)",
-                    "value": "cover",
-                    "key": "e9c8ea8f-c5c6-234e-935-3bce269afde4"
-                },
-                {
-                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
-                    "value": "contain",
-                    "key": "f4adec13-6e4c-654b-b978-b2807935ced9"
-                }
-            ],
-            "source": "Manual",
-            "required": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "وضع عمودي للمنتجات في مربع المنتجات الثابتة في الصفحة الرئيسية",
-            "description": null,
-            "id": "vertical_fixed_products",
-            "format": "switch",
-            "required": false,
-            "value": false,
-            "selected": false
-        },
-        {
-            "type": "boolean",
-            "id": "is_more_button_enabled",
-            "label": "عرض (زر الكل) في الصفحة الرئيسية",
-            "format": "switch"
-        },
-        {
-            "type": "static",
-            "id": "static-line1",
-            "format": "line"
-        },
-        {
-            "id": "header_is_sticky",
-            "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير لأسفل",
-            "description": "يُنصح بالغاء تفعيلها في حالة وجود عناصر كثيرة في القائمة المنسدلة",
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "شريط علوي داكن",
-            "description": null,
-            "id": "topnav_is_dark",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": false
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "عرض روابط الصفحات الهامة في الشريط العلوي",
-            "description": "مثل صفحة الهبوط ، المدونة ،الصفحات التعريفية",
-            "id": "important_links",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "تفعيل قائمة المزيد في القائمة الرئيسية",
-            "description": "عند تفعيلها، ستظهر الروابط الإضافية في قائمة منسدلة تسمى 'المزيد' عند عدم وجود مساحة كافية",
-            "id": "enable_more_menu",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "static",
-            "id": "static-line3",
-            "format": "line"
-        },
-        {
-            "type": "static",
-            "format": "title",
-            "id": "static-label4",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة</h6></div>",
-            "variant": "h6"
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "الوضع الداكن",
-            "description": null,
-            "id": "footer_is_dark",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": false
-        },
-        {
-            "type": "static",
-            "id": "static-line5",
-            "format": "line"
-        },
-        {
-            "type": "static",
-            "format": "title",
-            "id": "static-label6",
-            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات صفحة المنتج</h6></div>",
-            "variant": "h6"
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "تفعيل إشعار الإضافة للسلة المحسن",
-            "description": null,
-            "id": "enable_add_product_toast",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "تثبيت زر الإضافة والكمية أسفل شاشة الجوال",
-            "description": null,
-            "id": "sticky_add_to_cart",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "اظهار الوسوم",
-            "description": null,
-            "id": "show_tags",
-            "format": "switch",
-            "required": false,
-            "value": true,
-            "selected": true
-        },
-        {
-            "id": "slider_background_size",
-            "type": "items",
-            "format": "dropdown-list",
-            "label": "طريقة عرض الصور في سليدر صور المنتج",
-            "description": null,
-            "labelHTML": null,
-            "icon": "sicon-list",
-            "selected": [
-                {
-                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
-                    "value": "contain",
-                    "key": "f4adec13-6e4c-433b-b141-b2807935ced9"
-                }
-            ],
-            "options": [
-                {
-                    "label": "تغطية الصورة كامل المساحة مع المحافظة على أبعاد الصورة (Cover)",
-                    "value": "cover",
-                    "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4"
-                },
-                {
-                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
-                    "value": "contain",
-                    "key": "f4adec13-6e4c-433b-b141-b2807935ced9"
-                }
-            ],
-            "source": "Manual",
-            "required": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-toggle-off",
-            "label": "تكبير الصور في سليدر صور المنتج",
-            "description": "هذه الخاصية تمكنك من تكبير الصورة لتسهل رؤية المزيد من التفاصيل بها",
-            "id": "imageZoom",
-            "format": "switch",
-            "required": false,
-            "value": false,
-            "selected": false
-        }
-    ]
-}
+            "id": "show_splash",
+            "label": "تفعيل شاشة البداية",
+            "description": "تظهر لثوان عند أول دخول للمتجر",
+            "format
