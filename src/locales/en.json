@@ -5,6 +5,11 @@
     },
     "appBanner": {
       "download_now": "download now"
+    },
+    "splash": {
+      "enter": "Enter",
+      "close": "Close",
+      "default_text": "LA VISTA Perfumes"
     }
   },
   "pages": {
