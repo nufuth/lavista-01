@@ -45,8 +45,8 @@
             "id": "header_transparent",
             "format": "switch",
             "required": false,
-            "value": true,
-            "selected": true
+            "value": false,
+            "selected": false
         },
         {
             "id": "logo_position",
