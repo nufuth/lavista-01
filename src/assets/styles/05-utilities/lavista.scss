@@ -1,0 +1,632 @@
+// ══════════════════════════════════════════════════════════════════════════════
+//  LA VISTA PERFUMES — Complete Theme Override Layer
+//  Applies on top of theme-raed. All rules use specific selectors to win
+//  without !important where possible.
+// ══════════════════════════════════════════════════════════════════════════════
+
+// ─── 1. Body / Page Background ───────────────────────────────────────────────
+body {
+  background-color: var(--lv-cream) !important;
+  font-family: var(--font-main);
+  color: var(--lv-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-main);
+  color: var(--lv-dark);
+}
+
+// ─── 2. Top Navbar (شريط الإعلانات) ─────────────────────────────────────────
+.top-navbar.topnav-force-dark,
+.topnav-is-dark .top-navbar {
+  background-color: var(--lv-dark) !important;
+  color: #e8e0d0;
+
+  .btn--circle-gray,
+  .btn--rounded-gray,
+  .s-search-input {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    &:hover { background-color: rgba(255, 255, 255, 0.13) !important; }
+  }
+
+  .topnav-link-item {
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #c8bfa8;
+    &:hover { color: var(--lv-gold-light); }
+  }
+
+  .s-search-input { color: #e8e0d0; }
+
+  salla-contacts { --salla-contacts-color: #c8bfa8; }
+}
+
+// Scrolling marquee effect for announcement bar (optional — requires JS or CSS animation)
+.top-navbar {
+  overflow: hidden;
+  position: relative;
+}
+
+// ─── 3. Transparent Header ───────────────────────────────────────────────────
+//
+//  When .header-transparent is on the <header>:
+//    - Before scroll: nav is fully transparent (overlays hero)
+//    - After scroll:  JS adds .fixed-header → white/blurred background
+//
+.header-transparent {
+  // Position the header so it overlays the hero
+  position: relative;
+  z-index: 100;
+
+  // Pull the main-nav-container UP, so the hero fills behind it
+  .main-nav-container {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    // The .inner div
+    .inner {
+      background: transparent !important;
+    }
+
+    // Nav links — white on transparent bg
+    .main-menu > li > a {
+      color: rgba(255, 255, 255, 0.92) !important;
+      &:hover { color: var(--lv-gold-light) !important; }
+    }
+
+    // Hamburger icon on mobile
+    .sicon-menu { color: white !important; }
+
+    // Cart & user icons
+    .header-btn__icon {
+      color: white !important;
+      border-color: rgba(255, 255, 255, 0.35) !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+      &:hover { background: rgba(255, 255, 255, 0.15) !important; }
+    }
+
+    // Cart total text
+    .s-cart-summary-total { color: white !important; }
+
+    // Logo — make it white version when transparent
+    .navbar-brand img {
+      filter: brightness(0) invert(1);
+      transition: filter 0.4s ease;
+    }
+  }
+
+  // When scrolled (JS adds .fixed-header)
+  .main-nav-container.fixed-header,
+  .main-nav-container.fixed-pinned {
+    background: var(--header-bg-scrolled) !important;
+    backdrop-filter: var(--header-blur);
+    -webkit-backdrop-filter: var(--header-blur);
+    border-bottom: 1px solid var(--header-border-scroll) !important;
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06) !important;
+
+    .inner {
+      background: transparent !important;
+    }
+
+    // Restore colored links after scroll
+    .main-menu > li > a {
+      color: var(--lv-dark) !important;
+      &:hover { color: var(--lv-gold) !important; }
+    }
+
+    .sicon-menu { color: var(--lv-dark) !important; }
+
+    .header-btn__icon {
+      color: var(--lv-dark) !important;
+      border-color: rgba(0, 0, 0, 0.12) !important;
+      background: transparent !important;
+      &:hover { background: rgba(201, 168, 76, 0.08) !important; }
+    }
+
+    .s-cart-summary-total { color: var(--lv-dark) !important; }
+
+    // Restore logo (remove white filter)
+    .navbar-brand img { filter: none !important; }
+  }
+
+  // Hero section gets pushed up to fill behind transparent header
+  & + .page-content .s-block--hero-slider:first-child,
+  & ~ * .s-block--hero-slider:first-child {
+    margin-top: 0;
+  }
+}
+
+// Hero section negative margin to sit behind transparent header
+.header-transparent ~ * .hero-has-transparent-header,
+.hero-has-transparent-header {
+  margin-top: 0;
+}
+
+// ─── 4. Centered Logo ────────────────────────────────────────────────────────
+.main-nav-container.logo-centered {
+  // Center the logo absolutely
+  .navbar-brand {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 !important;
+    z-index: 2;
+  }
+
+  // Balance the menu items so centered logo doesn't fight them
+  > .inner > .container > div > .flex:first-child {
+    min-width: 40%;
+  }
+  > .inner > .container > div > .flex:last-child {
+    min-width: 40%;
+  }
+}
+
+// ─── 5. Logo Sizes ───────────────────────────────────────────────────────────
+.logo-size-small  .navbar-brand img { max-height: 40px !important; }
+.logo-size-medium .navbar-brand img { max-height: 60px !important; }
+.logo-size-large  .navbar-brand img { max-height: 80px !important; }
+.logo-size-xlarge .navbar-brand img { max-height: 100px !important; }
+
+// Shrink logo on sticky state
+.main-nav-container.fixed-header .navbar-brand img {
+  max-height: 44px !important;
+  transition: max-height 0.3s ease;
+}
+
+// ─── 6. Hero Fullscreen ──────────────────────────────────────────────────────
+.s-block--hero-slider.hero-fullscreen {
+  // Remove section top margin so it touches the very top
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+
+  salla-slider,
+  .swiper,
+  .swiper-container {
+    height: 100vh !important;
+  }
+
+  .swiper-slide,
+  .home-slider__slide {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+  }
+
+  .home-slider__content {
+    height: 100vh !important;
+    align-items: center;
+    display: flex;
+  }
+}
+
+// Default hero (non-fullscreen) — make taller than theme default
+.s-block--hero-slider:not(.hero-fullscreen) {
+  .swiper-slide,
+  .home-slider__slide {
+    min-height: 480px;
+
+    @media (min-width: 1024px) {
+      min-height: 650px;
+    }
+  }
+}
+
+// ─── 7. Hero Text Typography ─────────────────────────────────────────────────
+.hero-title {
+  font-family: var(--font-serif), var(--font-main) !important;
+  font-weight: 300;
+  font-size: clamp(2rem, 5vw, 4rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.3);
+}
+
+.hero-desc {
+  font-family: var(--font-main);
+  font-weight: 300;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hero-btn {
+  font-family: var(--font-main);
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: var(--btn-radius);
+  padding: 0.75rem 2.5rem;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  &:hover {
+    background: white;
+    color: var(--lv-dark) !important;
+    border-color: white !important;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+  }
+}
+
+// Hero overlay
+.overlay-bg {
+  background-color: var(--hero-overlay-color) !important;
+  background-image: none !important;
+}
+
+// ─── 8. Circular Categories ──────────────────────────────────────────────────
+.s-block--categories.cats-circular {
+  .slide--cat-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0.5rem;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+
+      .cat-circle-img,
+      .cat-circle-icon {
+        box-shadow: 0 8px 32px rgba(201, 168, 76, 0.35);
+        border-color: var(--lv-gold) !important;
+      }
+
+      .cat-circle-name {
+        color: var(--lv-gold);
+      }
+    }
+  }
+
+  .cat-circle-img {
+    border-radius: 50% !important;
+    object-fit: cover;
+    border: 2px solid rgba(201, 168, 76, 0.2);
+    transition: all 0.3s ease;
+    display: block;
+  }
+
+  .cat-circle-icon {
+    background: var(--lv-cream-dark);
+    border: 2px solid rgba(201, 168, 76, 0.2);
+    color: var(--lv-gold);
+    transition: all 0.3s ease;
+
+    i {
+      font-size: 1.6rem;
+    }
+  }
+
+  .cat-circle-name {
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--lv-text);
+    margin-top: 0.6rem;
+    transition: color 0.3s ease;
+    letter-spacing: 0.03em;
+  }
+
+  // Dynamic sizes from setting
+  &.cats-size-80  { .cat-circle-img, .cat-circle-icon { width: 80px  !important; height: 80px  !important; } }
+  &.cats-size-100 { .cat-circle-img, .cat-circle-icon { width: 100px !important; height: 100px !important; } }
+  &.cats-size-120 { .cat-circle-img, .cat-circle-icon { width: 120px !important; height: 120px !important; } }
+  &.cats-size-150 { .cat-circle-img, .cat-circle-icon { width: 150px !important; height: 150px !important; } }
+}
+
+// ─── 9. Pill Buttons ─────────────────────────────────────────────────────────
+// Applied via .buttons-pill body class (set by master.twig — to be added)
+// Also set by CSS variable --btn-radius default = 9999px
+.btn,
+[class*="btn--"],
+.salla-btn,
+salla-button::part(btn),
+.s-btn {
+  border-radius: var(--btn-radius) !important;
+}
+
+// Primary button gold style
+.btn--primary,
+salla-button[color="primary"]::part(btn),
+.s-product-form__add-btn {
+  background-color: var(--lv-gold) !important;
+  border-color: var(--lv-gold) !important;
+  color: var(--lv-dark) !important;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--lv-gold-dark) !important;
+    border-color: var(--lv-gold-dark) !important;
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.4);
+  }
+}
+
+// Add to cart button
+salla-add-product-button::part(btn),
+.s-add-btn {
+  border-radius: var(--btn-radius) !important;
+}
+
+// ─── 10. Product Cards ───────────────────────────────────────────────────────
+.s-product-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  background: white;
+
+  &:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+}
+
+.s-product-card__price,
+.product-price {
+  color: var(--lv-gold-dark);
+  font-weight: 600;
+}
+
+// ─── 11. Footer Dark ─────────────────────────────────────────────────────────
+// Enhanced dark footer for LA VISTA
+.footer-is-dark footer,
+footer.is-dark {
+  background-color: var(--lv-dark) !important;
+  color: #c8bfa8;
+
+  h3, h4, h5, h6, .footer-title {
+    color: var(--lv-gold-light);
+    font-family: var(--font-serif), var(--font-main);
+    letter-spacing: 0.08em;
+  }
+
+  a:not(.btn) {
+    color: #c8bfa8;
+    transition: color 0.2s;
+    &:hover { color: var(--lv-gold-light); }
+  }
+
+  .footer-divider,
+  hr {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-copyright {
+    color: rgba(200, 191, 168, 0.6);
+    font-size: 0.8rem;
+  }
+}
+
+// ─── 12. Primary Color Uses ──────────────────────────────────────────────────
+.text-primary { color: var(--lv-gold) !important; }
+.bg-primary   { background-color: var(--lv-gold) !important; }
+.border-primary { border-color: var(--lv-gold) !important; }
+
+// Links + interactive elements
+a.text-primary:hover { color: var(--lv-gold-dark) !important; }
+
+// ─── 13. Splash Screen / Welcome Popup ──────────────────────────────────────
+
+// Gateway (full-screen)
+.lv-splash-gateway {
+  position: fixed;
+  inset: 0;
+  background: var(--lv-dark);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.6s ease;
+
+  .lv-splash-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.45;
+  }
+
+  .lv-splash-content {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+  }
+
+  .lv-splash-text {
+    font-family: var(--font-serif), var(--font-main);
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: #fff;
+    letter-spacing: 0.2em;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .lv-splash-enter {
+    background: transparent;
+    border: 1px solid rgba(201, 168, 76, 0.7);
+    color: var(--lv-gold-light);
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 0.75rem 3rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-main);
+
+    &:hover {
+      background: var(--lv-gold);
+      border-color: var(--lv-gold);
+      color: var(--lv-dark);
+    }
+  }
+}
+
+// Standard popup overlay
+.lv-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.4s ease;
+}
+
+.lv-popup-box {
+  background: white;
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.4s ease;
+
+  .lv-popup-header {
+    background: linear-gradient(135deg, var(--lv-gold), var(--lv-gold-dark));
+    padding: 2.5rem 2rem;
+    text-align: center;
+    color: white;
+
+    h2 {
+      font-family: var(--font-serif), var(--font-main);
+      font-weight: 300;
+      font-size: 2rem;
+      letter-spacing: 0.1em;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
+    }
+  }
+
+  .lv-popup-body {
+    padding: 2rem;
+    text-align: center;
+
+    .lv-coupon {
+      background: var(--lv-gold-pale);
+      border: 2px dashed var(--lv-gold);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--lv-gold-dark);
+      margin: 1rem 0;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background: var(--lv-gold);
+        color: white;
+      }
+    }
+
+    .lv-popup-close {
+      font-size: 0.8rem;
+      color: var(--lv-text-light);
+      cursor: pointer;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      margin-top: 1rem;
+    }
+  }
+
+  .lv-popup-x {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+
+    &:hover { background: rgba(255, 255, 255, 0.35); }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+// ─── 14. Section Titles ──────────────────────────────────────────────────────
+.s-block [class*="salla-slider"] [slot="block-title"],
+.s-block .block-title,
+salla-slider::part(block-title) {
+  font-family: var(--font-serif), var(--font-main) !important;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--lv-dark);
+}
+
+// ─── 15. WhatsApp Button ─────────────────────────────────────────────────────
+salla-whatsapp-chat,
+.salla-whatsapp-chat {
+  --salla-whatsapp-bg: var(--lv-dark);
+  --salla-whatsapp-color: #25d366;
+}
+
+// ─── 16. Scrollbar ───────────────────────────────────────────────────────────
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--lv-cream-dark); }
+::-webkit-scrollbar-thumb {
+  background: var(--lv-gold);
+  border-radius: 99px;
+  &:hover { background: var(--lv-gold-dark); }
+}
+
+// ─── 17. Selection color ─────────────────────────────────────────────────────
+::selection {
+  background-color: var(--lv-gold-pale);
+  color: var(--lv-dark);
+}
+
+// ─── 18. Mobile adjustments ──────────────────────────────────────────────────
+@media (max-width: 1024px) {
+  // Transparent header — ensure mobile menu icon is visible
+  .header-transparent .main-nav-container:not(.fixed-header) {
+    position: relative !important;
+  }
+
+  // Hero fullscreen on mobile (shorter)
+  .s-block--hero-slider.hero-fullscreen {
+    .swiper-slide,
+    .home-slider__slide {
+      height: 100svh !important;
+      min-height: 100svh !important;
+    }
+  }
+}
