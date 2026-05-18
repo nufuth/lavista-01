@@ -27,7 +27,7 @@
 | store.settings.rating_enabled                      | bool     | Is one of: store_enabled or shipping_enabled or products_enabled                                         |
 | store.settings.arabic_numbers_enabled              | bool     | Does the merchant wants the numbers to be shown as Arabic format                                         |
 | store.settings.is_multilingual                     | bool     |                                                                                                          |
-| store.settings.currencies_enabled                  | bool     |     
+| store.settings.currencies_enabled                  | bool     |                                                                                                          |
 | theme                                              | Theme    |                                                                                                          |
 | theme.id                                           | int      |                                                                                                          |
 | theme.name                                         | string   |                                                                                                          |
@@ -66,22 +66,25 @@
 
     {% block head_scripts %}{% endblock %}
 
-
     <script data-cfasync="false">
         window.header_is_sticky = "{{theme.settings.get('header_is_sticky', 'Default Value')}}"
         window.imageZoom = "{{theme.settings.get('imageZoom')}}"
         window.can_access_wallet = {{ user.can_access_wallet | json_encode }}
         window.enable_more_menu = "{{ theme.settings.get('enable_more_menu', true) }}"
         window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
+        // LA VISTA settings
+        window.lv_header_transparent = "{{ theme.settings.get('header_transparent', false) }}"
+        window.lv_enable_popup = "{{ theme.settings.get('show_splash', false) }}"
+        window.lv_popup_coupon = "{{ theme.settings.get('popup_coupon', '') }}"
     </script>
-    
+
     {% hook 'head:start' %}
     {% hook head %}
     {% block styles %}{% endblock %}
     <link rel="stylesheet" href="{{ 'app.css' | asset }}">
     <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
     <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
-    
+
     <style>
         :root {
             --font-main: '{{theme.font.name}}';
@@ -96,8 +99,10 @@
 </head>
 <body id="app" class="theme-raed overflow-x-hidden {% hook 'body:classes' %}
   {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
-  {{ theme.settings.get('topnav_is_dark') ? ' topnav-is-dark' : '' }}
+  {{ theme.settings.get('topnav_is_dark') or theme.settings.get('topnav_force_dark') ? ' topnav-is-dark' : '' }}
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
+  {{ theme.settings.get('buttons_pill', true) ? ' buttons-pill' : '' }}
+  {{ theme.settings.get('cat_circular_large', false) ? ' cats-are-circular' : '' }}
   ">
 <noscript>
     To get full functionality of this site you need to enable JavaScript. Here is how
@@ -116,6 +121,56 @@
 {% if theme.settings.get('enable_add_product_toast', true) %}
     <salla-add-product-toast></salla-add-product-toast>
 {% endif %}
+
+{# ── LA VISTA Splash / Welcome Popup ── #}
+{% if theme.settings.get('show_splash', false) %}
+{% set splash_type = theme.settings.get('splash_type', 'gateway') %}
+<div id="lv-popup" class="lv-popup-overlay lv-splash-{{ splash_type }}" style="display:none" aria-modal="true" role="dialog">
+    {% if splash_type == 'gateway' %}
+        <div class="lv-splash-gateway">
+            {% if theme.settings.get('splash_image') %}
+                <img src="{{ theme.settings.get('splash_image') }}" class="lv-splash-bg-img" alt="splash">
+            {% endif %}
+            <div class="lv-splash-content">
+                <p class="lv-splash-text">{{ theme.settings.get('splash_text', 'Luxury Perfumes') }}</p>
+                <button class="lv-splash-enter" onclick="lvClosePopup()">دخول</button>
+            </div>
+        </div>
+    {% else %}
+        <div class="lv-popup-box">
+            <button class="lv-popup-x" onclick="lvClosePopup()" aria-label="إغلاق">✕</button>
+            {% if theme.settings.get('splash_image') %}
+                <img src="{{ theme.settings.get('splash_image') }}" class="lv-popup-img" alt="">
+            {% endif %}
+            <div class="lv-popup-body" style="padding:2rem; text-align:center">
+                <p class="lv-splash-text">{{ theme.settings.get('splash_text', 'Luxury Perfumes') }}</p>
+                <button class="lv-splash-enter" onclick="lvClosePopup()">دخول</button>
+            </div>
+        </div>
+    {% endif %}
+</div>
+<script>
+(function() {
+    var POPUP_KEY = 'lv_popup_seen_v1';
+    function lvShowPopup() {
+        if (!sessionStorage.getItem(POPUP_KEY)) {
+            var el = document.getElementById('lv-popup');
+            if (el) { el.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        }
+    }
+    window.lvClosePopup = function() {
+        var el = document.getElementById('lv-popup');
+        if (el) { el.style.display = 'none'; document.body.style.overflow = ''; }
+        sessionStorage.setItem(POPUP_KEY, '1');
+    };
+    document.addEventListener('click', function(e) {
+        if (e.target.id === 'lv-popup') window.lvClosePopup();
+    });
+    setTimeout(lvShowPopup, 1800);
+})();
+</script>
+{% endif %}
+
 <script defer crossorigin="anonymous" src="{{ 'app.js' | asset }}"></script>
 
 {# Twilight Components #}
