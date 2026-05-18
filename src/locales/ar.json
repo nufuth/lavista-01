@@ -5,6 +5,11 @@
     },
     "appBanner": {
       "download_now": "حمله الان"
+    },
+    "splash": {
+      "enter": "دخول",
+      "close": "إغلاق",
+      "default_text": "عطور لافيستا"
     }
   },
   "pages": {
