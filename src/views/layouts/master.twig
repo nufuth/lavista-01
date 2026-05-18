@@ -27,7 +27,7 @@
 | store.settings.rating_enabled                      | bool     | Is one of: store_enabled or shipping_enabled or products_enabled                                         |
 | store.settings.arabic_numbers_enabled              | bool     | Does the merchant wants the numbers to be shown as Arabic format                                         |
 | store.settings.is_multilingual                     | bool     |                                                                                                          |
-| store.settings.currencies_enabled                  | bool     |                                                                                                          |
+| store.settings.currencies_enabled                  | bool     |     
 | theme                                              | Theme    |                                                                                                          |
 | theme.id                                           | int      |                                                                                                          |
 | theme.name                                         | string   |                                                                                                          |
@@ -66,6 +66,7 @@
 
     {% block head_scripts %}{% endblock %}
 
+
     <script data-cfasync="false">
         window.header_is_sticky = "{{theme.settings.get('header_is_sticky', 'Default Value')}}"
         window.imageZoom = "{{theme.settings.get('imageZoom')}}"
@@ -77,14 +78,14 @@
         window.lv_enable_popup = "{{ theme.settings.get('show_splash', false) }}"
         window.lv_popup_coupon = "{{ theme.settings.get('popup_coupon', '') }}"
     </script>
-
+    
     {% hook 'head:start' %}
     {% hook head %}
     {% block styles %}{% endblock %}
     <link rel="stylesheet" href="{{ 'app.css' | asset }}">
     <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
     <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
-
+    
     <style>
         :root {
             --font-main: '{{theme.font.name}}';
@@ -122,52 +123,59 @@
     <salla-add-product-toast></salla-add-product-toast>
 {% endif %}
 
-{# ── LA VISTA Splash / Welcome Popup ── #}
+{# ══ LA VISTA Splash Screen ══
+   IMPORTANT: Do NOT add a nested div with lv-splash-* class inside.
+   The outer #lv-splash already carries the gateway/popup class.
+   A nested fixed div would overlay the whole page even when hidden.
+#}
 {% if theme.settings.get('show_splash', false) %}
-{% set splash_type = theme.settings.get('splash_type', 'gateway') %}
-<div id="lv-popup" class="lv-popup-overlay lv-splash-{{ splash_type }}" style="display:none" aria-modal="true" role="dialog">
-    {% if splash_type == 'gateway' %}
-        <div class="lv-splash-gateway">
-            {% if theme.settings.get('splash_image') %}
-                <img src="{{ theme.settings.get('splash_image') }}" class="lv-splash-bg-img" alt="splash">
-            {% endif %}
-            <div class="lv-splash-content">
-                <p class="lv-splash-text">{{ theme.settings.get('splash_text', 'Luxury Perfumes') }}</p>
-                <button class="lv-splash-enter" onclick="lvClosePopup()">دخول</button>
-            </div>
-        </div>
-    {% else %}
-        <div class="lv-popup-box">
-            <button class="lv-popup-x" onclick="lvClosePopup()" aria-label="إغلاق">✕</button>
-            {% if theme.settings.get('splash_image') %}
-                <img src="{{ theme.settings.get('splash_image') }}" class="lv-popup-img" alt="">
-            {% endif %}
-            <div class="lv-popup-body" style="padding:2rem; text-align:center">
-                <p class="lv-splash-text">{{ theme.settings.get('splash_text', 'Luxury Perfumes') }}</p>
-                <button class="lv-splash-enter" onclick="lvClosePopup()">دخول</button>
-            </div>
-        </div>
+{% set lv_splash_type = theme.settings.get('splash_type', 'gateway') %}
+
+{% if lv_splash_type == 'gateway' %}
+<div id="lv-splash" class="lv-gw-wrap" style="display:none" aria-modal="true" role="dialog">
+    {% if theme.settings.get('splash_image') %}
+        <img src="{{ theme.settings.get('splash_image') }}" class="lv-gw-bg" alt="">
     {% endif %}
+    <div class="lv-gw-content">
+        <p class="lv-gw-text">{{ theme.settings.get('splash_text', 'Luxury Perfumes') }}</p>
+        <button class="lv-gw-btn" onclick="lvClosePopup()">دخول</button>
+    </div>
 </div>
+{% else %}
+<div id="lv-splash" class="lv-pw-overlay" style="display:none" aria-modal="true" role="dialog">
+    <div class="lv-pw-box">
+        <button class="lv-pw-x" onclick="lvClosePopup()" aria-label="إغلاق">✕</button>
+        {% if theme.settings.get('splash_image') %}
+            <img src="{{ theme.settings.get('splash_image') }}" class="lv-pw-img" alt="">
+        {% endif %}
+        <div class="lv-pw-body">
+            <p class="lv-gw-text">{{ theme.settings.get('splash_text', 'Luxury Perfumes') }}</p>
+            <button class="lv-gw-btn" onclick="lvClosePopup()">دخول</button>
+        </div>
+    </div>
+</div>
+{% endif %}
+
 <script>
 (function() {
-    var POPUP_KEY = 'lv_popup_seen_v1';
-    function lvShowPopup() {
-        if (!sessionStorage.getItem(POPUP_KEY)) {
-            var el = document.getElementById('lv-popup');
-            if (el) { el.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+    var KEY = 'lv_splash_v2';
+    var el  = document.getElementById('lv-splash');
+    function lvShowSplash() {
+        if (!sessionStorage.getItem(KEY) && el) {
+            el.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
     }
     window.lvClosePopup = function() {
-        var el = document.getElementById('lv-popup');
-        if (el) { el.style.display = 'none'; document.body.style.overflow = ''; }
-        sessionStorage.setItem(POPUP_KEY, '1');
+        if (el) { el.style.display = 'none'; }
+        document.body.style.overflow = '';
+        sessionStorage.setItem(KEY, '1');
     };
     document.addEventListener('click', function(e) {
-        if (e.target.id === 'lv-popup') window.lvClosePopup();
+        if (e.target === el) { window.lvClosePopup(); }
     });
-    setTimeout(lvShowPopup, 1800);
-})();
+    setTimeout(lvShowSplash, 1800);
+}());
 </script>
 {% endif %}
 
