@@ -154,7 +154,8 @@
             "id": "splash_text",
             "format": "text",
             "required": false,
-            "value": "Luxury Perfumes"
+            "max_length": 100,
+            "value": ""
         },
         {
             "type": "static",
@@ -316,6 +317,7 @@
             "id": "hero_subtitle",
             "format": "textarea",
             "required": false,
+            "max_length": 500,
             "value": ""
         },
         {
@@ -473,6 +475,7 @@
             "id": "editorial_text",
             "format": "textarea",
             "required": false,
+            "max_length": 1000,
             "value": ""
         },
         {
@@ -622,8 +625,7 @@
             "id": "topnav_is_dark",
             "format": "switch",
             "required": false,
-            "value": true,
-            "selected": false
+            "selected": true
         },
         {
             "type": "boolean",
@@ -667,8 +669,7 @@
             "id": "footer_is_dark",
             "format": "switch",
             "required": false,
-            "value": true,
-            "selected": false
+            "selected": true
         },
         {
             "type": "static",
