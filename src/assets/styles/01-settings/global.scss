@@ -1,29 +1,60 @@
+// ══════════════════════════════════════════════
+//  LA VISTA PERFUMES — Global CSS Variables
+// ══════════════════════════════════════════════
 
-// Colors
+// SCSS bridge vars
 $main-color: var(--color-primary);
 $infinte-color: var(--infinte-color);
 $main-text-color: var(--main-text-color);
 
 :root {
-  --infinte-color: #c9c9c9;
-  --main-text-color: #231f1e;
-  --main-text-color-dark: #2b2d34;
+  // ── LA VISTA Brand Colors ──────────────────
+  --lv-gold:           #C9A84C;
+  --lv-gold-dark:      #8B6914;
+  --lv-gold-light:     #E5C876;
+  --lv-gold-pale:      #F7EDD4;
+  --lv-dark:           #1A1A1A;
+  --lv-dark-mid:       #2C2C2C;
+  --lv-cream:          #FAFAF8;
+  --lv-cream-dark:     #F2EDE4;
+  --lv-text:           #3D3C3A;
+  --lv-text-light:     #7A7670;
 
-  /* current */
-  --color-primary: #5cd5c4;
-  --color-primary: #414042;
-  --color-primary-d: #272628;
-  --color-primary-l: #676668;
-  --color-primary-reverse: #ff6767;
-  --color-text: #7c8082;
-  --bg-gray: #c6c7ce1a;
-  --color-grey: #f5f7f9;
-  --color-light-grey: #eeeeee;
-  /* font-size */
-  --font-sm: 0.8685714286rem;
-  /* font-family: ; */
-  --font-main: "DINNextLTArabic";
+  // ── Primary color (overrides theme default) ─
+  --color-primary:      var(--lv-gold);
+  --color-primary-d:    var(--lv-gold-dark);
+  --color-primary-l:    var(--lv-gold-light);
+  --color-primary-reverse: #ffffff;
 
-  /* plugins */
+  // ── Supporting colors ──────────────────────
+  --infinte-color:      #c9c9c9;
+  --main-text-color:    var(--lv-text);
+  --main-text-color-dark: var(--lv-dark);
+  --color-text:         var(--lv-text-light);
+  --bg-gray:            #c6c7ce1a;
+  --color-grey:         var(--lv-cream-dark);
+  --color-light-grey:   #eeeeee;
+
+  // ── Header (transparent + scroll) ─────────
+  --header-bg-transparent:  transparent;
+  --header-bg-scrolled:     rgba(255, 255, 255, 0.97);
+  --header-blur:            blur(14px);
+  --header-border-scroll:   rgba(201, 168, 76, 0.15);
+
+  // ── Hero ───────────────────────────────────
+  --hero-overlay-color:  rgba(0, 0, 0, 0.32);
+
+  // ── Fonts ──────────────────────────────────
+  --font-sm:    0.8685714286rem;
+  --font-main:  "Tajawal", "DINNextLTArabic", sans-serif;
+  --font-serif: "Cormorant Garamond", "Georgia", serif;
+
+  // ── Buttons ────────────────────────────────
+  --btn-radius:  9999px;
+
+  // ── Plugins ────────────────────────────────
   --mm-ocd-width: calc(100% - 51px);
 }
+
+// ── Google Fonts import ────────────────────
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Tajawal:wght@300;400;500;700&display=swap');
